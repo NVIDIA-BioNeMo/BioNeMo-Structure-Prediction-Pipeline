@@ -1,0 +1,39 @@
+{
+  "base_image": {
+    "cuda_version": "12.6.3",
+    "linux_amd64_digest": "sha256:6b3201183858bad08441837f5a5efc2c75290135cc25fcc87d9ff763190cfd09",
+    "reference": "docker.io/nvidia/cuda:12.6.3-base-ubuntu24.04"
+  },
+  "colabfold": {
+    "metadata_sha256": "cab203203ac963550707c66a28c632439206445401039b8e9af39fdc88e43af8",
+    "metadata_url": "https://raw.githubusercontent.com/sokrypton/ColabFold/c7d1772352cc9619df25c6d36cb0f218c0c6610e/Dockerfile",
+    "source_commit": "c7d1772352cc9619df25c6d36cb0f218c0c6610e",
+    "tag": "v1.6.2",
+    "version": "1.6.2"
+  },
+  "mmseqs": {
+    "artifact_sha256": "83969dd5c7d4c32858c2fc9a4d1024c15e8fe5da768ce76e787ab0195ffd64e7",
+    "artifact_url": "https://api.github.com/repos/soedinglab/MMseqs2/releases/assets/276781339",
+    "colabfold_metadata_reference": "ARG MMSEQS_HASH=archive/8cc5ce367b5638c4306c2d7cfc652dd099a4643f",
+    "gpuserver_reason": "ColabFold v1.6.2's immutable GPU image metadata selects this GPU MMseqs source commit; its GPU release artifact provides the gpuserver command used by the runtime adapter.",
+    "release": "18-8cc5c",
+    "source_commit": "8cc5ce367b5638c4306c2d7cfc652dd099a4643f"
+  },
+  "pixi": {
+    "artifact_sha256": "387a2d3052e656f61ccf735e6750255451366f45635a2da09116b1f8394b2837",
+    "artifact_url": "https://github.com/prefix-dev/pixi/releases/download/v0.80.0/pixi-x86_64-unknown-linux-musl",
+    "version": "0.80.0"
+  },
+  "rsync": {
+    "artifact_sha256": "0f8b7721bd3c3ccbe88c71211f89783396a1333144963f23105242e808ecd8af",
+    "artifact_url": "https://conda.anaconda.org/conda-forge/linux-64/rsync-3.4.4-h5440a77_0.conda",
+    "build": "h5440a77_0",
+    "version": "3.4.4"
+  },
+  "s5cmd": {
+    "artifact_sha256": "81d02a17a13797dc5949adb99734ad4217d005638a7827f36d435945527b2e69",
+    "artifact_url": "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_linux_amd64.deb",
+    "version": "2.3.0"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,70 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+containers/preprocessing/context/
+containers/folding/*/context/
+containers/postprocessing/context/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+.uv-python/
+
+# Hatch
+.hatch/
+
+# Testing / coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+
+# ruff
+.ruff_cache/
+
+# import-linter
+.import_linter_cache/
+
+# Secrets (credential files)
+secrets/
+
+# Operator-local container env (committed template is .env.example)
+.env
+
+# Claude Code per-user local state (must stay out of release artifacts)
+.claude/settings.local.json
+*.py[cod]
+node_modules/
+*.egg-info/
+.pi-subagents/
+.pi/subagents/
+.bspp-source-bundles/
+
+# Cluster runtime artifacts (slurm logs, smoke results)
+slurm-*.out
+slurm-*.err
+containers/smoke-results/
+.bspp-run/
+.pi/settings.json
+
+# Container-rebuild evidence auto-captured by push.sh all during the matrix
+# run; committed explicitly (git add -f) when a run should be preserved.
+devdocs/evidence/sample-run-plans/container-rebuild-*/evidence/
+devdocs/evidence/sample-run-plans/postproc-image-rebuild-*/evidence/
+
+# Corpus re-pin handoff artifacts (coordination scratch, never committed)
+.corpus-handoff/
+CORPUS-HANDOFF.md
+
+# Operator-local run handoff and captured logs (never committed)
+/logs/
+/next-command
+/pipelines.toml
+
+# Container rebuild evidence (neutral fallback when the evidence tree is absent)
+container-rebuild-evidence-*/

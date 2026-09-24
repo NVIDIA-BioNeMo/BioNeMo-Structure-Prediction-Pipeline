@@ -1,0 +1,38 @@
+schema_version: 1
+inventory_kind: postprocessing-logical-input-inventory-v1
+members:
+  - schema_version: 1
+    name: baseline-output
+    member_identity: task853:baseline-output
+    expected_content_sha256: 8c1c174556433264a9ddf3b9ea9bd94194611592dfef54ebba7761c3f37bc7ff
+    expected_size_bytes: 1
+  - schema_version: 1
+    name: reference-heterodimer-id-manifest
+    member_identity: task853:reference-heterodimer-id-manifest
+    expected_content_sha256: 3a0b6c8c4221439fbec15928313f39df1c6eb97acec6f9ab67d277e6c29ceb42
+    expected_size_bytes: 2
+  - schema_version: 1
+    name: reference-manifest-csv
+    member_identity: task853:reference-manifest-csv
+    expected_content_sha256: 16cb73d22612052600d10afd0e4f8ae5c2c330ac1af9f301385255ac52196cf7
+    expected_size_bytes: 3
+  - schema_version: 1
+    name: reference-master-parquet
+    member_identity: task853:reference-master-parquet
+    expected_content_sha256: e0f6854c47cbee44d6618a261fe73e065896c0f23f9f260dc1a1423b0bacd8fd
+    expected_size_bytes: 4
+  - schema_version: 1
+    name: reference-tracking-parquet
+    member_identity: task853:reference-tracking-parquet
+    expected_content_sha256: b377d7a2c40bb19e20a8ca916f88f4aaff2c73ce3e1a25f5e87f9baa42891c53
+    expected_size_bytes: 5
+  - schema_version: 1
+    name: reference-uniprot-duckdb
+    member_identity: task853:reference-uniprot-duckdb
+    expected_content_sha256: 0ba3dc69bfd416f252d77adb7413247ee885306ba866bac78d5e4d9807c65ddd
+    expected_size_bytes: 6
+  - schema_version: 1
+    name: s3-archive-prefix
+    member_identity: task853:s3-archive-prefix
+    expected_content_sha256: 26782e2a4cb083daf9db40f2be3706e76affd77c1847bb9fe7ae8ce12c3cbeea
+    expected_size_bytes: 7

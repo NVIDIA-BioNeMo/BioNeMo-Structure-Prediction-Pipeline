@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "dataset_id": "pdb-temporal-2022-2025-v1",
+  "fingerprint": "benchmark-fixture-fingerprint",
+  "cases": [
+    {
+      "target_id": "pdb-temporal-2022-2025-v1/0001",
+      "sequence_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "thresholds": {"ca_coverage": 0.7},
+      "require_no_nan": true,
+      "expected_pair_mode": "single",
+      "reference_structure": "refs/0001.pdb",
+      "reference_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "chain_map": {"A": "A"},
+      "metadata": {}
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "attempts": [
+    {
+      "attempt_id": "attempt-0001",
+      "created_at": "2026-09-03T12:00:00.000000Z",
+      "ordinal": 1,
+      "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+      "phase_runspec_location": "attempts/attempt-0001/phase-runspec.json",
+      "schema_version": 1,
+      "status": "materialized"
+    }
+  ],
+  "created_at": "2026-09-03T12:00:00.000000Z",
+  "current_attempt_id": "attempt-0001",
+  "phase_kind": "postprocessing",
+  "phase_plan_digest": "93bf77a8d6605541c82b5ff2a48d3e5595f0a71610dc6ace13dd1ed99017d271",
+  "phase_plan_location": "phase-plan.json",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sealed": false,
+  "status": "materialized"
+}

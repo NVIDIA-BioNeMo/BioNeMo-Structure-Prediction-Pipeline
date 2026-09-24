@@ -1,0 +1,51 @@
+clusters:
+  example-cluster:
+    owner: example
+    transport: ssh
+    ssh_target: example-cluster-login
+    account: example-account
+    postprocessing_credential_mounts:
+      aws_shared_credentials_file: /home/example/.aws/credentials
+      aws_config_file: /home/example/.aws/config
+    paths:
+      project_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/afcdb-proj
+      output_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/afcdb-proj/output/control_plane_task853
+      staging_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/input
+      afdb_toolkit_repo: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/bspp/AFDB-Integration-Kit
+      orchestration_repo: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/bspp-orchestration
+      image: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/containers/bspp-orchestration-latest.sqsh
+      probe_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/afcdb-proj/control-plane-probes
+      source_bundle_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/source-bundles
+      runtime_image_cache_root: /cluster/portfolios/example/projects/example-account/users/example-user/bspp/containers
+    resources:
+      control_cpu:
+        partition: cpu_short
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"
+      gpu_worker:
+        partition: batch_singlenode
+        cpus_per_task: 30
+        memory: 128G
+        time: "04:00:00"
+        gres: gpu:1
+      analysis_finalize:
+        partition: cpu_long
+        cpus_per_task: 8
+        memory: 128G
+        time: "24:00:00"
+      acceptance_tar_payload_parity:
+        partition: cpu_short
+        cpus_per_task: 8
+        memory: 32G
+        time: "00:30:00"
+      acceptance_semantic:
+        partition: cpu_short
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"
+    extra_mounts:
+      - source: /cluster/portfolios/example/projects/example-account/users/example-user/afcdb-proj
+        target: /cluster/portfolios/example/projects/example-account/users/example-user/afcdb-proj
+      - source: /cluster/portfolios/example/projects/example-account/users/example-user/afcdb-toolkit-files
+        target: /cluster/portfolios/example/projects/example-account/users/example-user/afcdb-toolkit-files

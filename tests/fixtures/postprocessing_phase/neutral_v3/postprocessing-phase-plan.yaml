@@ -1,0 +1,28 @@
+schema_version: 1
+phase_kind: postprocessing
+target_cluster: example-cluster
+output_namespace: task853-phase
+legacy_run_plan:
+  schema_version: 1
+  document_kind: legacy-run-plan
+  path: run-plan.yaml
+  sha256: b01f657e95c96e935c00a2175f676c291dd8a763518591d8333f23bc1968250e
+  size_bytes: 4741
+acceptance_policy:
+  schema_version: 1
+  document_kind: acceptance-policy
+  path: acceptance-policy.yaml
+  sha256: 3b3c60c11ad901f63268132354b8c7b71a5b8d3ba0e85e2dae8e2e0d785b6919
+  size_bytes: 4482
+logical_input_inventory:
+  schema_version: 1
+  document_kind: logical-input-inventory
+  path: logical-input-inventory.yaml
+  sha256: 0fa0a980e87507a6cd6facfbfaba556c632ce9c88c6d5481a49ac98f7a35a004
+  size_bytes: 1695
+runtime_qualification:
+  schema_version: 1
+  document_kind: runtime-qualification
+  path: runtime-qualification.json
+  sha256: 687049095adb65118654da6dad7b5d3bbd9cb358b1115f51906a9a4ac546d3da
+  size_bytes: 1090

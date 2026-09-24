@@ -1,0 +1,14 @@
+# ============================================================================
+# Generic Cluster Configuration Template
+# ============================================================================
+# Synthetic example only. Operators must supply their own cluster definitions
+# (and may overlay an operator-supplied file when present). The schema shape is
+# intentional: one filesystem identifier, GPU/CPU partitions, and a reaper flag.
+# ============================================================================
+
+clusters:
+  example:
+    filesystem: example-fs
+    partition_gpu: example-gpu
+    partition_cpu: example-cpu
+    job_reaper_comment: false

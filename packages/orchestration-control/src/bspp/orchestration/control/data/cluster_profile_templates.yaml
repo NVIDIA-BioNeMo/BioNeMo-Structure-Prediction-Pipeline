@@ -1,0 +1,30 @@
+clusters:
+  example:
+    account: example-account
+    resources:
+      control_cpu:
+        partition: example-cpu
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"
+      gpu_worker:
+        partition: example-gpu
+        cpus_per_task: 30
+        memory: 128G
+        time: "04:00:00"
+        gres: gpu:1
+      analysis_finalize:
+        partition: example-cpu
+        cpus_per_task: 4
+        memory: 16G
+        time: "04:00:00"
+      acceptance_tar_payload_parity:
+        partition: example-cpu
+        cpus_per_task: 8
+        memory: 32G
+        time: "00:30:00"
+      acceptance_semantic:
+        partition: example-cpu
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"

@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "base_image": {
+    "reference": "ghcr.io/sokrypton/colabfold:1.6.2-cuda12",
+    "linux_amd64_digest": "sha256:22f1243a8feca427b6942889d4dc3b549a3b75b23df9cf85c5f512a85e4f7f77",
+    "cuda_version": "12.x"
+  },
+  "colabfold_version": "1.6.2",
+  "runtime_deps": {
+    "click": ">=8.1,<9",
+    "pydantic": ">=2,<3",
+    "pyyaml": ">=6,<7"
+  },
+  "pinning_note": "The base image linux_amd64_digest is the pinned linux/amd64 sha256 digest of ghcr.io/sokrypton/colabfold:1.6.2-cuda12. build.sh still fails closed while the digest equals the placeholder. The runtime_deps and colabfold_version fields are documentation-only and are not wired through ARG/--build-arg; the Dockerfile hardcodes the pip install ranges directly.",
+  "s5cmd": {
+    "artifact_sha256": "81d02a17a13797dc5949adb99734ad4217d005638a7827f36d435945527b2e69",
+    "artifact_url": "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_linux_amd64.deb",
+    "version": "2.3.0"
+  }
+}

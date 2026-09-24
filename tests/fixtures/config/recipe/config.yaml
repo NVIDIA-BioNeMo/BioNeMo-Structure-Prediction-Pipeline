@@ -1,0 +1,11 @@
+dataset: test_dataset
+version: v1
+provider_id: test-provider
+input_source: local
+input_path: input/
+output_path: output/
+num_models: 5
+batch_size: 5
+upload:
+  s3: false
+  gcs: false

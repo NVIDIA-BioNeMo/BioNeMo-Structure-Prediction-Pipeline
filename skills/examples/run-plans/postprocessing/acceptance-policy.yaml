@@ -1,0 +1,118 @@
+schema_version: 1
+policy_kind: postprocessing-sealable-v2
+policy_schema: bspp-postprocessing-acceptance
+policy_version: '2'
+baseline_id: my-baseline
+baseline_version: placeholder
+residual_allowances:
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    json_pointer: /files/payload_mismatch_sample
+    match_kind: exact-tar-member
+    expected_value: AF-0000000000000001-model_v1.bcif.zst
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    json_pointer: /files/payload_mismatch_sample
+    match_kind: exact-tar-member
+    expected_value: AF-0000000000000001-confidence_v1.json.zst
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    json_pointer: /files/payload_mismatch_sample
+    match_kind: exact-tar-member
+    expected_value: AF-0000000000000002-model_v1.bcif.zst
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    json_pointer: /files/payload_mismatch_sample
+    match_kind: exact-tar-member
+    expected_value: metadata/clashes_and_interfaces_granular/AF-0000000000000003-model_v1_clashes.json.zst
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    json_pointer: /files/extra_in_candidate
+    match_kind: exact-tar-member
+    expected_value: metadata/clashes_and_interfaces_granular/AF-0000000000000002-model_v1_interface.json.zst
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+  - schema_version: 1
+    report: acceptance/semantic_acceptance/semantic_acceptance_summary.json
+    json_pointer: /errors
+    match_kind: json-pointer-count
+    expected_value: local_tars.csv semantic rows differ
+    cardinality_kind: permitted-range
+    required_count: 0
+    permitted_min: 0
+    permitted_max: 1
+completion_exit_contracts:
+  - schema_version: 1
+    step_name: acceptance-tar-payload-parity
+    allowed_raw_exit_codes: [0, 1]
+    report_paths:
+      - acceptance/tar_payload_parity/tar_payload_parity_report.json
+    report_schema: tar-payload-parity-report
+    report_schema_version: '1'
+    outcome_report_path: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    outcome_json_pointer: /ok
+    raw_exit_report_outcomes:
+      - raw_exit_code: 0
+        report_ok: true
+      - raw_exit_code: 1
+        report_ok: false
+  - schema_version: 1
+    step_name: acceptance-semantic
+    allowed_raw_exit_codes: [0, 1]
+    report_paths:
+      - acceptance/semantic_acceptance/semantic_acceptance_summary.json
+    report_schema: semantic-acceptance-summary
+    report_schema_version: '1'
+    outcome_report_path: acceptance/semantic_acceptance/semantic_acceptance_summary.json
+    outcome_json_pointer: /ok
+    raw_exit_report_outcomes:
+      - raw_exit_code: 0
+        report_ok: true
+      - raw_exit_code: 1
+        report_ok: false
+  - schema_version: 1
+    step_name: acceptance-verify-evidence
+    allowed_raw_exit_codes: [0, 1]
+    report_paths:
+      - acceptance/verify_evidence/acceptance_evidence_report.json
+    report_schema: acceptance-evidence-report
+    report_schema_version: '1'
+    outcome_report_path: acceptance/verify_evidence/acceptance_evidence_report.json
+    outcome_json_pointer: /ok
+    raw_exit_report_outcomes:
+      - raw_exit_code: 0
+        report_ok: true
+      - raw_exit_code: 1
+        report_ok: false
+baseline_report_bindings:
+  - schema_version: 1
+    report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    baseline_locator_json_pointer: /baseline_dir
+  - schema_version: 1
+    report: acceptance/semantic_acceptance/semantic_acceptance_summary.json
+    baseline_locator_json_pointer: /baseline_dir
+cross_report_reconciliations:
+  - schema_version: 1
+    left_report: acceptance/tar_payload_parity/tar_payload_parity_report.json
+    left_json_pointer: /candidate_dir
+    right_report: acceptance/semantic_acceptance/semantic_acceptance_summary.json
+    right_json_pointer: /candidate_dir
+    comparison: equal

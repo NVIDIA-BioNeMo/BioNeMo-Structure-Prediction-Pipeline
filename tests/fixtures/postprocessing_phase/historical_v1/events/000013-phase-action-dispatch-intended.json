@@ -1,0 +1,18 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-action-dispatch-intended",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+    "dependency_job_ids": [
+      "4005"
+    ],
+    "scheduler_correlation_token": "afcdb-pp-3aabd07c2945d9e99680167d5b3573a3e33a82606b838410",
+    "schema_version": 1,
+    "submission_id": "postprocessing-submission-8f487bfe43d241c0358682ce366f8b972f6b81d9c11657fb6b8e45e09d0aa21c"
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 13
+}

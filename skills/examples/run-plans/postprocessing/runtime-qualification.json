@@ -1,0 +1,28 @@
+{
+  "evidence_status": "passed",
+  "expires_at": "2026-02-01T00:00:00Z",
+  "profile": "my-cluster",
+  "qualified_at": "2026-01-01T00:00:00Z",
+  "schema_version": 1,
+  "smoke_evidence": {
+    "bootstrap_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+    "runtime_component": "postprocessing-v1"
+  },
+  "status": "qualified",
+  "tuple": {
+    "execution_runtime_image": "/data/bspp/containers/bspp-orchestration-postprocessing.sqsh",
+    "runtime_image_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "selected_source": {
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "root": "/toolkit",
+      "source_kind": "override"
+    },
+    "source_package_identity": {
+      "package_sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+    },
+    "toolkit_package_identity": {
+      "package_sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+    }
+  },
+  "tuple_id": "1111111111111111111111111111111111111111111111111111111111111111"
+}

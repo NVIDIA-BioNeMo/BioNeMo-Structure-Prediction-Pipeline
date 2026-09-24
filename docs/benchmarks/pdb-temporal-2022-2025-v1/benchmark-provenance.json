@@ -1,0 +1,24 @@
+{
+  "dataset_id": "pdb-temporal-2022-2025-v1",
+  "expected_dataset_fingerprint": "c04ec62e6eecf165eea010f82f7aa1ad72ddfd99ce462a9c4afeac286049a217",
+  "source_main_commit": "pinned-upstream-revision",
+  "targets": 1000,
+  "monomers": 750,
+  "dimers": 150,
+  "trimers": 50,
+  "tetramers": 50,
+  "total_residues": 391180,
+  "strata": {
+    "dimer_large": 75,
+    "dimer_small": 75,
+    "monomer_long": 200,
+    "monomer_medium": 250,
+    "monomer_short": 200,
+    "monomer_xlong": 100,
+    "tetramer": 50,
+    "trimer": 50
+  },
+  "source_targets_sha256": "9936149d6b636cec13aaaf34f13637705496944abd32c77f789e5d6d8d5388c0",
+  "download_authentication": "No credentials required for public RCSB assembly and metadata endpoints.",
+  "id_only_limitation": "PDB IDs identify entries; assembly and ordered chain-sequence pins are needed to reproduce the benchmark inputs."
+}

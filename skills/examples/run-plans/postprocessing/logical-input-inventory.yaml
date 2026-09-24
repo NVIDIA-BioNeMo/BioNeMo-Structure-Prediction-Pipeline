@@ -1,0 +1,38 @@
+schema_version: 1
+inventory_kind: postprocessing-logical-input-inventory-v1
+members:
+  - schema_version: 1
+    name: baseline-output
+    member_identity: my-baseline:baseline-output
+    expected_content_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    expected_size_bytes: 1
+  - schema_version: 1
+    name: reference-heterodimer-id-manifest
+    member_identity: my-baseline:reference-heterodimer-id-manifest
+    expected_content_sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    expected_size_bytes: 2
+  - schema_version: 1
+    name: reference-manifest-csv
+    member_identity: my-baseline:reference-manifest-csv
+    expected_content_sha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    expected_size_bytes: 3
+  - schema_version: 1
+    name: reference-master-parquet
+    member_identity: my-baseline:reference-master-parquet
+    expected_content_sha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+    expected_size_bytes: 4
+  - schema_version: 1
+    name: reference-tracking-parquet
+    member_identity: my-baseline:reference-tracking-parquet
+    expected_content_sha256: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    expected_size_bytes: 5
+  - schema_version: 1
+    name: reference-uniprot-duckdb
+    member_identity: my-baseline:reference-uniprot-duckdb
+    expected_content_sha256: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    expected_size_bytes: 6
+  - schema_version: 1
+    name: s3-archive-prefix
+    member_identity: my-baseline:s3-archive-prefix
+    expected_content_sha256: "1111111111111111111111111111111111111111111111111111111111111111"
+    expected_size_bytes: 7

@@ -1,0 +1,6 @@
+{
+  "report": "local_integrity",
+  "changes": {
+    "digest_mismatches": ["result.json"]
+  }
+}

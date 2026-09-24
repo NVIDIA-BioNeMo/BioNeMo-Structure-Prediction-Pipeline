@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "run_id": "benchmark-fixture-run",
+  "entries": [
+    {
+      "target_id": "pdb-temporal-2022-2025-v1/0001",
+      "sequence_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "model_entity_id": "AF-0000000000000001",
+      "tool_used": "OpenFold / AlphaFold-Multimer",
+      "structure_path": "AF-0000000000000001-model_v1.pdb",
+      "scores_path": "AF-0000000000000001-meta_v1.json"
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1060" viewBox="0 0 1600 1060" role="img" aria-labelledby="title desc">
+  <title id="title">Folding: five scheduled Runtime actions and an explicit downstream handoff</title>
+  <desc id="desc">A verified local or object-storage MSA handoff feeds five dependent Slurm Runtime actions: msa-flatten, split, preprocess, fold, and canonical-pair. Each dashed panel is a submitted job, with a solid runtime-container boundary inside it. Non-fold actions use the folding runtime image; fold uses a selected backend image and read-only assets. BioIR, OpenFold CLI, and ColabFold execute structure prediction; OpenFold-TRT fails closed. ColabFold consumes a materialized A3M directly. Canonical structures, confidence JSON and a canonical-pair index are produced before separate packaging, parquet derivation and local or object-storage transfer to postprocessing. Packed fold arrays limit concurrency but do not guarantee simultaneous node starts.</desc>
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #111111; }
+      .title { font-size: 38px; font-weight: 700; }
+      .subtitle { font-size: 20px; fill: #555555; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .label { font-size: 18px; }
+      .small { font-size: 16px; fill: #555555; }
+      .artifact { fill: #ffffff; stroke: #777777; stroke-width: 1.5; }
+      .runtime { fill: #eeeeee; stroke: #777777; stroke-width: 1.5; }
+      .compute { fill: #76B900; stroke: #4d7900; stroke-width: 1.5; }
+      .job { fill: #fafafa; stroke: #777777; stroke-width: 1.5; stroke-dasharray: 8 6; }
+      .container { fill: #ffffff; stroke: #777777; stroke-width: 1.5; }
+      .edge { fill: none; stroke: #666666; stroke-width: 1.5; marker-end: url(#arrow); }
+      .note-edge { fill: none; stroke: #888888; stroke-width: 1.5; stroke-dasharray: 3 4; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#666666" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="1600" height="1060" fill="#ffffff"/>
+  <text x="40" y="58" class="title">Folding</text>
+  <text x="40" y="92" class="subtitle">Five dependent Runtime actions · backend-specific preparation and scientific execution</text>
+
+  <g aria-label="Legend">
+    <rect x="40" y="122" width="24" height="20" rx="4" class="compute"/><text x="74" y="138" class="small">Scientific compute</text>
+    <rect x="254" y="122" width="24" height="20" rx="4" class="runtime"/><text x="288" y="138" class="small">Runtime handling</text>
+    <rect x="458" y="122" width="24" height="20" rx="4" class="artifact"/><text x="492" y="138" class="small">Artifact</text>
+    <rect x="590" y="122" width="30" height="20" rx="4" class="job"/><text x="630" y="138" class="small">Slurm job / array parent</text>
+    <rect x="854" y="122" width="30" height="20" rx="4" class="container"/><text x="894" y="138" class="small">Runtime container per task</text>
+  </g>
+
+  <rect x="40" y="184" width="440" height="102" rx="4" class="artifact"/>
+  <text x="60" y="216" class="heading">INPUT SEAM — choose one</text>
+  <text x="60" y="249" class="label">Local pass-through or object storage</text>
+  <text x="60" y="273" class="small">Verify and materialize the declared artifact</text>
+  <path d="M 480 235 H 529" class="edge"/>
+  <rect x="532" y="184" width="570" height="102" rx="4" class="artifact"/>
+  <text x="552" y="216" class="heading">MSA handoff · bspp.msa-set/v1</text>
+  <text x="552" y="249" class="label">Bundle + manifests + per-member SHA-256</text>
+  <text x="552" y="273" class="small">Verified local or remote bundled location</text>
+  <rect x="1140" y="184" width="420" height="102" rx="4" class="artifact"/>
+  <text x="1160" y="216" class="heading">Read-only backend assets</text>
+  <text x="1160" y="249" class="label">Checkpoints · weights · chain manifest</text>
+  <text x="1160" y="273" class="small">Selected by the Cluster Profile</text>
+  <path d="M 817 286 V 310 H 180 V 333" class="edge"/>
+  <path d="M 1350 286 V 310 H 1110 V 333" class="edge"/>
+
+  <g aria-label="Action one: msa-flatten">
+    <rect x="40" y="336" width="280" height="312" rx="4" class="job"/>
+    <text x="60" y="366" class="heading">01 · msa-flatten</text>
+    <rect x="54" y="384" width="252" height="248" rx="4" class="container"/>
+    <text x="180" y="410" text-anchor="middle" class="small">Folding runtime image</text>
+    <rect x="68" y="432" width="224" height="86" rx="4" class="runtime"/>
+    <text x="180" y="466" text-anchor="middle" class="heading">Verify + flatten</text>
+    <text x="180" y="495" text-anchor="middle" class="label">Materialize MSA files</text>
+    <path d="M 180 518 V 548" class="edge"/>
+    <rect x="68" y="552" width="224" height="62" rx="4" class="artifact"/>
+    <text x="180" y="588" text-anchor="middle" class="label">Verified .a3m files</text>
+  </g>
+  <g aria-label="Action two: split">
+    <rect x="350" y="336" width="280" height="312" rx="4" class="job"/>
+    <text x="370" y="366" class="heading">02 · split</text>
+    <rect x="364" y="384" width="252" height="248" rx="4" class="container"/>
+    <text x="490" y="410" text-anchor="middle" class="small">Folding runtime image</text>
+    <rect x="378" y="432" width="224" height="86" rx="4" class="runtime"/>
+    <text x="490" y="466" text-anchor="middle" class="heading">Split alignments</text>
+    <text x="490" y="495" text-anchor="middle" class="label">Expand chain copies</text>
+    <path d="M 490 518 V 548" class="edge"/>
+    <rect x="378" y="552" width="224" height="62" rx="4" class="artifact"/>
+    <text x="490" y="588" text-anchor="middle" class="label">chain_N.a3m</text>
+  </g>
+  <g aria-label="Action three: preprocess">
+    <rect x="660" y="336" width="280" height="312" rx="4" class="job"/>
+    <text x="680" y="366" class="heading">03 · preprocess</text>
+    <rect x="674" y="384" width="252" height="248" rx="4" class="container"/>
+    <text x="800" y="410" text-anchor="middle" class="small">Folding runtime image</text>
+    <rect x="688" y="432" width="224" height="86" rx="4" class="runtime"/>
+    <text x="800" y="466" text-anchor="middle" class="heading">Prepare inputs</text>
+    <text x="800" y="495" text-anchor="middle" class="label">Backend-specific layout</text>
+    <path d="M 800 518 V 548" class="edge"/>
+    <rect x="688" y="552" width="224" height="62" rx="4" class="artifact"/>
+    <text x="800" y="578" text-anchor="middle" class="label">OpenFold layout</text>
+    <text x="800" y="602" text-anchor="middle" class="label">or BioIR request + MSAs</text>
+  </g>
+  <g aria-label="Action four: fold">
+    <rect x="970" y="336" width="280" height="312" rx="4" class="job"/>
+    <text x="990" y="366" class="heading">04 · fold</text>
+    <rect x="984" y="384" width="252" height="248" rx="4" class="container"/>
+    <text x="1110" y="410" text-anchor="middle" class="small">Selected backend image</text>
+    <rect x="998" y="432" width="224" height="86" rx="4" class="compute"/>
+    <text x="1110" y="466" text-anchor="middle" class="heading">Predict structure</text>
+    <text x="1110" y="495" text-anchor="middle" class="label">Compute confidence</text>
+    <path d="M 1110 518 V 548" class="edge"/>
+    <rect x="998" y="552" width="224" height="62" rx="4" class="artifact"/>
+    <text x="1110" y="578" text-anchor="middle" class="label">Structures + scores</text>
+    <text x="1110" y="602" text-anchor="middle" class="label">pLDDT · PAE · max PAE</text>
+  </g>
+  <g aria-label="Action five: canonical-pair">
+    <rect x="1280" y="336" width="280" height="312" rx="4" class="job"/>
+    <text x="1300" y="366" class="heading">05 · canonical-pair</text>
+    <rect x="1294" y="384" width="252" height="248" rx="4" class="container"/>
+    <text x="1420" y="410" text-anchor="middle" class="small">Folding runtime image</text>
+    <rect x="1308" y="432" width="224" height="86" rx="4" class="runtime"/>
+    <text x="1420" y="466" text-anchor="middle" class="heading">Normalize + index</text>
+    <text x="1420" y="495" text-anchor="middle" class="label">Aggregate fold evidence</text>
+    <path d="M 1420 518 V 541" class="edge"/>
+    <rect x="1308" y="544" width="224" height="76" rx="4" class="artifact"/>
+    <text x="1420" y="567" text-anchor="middle" class="small">-model_v1.pdb</text>
+    <text x="1420" y="588" text-anchor="middle" class="small">-meta_v1.json</text>
+    <text x="1420" y="609" text-anchor="middle" class="small">canonical-pair-index.json</text>
+  </g>
+  <path d="M 320 475 H 347" class="edge"/>
+  <path d="M 630 475 H 657" class="edge"/>
+  <path d="M 940 475 H 967" class="edge"/>
+  <path d="M 1250 475 H 1277" class="edge"/>
+
+  <text x="40" y="686" class="label">Choose one executable backend: BioIR · OpenFold CLI · ColabFold.</text>
+  <text x="40" y="715" class="small">ColabFold consumes a directly materialized A3M; its intake differs from the split-input path.</text>
+  <text x="40" y="742" class="small">OpenFold-TRT is a contract value only and refuses execution before handoff publication.</text>
+  <text x="40" y="782" class="small">Packed folding uses an array; concurrency limits do not guarantee simultaneous node starts.</text>
+
+  <path d="M 1420 648 V 818 H 200 V 850" class="edge"/>
+  <g aria-label="Separate downstream packaging and transport">
+    <rect x="40" y="854" width="320" height="114" rx="4" class="runtime"/>
+    <text x="60" y="885" class="heading">Explicit downstream steps</text>
+    <text x="60" y="918" class="label">Package prediction bundles</text>
+    <text x="60" y="946" class="label">Derive seam parquets</text>
+    <path d="M 360 910 H 397" class="edge"/>
+    <rect x="400" y="854" width="320" height="114" rx="4" class="artifact"/>
+    <text x="420" y="885" class="heading">Prediction handoff</text>
+    <text x="420" y="918" class="label">.tar.lz4 bundles + metadata</text>
+    <text x="420" y="946" class="label">Master + tracking parquets</text>
+    <path d="M 720 910 H 757" class="edge"/>
+    <rect x="760" y="854" width="460" height="114" rx="4" class="artifact"/>
+    <text x="780" y="885" class="heading">SEAM TRANSPORT — choose one</text>
+    <text x="780" y="918" class="label">Local pass-through or object storage</text>
+    <text x="780" y="946" class="small">Publication / fetch is an explicit operation</text>
+    <path d="M 1220 910 H 1257" class="edge"/>
+    <rect x="1260" y="854" width="300" height="114" rx="4" class="artifact"/>
+    <text x="1280" y="899" class="heading">Postprocessing inputs</text>
+    <text x="1280" y="934" class="label">Verified artifact identities</text>
+  </g>
+  <text x="40" y="1014" class="small">Phase acceptance, artifact publication, and reference-coordinate validation are separate outcomes.</text>
+</svg>

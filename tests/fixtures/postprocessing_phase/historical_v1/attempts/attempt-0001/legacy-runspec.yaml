@@ -1,0 +1,186 @@
+run_kind: production
+dataset:
+  name: task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001
+  run_id: task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001
+  mode: archive
+  array: 853-853
+  archive_source: tracking
+cluster:
+  name: example-cluster
+  account: example-account
+  owner: example-user
+paths:
+  project_root: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj
+  staging_dir: /tmp/afcdb-v1-build-9og1f7f9/cluster-staging/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/staging
+  output_dir: /tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001
+  log_dir: /tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/logs
+  orchestration_repo: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-orchestration
+  recipe_dir: /tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/rendered_recipe
+  afdb_toolkit_repo: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb/AFDB-Integration-Kit
+references:
+  master_parquet: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/swiftstack_data/master_all_runs_merged_23M.parquet
+  tracking_parquet: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/orch_task853/input/tracking_rebaseline_one_archive_tar_hq_20260520_014444_orch_task853_from_upstream_archive_list.parquet
+  manifest_csv: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/colabfold_manifest_merged_5way_afid_reassigned_2026-02-24.csv
+  uniprot_duckdb: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/uniprot_2025_04_merged_5way_sprot_trembl.duckdb
+  heterodimer_id_manifest: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files/colabfold_manifest_heterodimer_compound_rescue_20260427.csv
+  artifacts:
+    master_parquet:
+      path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/swiftstack_data/master_all_runs_merged_23M.parquet
+      version: 2026-02
+    tracking_parquet:
+      path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/orch_task853/input/tracking_rebaseline_one_archive_tar_hq_20260520_014444_orch_task853_from_upstream_archive_list.parquet
+      version: derived-from-upstream-task853-archive-list
+    manifest_csv:
+      path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/colabfold_manifest_merged_5way_afid_reassigned_2026-02-24.csv
+      version: '2026-02-24'
+    uniprot_duckdb:
+      path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/uniprot_2025_04_merged_5way_sprot_trembl.duckdb
+      version: '2025_04'
+    heterodimer_id_manifest:
+      path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files/colabfold_manifest_heterodimer_compound_rescue_20260427.csv
+container:
+  image: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh
+  mounts:
+  - source: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-orchestration
+    target: /workspace/afcdb-orchestration
+  - source: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb/AFDB-Integration-Kit
+    target: /workspace/AFDB-Integration-Kit
+  - source: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj
+    target: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj
+  - source: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj
+    target: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj
+  - source: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files
+    target: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files
+resources:
+  control_cpu:
+    partition: cpu_short
+    cpus_per_task: 4
+    memory: 16G
+    time: 00:20:00
+  gpu_worker:
+    partition: batch_singlenode
+    cpus_per_task: 30
+    memory: 128G
+    time: 04:00:00
+    gres: gpu:1
+    array: 853-853
+  analysis_finalize:
+    partition: cpu_long
+    cpus_per_task: 8
+    memory: 128G
+    time: '24:00:00'
+  acceptance_tar_payload_parity:
+    partition: cpu_short
+    cpus_per_task: 8
+    memory: 32G
+    time: 00:30:00
+  acceptance_semantic:
+    partition: cpu_short
+    cpus_per_task: 4
+    memory: 16G
+    time: 00:20:00
+worker:
+  stages: ipsae dssp validation metadata_export modelcif_export
+  workers: 24
+  batch_size: 1000
+  shards_per_archive: 2
+  self_upload: false
+  local_scratch: true
+  scratch_dir: /tmp
+  s5cmd_path: s5cmd
+  upload_slots: 150
+  s5cmd_numworkers: 16
+  duckdb_memory_limit: 1GB
+  heterodimers: true
+  clash_device: cuda
+  clash_batch_size: 128
+  dssp_algorithm: pydssp
+  parallel_stages: false
+  retry_failed_only: false
+  retry_metadata_delta_tag: retry_failed_delta
+  tool_used: ColabFold v1.6.0 / AlphaFold-Multimer
+  homodimer_tool_used: ColabFold v1.6.0 / AlphaFold-Multimer
+  provider_id: NVDA
+  provider_name: NVIDIA
+  provider_url: https://alphafold.ebi.ac.uk
+  provider_copyrights:
+  - Copyright 2024 NVIDIA. All rights reserved.
+storage:
+  s3_archive_prefix: s3://example-bucket/users/example-user/rerun-inputs/control-plane-task853/control_plane_task853_awscreds_retry_20260608/archives/
+  s3_output_prefix: s3://example-bucket/users/example-user/postprocessed-test/control_plane_task853_awscreds_retry_20260608/phase-run-0123456789abcdef0123456789abcdef-attempt-0001/
+  upload_mode: tar
+  local_tar_dir: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/control_plane_task853/control_plane_task853_awscreds_retry_20260608/local_tars
+  local_tar_manifest_csv: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/control_plane_task853/control_plane_task853_awscreds_retry_20260608/local_tars.csv
+  tar_compression: zstd-members
+  allow_production_prefixes: false
+analysis_metadata:
+  enabled: true
+  csv_path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/control_plane_task853/control_plane_task853_awscreds_retry_20260608/analysis_metadata.csv
+  ipsae_threshold: 0.6
+  pdockq2_threshold: 0.23
+  finalize_after_gpu: true
+  parquet_path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/control_plane_task853/control_plane_task853_awscreds_retry_20260608/analysis_metadata.parquet
+  selected_ids_path: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/control_plane_task853/control_plane_task853_awscreds_retry_20260608/high_quality_model_ids.txt
+  chunk_size: 100000
+  finalize_partition: cpu_long
+  finalize_cpus_per_task: 8
+  finalize_memory: 128G
+  finalize_time: '24:00:00'
+  high_quality_from_tars:
+    enabled: false
+    publication:
+      enabled: false
+      default_target_prefix_from_recipe: true
+      collision_policy: fail_if_non_empty
+      overwrite: false
+      chunk_size: 1000
+      sample_download_count: 20
+      s5cmd_numworkers: 32
+validation:
+  expected_archives: 1043
+  expected_one_archive_models: 10000
+  expected_tar_count: 8
+  expected_local_tars_rows: 8
+  expected_failed_rows: 20
+  expected_analysis_rows: 5000
+  expected_selected_ids: 61
+  gcs_dry_run_only: true
+workflow:
+  steps:
+  - name: preflight
+    run: true
+  - name: recipe
+    run: true
+  - name: preprocess
+    run: true
+  - name: slurm
+    run: true
+    mode: submit-and-monitor
+  - name: analysis-finalize
+    run: true
+    mode: submit-and-monitor
+  - name: acceptance-tar-payload-parity
+    run: true
+    mode: submit-and-monitor
+  - name: acceptance-semantic
+    run: true
+    mode: submit-and-monitor
+  - name: acceptance-verify-evidence
+    run: true
+submission:
+  evidence_dir: /tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/evidence
+  report_path: /tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/RUN_REPORT.md
+acceptance:
+  baseline_output_dir: /srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/upstream_task853/output
+  baseline_run_name: rebaseline_one_archive_tar_hq_20260520_014444_upstream_task853
+  candidate_run_name: task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001
+  tar_payload_match_mode: by-tar
+  payload_sample_count: 512
+  candidate_parquet_required: true
+  compare_failed_sets: true
+  compare_tar_manifest_rows: true
+  compare_analysis_model_rows: true
+secrets:
+  s3_credentials_ref:
+    scheme: aws
+    target: example-account

@@ -1,0 +1,84 @@
+# Public postprocessing example Phase Plan.
+#
+# A PostprocessingPhasePlan that pins four companion local authority documents
+# by exact sha256/size_bytes. Every value is illustrative and generic; the
+# example is intentionally non-runnable. Each field below carries a full-line
+# # comment, and the companion documents live under
+# skills/examples/run-plans/postprocessing/.
+
+# schema_version: the Phase Plan schema version.
+schema_version: 1
+
+# phase_kind: the phase envelope kind; postprocessing selects the
+# postprocessing family.
+phase_kind: postprocessing
+
+# target_cluster: the shared public Cluster Profile key (clusters.my-cluster)
+# selected by this plan.
+target_cluster: my-cluster
+
+# output_namespace: attempt-scoped output namespace for this run.
+output_namespace: my-postprocessing-run
+
+# legacy_run_plan: pinned local authority document of kind legacy-run-plan,
+# carrying its exact sha256 and size_bytes.
+legacy_run_plan:
+  # schema_version: the companion document schema version.
+  schema_version: 1
+  # document_kind: the authority document kind.
+  document_kind: legacy-run-plan
+  # path: relative path to the companion file from this plan's directory.
+  path: postprocessing/legacy-run-plan.yaml
+  # sha256: exact sha256 of the companion file's bytes.
+  sha256: f6c5498d5d0b0d14f1461c5f5457a6386611c6ed1ce8f5a4651952e3292e7af7
+  # size_bytes: exact byte length of the companion file.
+  size_bytes: 3246
+
+# acceptance_policy: pinned local authority document of kind acceptance-policy,
+# carrying its exact sha256 and size_bytes.
+acceptance_policy:
+  schema_version: 1
+  document_kind: acceptance-policy
+  path: postprocessing/acceptance-policy.yaml
+  sha256: c6ea53a533439e3a3e91105480586a009d5003b4ce98cb0d753daa7f54f9bc1f
+  size_bytes: 4479
+
+# logical_input_inventory: pinned local authority document of kind
+# logical-input-inventory, carrying its exact sha256 and size_bytes.
+logical_input_inventory:
+  schema_version: 1
+  document_kind: logical-input-inventory
+  path: postprocessing/logical-input-inventory.yaml
+  sha256: 0e46c2e4d1e7e08bbc4765af06e47a23124e111b1c3b824474ba35c1fe50c3f8
+  size_bytes: 1725
+
+# runtime_qualification: pinned local authority document of kind
+# runtime-qualification, carrying its exact sha256 and size_bytes.
+runtime_qualification:
+  schema_version: 1
+  document_kind: runtime-qualification
+  path: postprocessing/runtime-qualification.json
+  sha256: 9d3bc97bbbdf0acc480692c105b53164d4fbca3de311ea49ff5645efe518013f
+  size_bytes: 1060
+
+# autorequeue_policy: the canonical disabled default (mode disabled with an
+# empty action_ids list). The enabled alternative is commented out below.
+autorequeue_policy:
+  schema_version: 1
+  mode: disabled
+  action_ids: []
+# An enabled autorequeue_policy alternative enumerates the eight permanent
+# Actions 01--08 in ordinal order (never postprocessing-09-acceptance-adjudication,
+# which the policy rejects):
+# autorequeue_policy:
+#   schema_version: 1
+#   mode: enabled
+#   action_ids:
+#     - postprocessing-01-preflight
+#     - postprocessing-02-recipe
+#     - postprocessing-03-preprocess
+#     - postprocessing-04-slurm
+#     - postprocessing-05-analysis-finalize
+#     - postprocessing-06-acceptance-tar-payload-parity
+#     - postprocessing-07-acceptance-semantic
+#     - postprocessing-08-acceptance-verify-evidence

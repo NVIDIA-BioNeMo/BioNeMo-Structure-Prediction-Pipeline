@@ -1,0 +1,84 @@
+clusters:
+  example-cluster:
+    owner: example-user
+    transport: ssh
+    ssh_target: example-cluster-login.example.test
+    account: example-account
+    postprocessing_credential_mounts:
+      aws_shared_credentials_file: /home/example-user/.aws/credentials
+      aws_config_file: /home/example-user/.aws/config
+    paths:
+      project_root: /srv/example/users/example-user/bspp/afcdb-proj
+      output_root: /srv/example/users/example-user/bspp/afcdb-proj/output/folding-benchmark
+      staging_root: /srv/example/users/example-user/bspp/afcdb-proj/output/folding-benchmark/input
+      orchestration_repo: /srv/example/users/example-user/bspp/bspp-orchestration
+      image: /srv/example/users/example-user/bspp/containers/bspp-orchestration-folding-runtime.sqsh
+      probe_root: /srv/example/users/example-user/bspp/afcdb-proj/control-plane-probes
+      source_bundle_root: /srv/example/users/example-user/bspp/source-bundles
+      runtime_image_cache_root: /srv/example/users/example-user/bspp/containers
+      runtime_qualification_root: /srv/example/users/example-user/bspp/afcdb-proj/runtime-qualification
+      runtime_qualification_control_root: /home/example-user/bspp/afcdb-proj/runtime-qualification
+    # Folding materialization reads only control_cpu (msa-flatten/split/preprocess/
+    # canonical-pair) and gpu_worker (fold). Other resource keys are ignored by the
+    # folding adapter.
+    resources:
+      control_cpu:
+        partition: cpu_short
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"
+      gpu_worker:
+        partition: batch_singlenode
+        cpus_per_task: 30
+        memory: 128G
+        time: "04:00:00"
+        gres: gpu:1
+    # BioIR release preset: the folding release preset resolves to the public PyPI
+    # bionemo-ir==0.1.0 package from a public Docker Hub base image.
+    # The preset name is retained for qualification identity compatibility.
+    # folding_release_preset: public
+    #
+    # Per-backend kernel image overrides. Each entry is {backend, image}.
+    # paths.image is the runtime image for non-fold actions; these are the
+    # kernel images for the fold action. Backends without an explicit override
+    # fall back to paths.image.
+    folding_backend_images:
+      - backend: openfold-cli
+        image: /srv/example/users/example-user/bspp/containers/bspp-orchestration-folding-openfold-cli.sqsh
+      - backend: colabfold
+        image: /srv/example/users/example-user/bspp/containers/bspp-orchestration-folding-colabfold.sqsh
+      - backend: bioir
+        image: /srv/example/users/example-user/bspp/containers/bspp-orchestration-folding-bioir.sqsh
+    #
+    # External folding backend assets. These are container-visible
+    # filesystem paths, never credential or secret bytes. Each selected asset path
+    # must be covered by an exact read_only extra_mounts target below. openfold-trt
+    # intentionally has no asset stanza: Control emits the stable
+    # deferred-model_fn error rather than a generic missing-assets error, so no
+    # speculative factory field should be authored.
+    folding_backend_assets:
+      - backend: openfold-cli
+        chain_manifest_csv: /srv/example/users/example-user/bspp/afcdb-proj/assets/chain-manifest.csv
+        openfold_model_dir: /srv/example/users/example-user/bspp/afcdb-proj/assets/openfold-models
+      - backend: colabfold
+        chain_manifest_csv: /srv/example/users/example-user/bspp/afcdb-proj/assets/chain-manifest.csv
+        colabfold_weights_dir: /srv/example/users/example-user/bspp/afcdb-proj/assets/colabfold-weights
+      # bioir consumes only its .pt checkpoint (no chain manifest — one is
+      # accepted but unused for this backend).
+      - backend: bioir
+        bioir_checkpoint: /srv/example/users/example-user/bspp/afcdb-proj/assets/bioir/params_model_1_multimer_v3.pt
+    extra_mounts:
+      - source: /srv/example/users/example-user/afcdb-proj
+        target: /srv/example/users/example-user/afcdb-proj
+      - source: /srv/example/users/example-user/bspp/afcdb-proj/assets/chain-manifest.csv
+        target: /srv/example/users/example-user/bspp/afcdb-proj/assets/chain-manifest.csv
+        read_only: true
+      - source: /srv/example/users/example-user/bspp/afcdb-proj/assets/openfold-models
+        target: /srv/example/users/example-user/bspp/afcdb-proj/assets/openfold-models
+        read_only: true
+      - source: /srv/example/users/example-user/bspp/afcdb-proj/assets/colabfold-weights
+        target: /srv/example/users/example-user/bspp/afcdb-proj/assets/colabfold-weights
+        read_only: true
+      - source: /srv/example/users/example-user/bspp/afcdb-proj/assets/bioir/params_model_1_multimer_v3.pt
+        target: /srv/example/users/example-user/bspp/afcdb-proj/assets/bioir/params_model_1_multimer_v3.pt
+        read_only: true

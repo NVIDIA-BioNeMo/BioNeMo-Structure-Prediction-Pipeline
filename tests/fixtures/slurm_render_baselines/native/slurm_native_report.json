@@ -1,0 +1,45 @@
+{
+  "dataset": "ds1",
+  "plan": {
+    "array_range": "0-1",
+    "dry_run": false,
+    "full_array_command": [
+      "sbatch",
+      "--array=0-1",
+      "<TMP>/rendered/run_archive.sbatch"
+    ],
+    "log_dir": "<TMP>/output/logs",
+    "monitor_command": [
+      "squeue",
+      "-u",
+      "tester",
+      "-n",
+      "bspp_ds1_native"
+    ],
+    "one_archive_command": [
+      "sbatch",
+      "--array=0-0",
+      "<TMP>/rendered/run_archive.sbatch"
+    ],
+    "orchestration_container_path": "/workspace/bspp-orchestration",
+    "pixi_python_path": "/opt/bspp-orchestration-env/.pixi/envs/default/bin/python",
+    "production_pipeline_container_path": "/workspace/afdb-toolkit/scripts/production_pipeline.py",
+    "pythonpath_entries": [
+      "/workspace/afdb-toolkit",
+      "/workspace/bspp-orchestration/packages/orchestration-contract/src",
+      "/workspace/bspp-orchestration/packages/orchestration-runtime/src"
+    ],
+    "required_tools": [
+      "tar",
+      "lz4",
+      "zstd",
+      "/bin/s5cmd"
+    ],
+    "runspec_container_path": "/workspace/bspp-runspec/runspec.yaml",
+    "script_path": "<TMP>/rendered/run_archive.sbatch",
+    "toolkit_container_path": "/workspace/afdb-toolkit"
+  },
+  "run_id": "run",
+  "source_hash": "<SOURCE_SHA256>",
+  "source_runspec": "<TMP>/runspec.yaml"
+}

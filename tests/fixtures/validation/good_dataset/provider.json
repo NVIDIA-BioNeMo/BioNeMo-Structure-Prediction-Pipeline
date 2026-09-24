@@ -1,0 +1,17 @@
+{
+  "providerId": "AFDB-DEMO",
+  "providerName": "AlphaFold Demo Dataset",
+  "providerUrl": "https://example.org/datasets/demo",
+  "feedback": "support@example.org",
+  "license": "CC-BY-4.0",
+  "citations": [
+    {
+      "description": "Doe, J et al. A very cool paper about something important. Nature (2025)",
+      "url": "https://www.nature.com/articles/s12345-678-91234-5",
+      "category": "AlphaFold"
+    }
+  ],
+  "copyrights": [
+    "Database Name (2025) Company Name Limited."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-materialized",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "action_graph_digest": "c2239ee8afc1d951f7f44dbe1645f512a7a24fcd3c1313c01455b2164a2ec254",
+    "phase_plan_digest": "93bf77a8d6605541c82b5ff2a48d3e5595f0a71610dc6ace13dd1ed99017d271",
+    "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+    "schema_version": 1
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 1
+}

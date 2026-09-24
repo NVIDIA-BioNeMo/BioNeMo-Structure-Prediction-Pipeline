@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="680" viewBox="0 0 1200 680" role="img" aria-labelledby="title desc">
+  <!-- SPDX-License-Identifier: Apache-2.0 -->
+  <title id="title">BioNeMo Structure Prediction Pipeline: control, execution and evidence</title>
+  <desc id="desc">The Control Plane runs on a workstation or Slurm host and uses bsppctl and a Phase Plan plus Cluster Profile to create an immutable RunSpec. It schedules containerized preprocessing, folding and postprocessing as separate phases. Preprocessing produces alignments; folding produces structures and scores; postprocessing produces validated data products. Verified artifacts connect the phases through local storage or explicit object-storage publication. Phase acceptance and benchmark validation are distinct checks.</desc>
+  <rect width="1200" height="680" rx="4" fill="#f5f5f5"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#111111">
+    <text x="48" y="49" font-size="27" font-weight="700">From sequences to structure data</text>
+    <text x="48" y="77" font-size="15" fill="#595959">One CLI · Separate execution phases · Evidence at each boundary</text>
+    <rect x="48" y="100" width="1104" height="108" rx="4" fill="#111111"/>
+    <text x="72" y="131" font-size="16" font-weight="700" fill="#76b900">CONTROL · WORKSTATION OR SLURM HOST</text>
+    <text x="72" y="164" font-size="23" fill="#fff">Phase Plan + Cluster Profile → immutable RunSpec</text>
+    <text x="72" y="189" font-size="14" fill="#e5e5e5">materialize · submit · status / resume · finalize</text>
+    <rect x="986" y="120" width="142" height="50" rx="4" fill="#76b900"/>
+    <text x="1006" y="153" font-size="25" font-family="Consolas, Liberation Mono, monospace" fill="#111111">bsppctl</text>
+    <g stroke="#595959" stroke-width="2" stroke-dasharray="5 5"><line x1="600" y1="209" x2="600" y2="240"/><line x1="216" y1="240" x2="984" y2="240"/><line x1="216" y1="240" x2="216" y2="263"/><line x1="600" y1="240" x2="600" y2="263"/><line x1="984" y1="240" x2="984" y2="263"/></g>
+    <text x="48" y="233" font-size="12" fill="#595959">SLURM + CONTAINER RUNTIME</text>
+    <rect x="48" y="274" width="336" height="195" rx="4" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="48" y="274" width="336" height="7" rx="3" fill="#76b900"/>
+    <text x="70" y="314" font-size="13" font-weight="700" fill="#111111">01</text>
+    <text x="101" y="314" font-size="22" font-weight="700">Preprocessing</text>
+    <text x="70" y="350" font-size="16">FASTA + search databases</text>
+    <text x="70" y="380" font-size="16">GPU MSA search</text>
+    <path d="M70 402 H360" stroke="#d9d9d9"/>
+    <text x="70" y="434" font-size="15" font-weight="700">Output: alignments + identity</text>
+    <path d="M389 371 H423" stroke="#595959" stroke-width="2"/><polyline points="417,365 423,371 417,377" fill="none" stroke="#595959" stroke-width="2"/>
+    <rect x="432" y="274" width="336" height="195" rx="4" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="432" y="274" width="336" height="7" rx="3" fill="#76b900"/>
+    <text x="454" y="314" font-size="13" font-weight="700" fill="#111111">02</text>
+    <text x="485" y="314" font-size="22" font-weight="700">Folding</text>
+    <text x="454" y="350" font-size="16">Verified MSAs + checkpoints</text>
+    <text x="454" y="380" font-size="16">BioIR / selected backend</text>
+    <path d="M454 402 H744" stroke="#d9d9d9"/>
+    <text x="454" y="434" font-size="15" font-weight="700">Output: structures + scores</text>
+    <path d="M773 371 H807" stroke="#595959" stroke-width="2"/><polyline points="801,365 807,371 801,377" fill="none" stroke="#595959" stroke-width="2"/>
+    <rect x="816" y="274" width="336" height="195" rx="4" fill="#fff" stroke="#b3b3b3"/>
+    <rect x="816" y="274" width="336" height="7" rx="3" fill="#76b900"/>
+    <text x="838" y="314" font-size="13" font-weight="700" fill="#111111">03</text>
+    <text x="869" y="314" font-size="22" font-weight="700">Postprocessing</text>
+    <text x="838" y="350" font-size="16">Verified prediction artifacts</text>
+    <text x="838" y="380" font-size="16">Quality checks + packaging</text>
+    <path d="M838 402 H1128" stroke="#d9d9d9"/>
+    <text x="838" y="434" font-size="15" font-weight="700">Output: accepted data products</text>
+    <text x="48" y="498" font-size="14" fill="#595959">Artifact handoffs use verified local paths or explicit object-storage publication.</text>
+    <rect x="48" y="524" width="536" height="94" rx="4" fill="#ffffff" stroke="#b3b3b3"/>
+    <path d="M48 528 V614" stroke="#76b900" stroke-width="6"/>
+    <text x="70" y="555" font-size="18" font-weight="700" fill="#111111">Phase finalization</text>
+    <text x="70" y="582" font-size="15">Bound execution evidence → sealed Phase Receipt</text>
+    <rect x="606" y="524" width="546" height="94" rx="4" fill="#ffffff" stroke="#b3b3b3"/>
+    <path d="M606 528 V614" stroke="#111111" stroke-width="6"/>
+    <text x="628" y="555" font-size="18" font-weight="700" fill="#111111">Separate benchmark validation</text>
+    <text x="628" y="582" font-size="15">Completed predictions + suite + reference corpus</text>
+    <text x="48" y="650" font-size="13" fill="#595959">Successful job exit, accepted execution and benchmark validation are distinct outcomes.</text>
+  </g>
+</svg>

@@ -1,0 +1,99 @@
+schema_version: 1
+run_kind: production
+target_cluster: my-cluster
+workflow_template: workflow.yaml
+dataset:
+  name: my-postprocessing-dataset
+  run_id: my-postprocessing-run-0001
+  mode: archive
+  array: 1-1
+  archive_source: tracking
+references:
+  master_parquet:
+    path: /data/bspp/reference/master_all_runs_merged.parquet
+    version: "2026-02"
+  tracking_parquet:
+    path: /data/bspp/project/output/my-postprocessing-run/input/tracking_my-postprocessing-dataset_from_upstream_archive_list.parquet
+    version: derived-from-upstream-archive-list
+  manifest_csv:
+    path: /data/bspp/reference/colabfold_manifest_merged_5way.csv
+    version: "2026-02-24"
+  uniprot_duckdb:
+    path: /data/bspp/reference/uniprot_2025_04_merged.duckdb
+    version: "2025_04"
+  heterodimer_id_manifest:
+    path: /data/bspp/reference/colabfold_manifest_heterodimer_compound_rescue.csv
+worker:
+  stages: ipsae dssp validation metadata_export modelcif_export
+  workers: 24
+  batch_size: 1000
+  shards_per_archive: 2
+  self_upload: false
+  local_scratch: true
+  scratch_dir: /tmp
+  s5cmd_path: s5cmd
+  upload_slots: 150
+  s5cmd_numworkers: 16
+  duckdb_memory_limit: 1GB
+  heterodimers: true
+  clash_device: cuda
+  clash_batch_size: 128
+  dssp_algorithm: pydssp
+  parallel_stages: false
+  retry_failed_only: false
+  retry_metadata_delta_tag: retry_failed_delta
+  tool_used: ColabFold v1.6.0 / AlphaFold-Multimer
+  provider_id: EXAMPLE
+  provider_name: Example Provider
+  provider_url: https://example.com
+  provider_copyrights:
+    - Copyright 2026 Example. All rights reserved.
+storage:
+  s3_archive_prefix: s3://my-bucket/inputs/my-run/archives/
+  s3_output_prefix: s3://my-bucket/outputs/my-run/
+  gcs_destination_prefix: null
+  upload_mode: tar
+  s3_tar_prefix: null
+  s3_tar_manifest_csv: null
+  local_tar_dir: /data/bspp/project/output/my-postprocessing-run/local_tars
+  local_tar_manifest_csv: /data/bspp/project/output/my-postprocessing-run/local_tars.csv
+  tar_compression: zstd-members
+  allow_production_prefixes: false
+analysis_metadata:
+  enabled: true
+  csv_path: /data/bspp/project/output/my-postprocessing-run/analysis_metadata.csv
+  ipsae_threshold: 0.6
+  pdockq2_threshold: 0.23
+  finalize_after_gpu: true
+  parquet_path: /data/bspp/project/output/my-postprocessing-run/analysis_metadata.parquet
+  selected_ids_path: /data/bspp/project/output/my-postprocessing-run/high_quality_model_ids.txt
+  chunk_size: 100000
+  finalize_partition: cpu-long
+  finalize_cpus_per_task: 8
+  finalize_memory: 128G
+  finalize_time: "24:00:00"
+  high_quality_from_tars:
+    enabled: false
+    s3_prefix: null
+    work_dir: null
+validation:
+  expected_archives: 1
+  expected_allowed_ids: null
+  expected_one_archive_models: 10000
+  expected_one_archive_objects: null
+  expected_one_archive_aggregate_rows: null
+  expected_tar_count: 1
+  expected_local_tars_rows: 1
+  expected_failed_rows: 0
+  expected_analysis_rows: 5000
+  expected_selected_ids: 61
+  gcs_dry_run_only: true
+acceptance:
+  baseline_output_dir: /data/bspp/project/output/my-baseline/output
+  baseline_run_name: my-baseline
+  candidate_run_name: my-postprocessing-run
+  tar_payload_match_mode: by-tar
+  payload_sample_count: 512
+secrets:
+  s3_credentials_ref: aws:my-profile
+  gcs_credentials_ref: null

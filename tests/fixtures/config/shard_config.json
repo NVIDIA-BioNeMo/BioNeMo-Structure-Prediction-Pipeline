@@ -1,0 +1,6 @@
+{
+  "total_models": 5,
+  "max_per_shard": 5000,
+  "required_shards": 1,
+  "array_range": "0-0"
+}

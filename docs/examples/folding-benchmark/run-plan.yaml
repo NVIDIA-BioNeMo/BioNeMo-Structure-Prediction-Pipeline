@@ -1,0 +1,57 @@
+schema_version: 1
+phase_kind: folding
+target_cluster: example-cluster
+input_location:
+  artifact_location_id: artifact-location-38c0f1db6e8266f6afb228b156797e0917f68772ecf3f44f101576993142ec78
+  schema_version: 1
+  kind: verified-remote-bundled
+  artifact_set_id: sha256:09cc610da0478b27e50dfa97412f9b1a980b74df54e43b0e7d7c39e32a6c6657
+  bundle_uri: s3://example-bucket/users/example-user/rerun-inputs/folding-benchmark/msa-set.lz4
+  tar_size_bytes: 123456
+  tar_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  lz4_size_bytes: 65432
+  lz4_sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  raw_tar_members:
+    - AFDB_AF-0000000000000001.a3m
+    - AFDB_AF-0000000000000002.a3m
+  members:
+    - schema_version: 1
+      logical_path: a3ms/AFDB_AF-0000000000000001.a3m
+      member_name: AFDB_AF-0000000000000001.a3m
+      raw_member_name: AFDB_AF-0000000000000001.a3m
+      size_bytes: 1234
+      sha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    - schema_version: 1
+      logical_path: a3ms/AFDB_AF-0000000000000002.a3m
+      member_name: AFDB_AF-0000000000000002.a3m
+      raw_member_name: AFDB_AF-0000000000000002.a3m
+      size_bytes: 2345
+      sha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+  verified_at: "2026-01-01T00:00:00Z"
+payload:
+  schema_version: 1
+  phase_kind: folding
+  msa_set:
+    schema_version: 1
+    artifact_type: bspp.msa-set/v1
+    artifact_set_id: sha256:09cc610da0478b27e50dfa97412f9b1a980b74df54e43b0e7d7c39e32a6c6657
+    expected_chunk_count: 1
+    member_a3m_paths:
+      - a3ms/AFDB_AF-0000000000000001.a3m
+      - a3ms/AFDB_AF-0000000000000002.a3m
+    requires_paired_query_header: true
+  backend: openfold-cli
+  transport: publish-to-s3
+  msa_set_manifest:
+    schema_version: 1
+    artifact_type: bspp.msa-set/v1
+    artifact_set_id: sha256:09cc610da0478b27e50dfa97412f9b1a980b74df54e43b0e7d7c39e32a6c6657
+    chunks:
+      - schema_version: 1
+        chunk_name: folding-benchmark_tranche00_00001.fa
+        logical_path: chunks/folding-benchmark_tranche00_00001.json
+        sha256: "1111111111111111111111111111111111111111111111111111111111111111"
+        member_count: 2
+        logical_bytes: 3579
+    member_count: 2
+    logical_bytes: 3579

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1040" viewBox="0 0 1800 1040" role="img" aria-labelledby="title desc">
+<title id="title">Pipeline architecture: Control Plane, scheduled compute, and data movement</title>
+<desc id="desc">The bsppctl Control Plane authors Plans, materializes RunSpecs, submits and monitors Slurm jobs, and fetches evidence. Control can use SSH from a workstation or local-slurm from a site host. Three phase clusters may be separate or co-located. Preprocessing turns FASTA into a verified MSA set. Folding produces models, metadata, and a canonical pair index. Explicit packaging creates downstream prediction bundles and master parquet. At each phase seam, choose object storage or local pass-through. Postprocessing produces processed model artifacts and per-dataset parquet for a final object-storage destination. All scientific compute runs in scheduled jobs within runtime containers; acceptance, publication, and reference validation are separate.</desc>
+<style>
+  text { font-family: Arial, Helvetica, sans-serif; fill: #111111; }
+  .title { font-size: 34px; font-weight: 700; }
+  .subtitle { font-size: 20px; fill: #555555; }
+  .heading { font-size: 23px; font-weight: 700; }
+  .label { font-size: 19px; }
+  .small { font-size: 16px; fill: #555555; }
+  .tiny { font-size: 14px; fill: #555555; }
+  .edge { fill: none; stroke: #666666; stroke-width: 1.8; marker-end: url(#arrow); }
+  .control { fill: none; stroke: #777777; stroke-width: 1.6; stroke-dasharray: 6 5; marker-end: url(#arrow); }
+  .job { fill: #FFFFFF; stroke: #777777; stroke-width: 1.5; stroke-dasharray: 7 5; }
+  .container { fill: #F5F5F5; stroke: #777777; stroke-width: 1.5; }
+  .runtime { fill: #E9E9E9; stroke: #888888; stroke-width: 1.3; }
+  .science { fill: #76B900; stroke: #578700; stroke-width: 1.3; }
+  .artifact { fill: #FFFFFF; stroke: #888888; stroke-width: 1.3; }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#666666" stroke-width="1.4"/></marker></defs>
+<rect width="1800" height="1040" fill="#FFFFFF"/>
+<text x="40" y="55" class="title" text-anchor="start"><tspan x="40" dy="0">Pipeline architecture</tspan></text>
+<text x="40" y="90" class="subtitle" text-anchor="start"><tspan x="40" dy="0">One Control Plane · three phase boundaries · object storage or local handoffs</tspan></text>
+<rect x="520" y="120" width="760" height="178" rx="4" class="container"/>
+<rect x="520" y="120" width="760" height="49" rx="4" fill="#111111"/>
+<text x="900" y="153" text-anchor="middle" style="fill:#FFFFFF;font-family:Arial,Helvetica,sans-serif;font-size:24px;font-weight:700">Control Plane · bsppctl</text>
+<text x="900" y="200" class="label" text-anchor="middle"><tspan x="900" dy="0">Author Plans → materialize RunSpecs → submit / monitor → fetch evidence</tspan></text>
+<text x="900" y="238" class="label" text-anchor="middle"><tspan x="900" dy="0">Workstation: SSH   |   Site host with Slurm tools: local-slurm</tspan></text>
+<text x="900" y="274" class="small" text-anchor="middle"><tspan x="900" dy="0">Scientific work runs only in scheduled jobs in either control mode.</tspan></text>
+<path d="M 900 298 V 345 H 360 V 390" class="control"/>
+<path d="M 900 298 V 390" class="control"/>
+<path d="M 900 345 H 1440 V 390" class="control"/>
+<text x="933" y="369" class="small" text-anchor="start"><tspan x="933" dy="0">Control / evidence</tspan></text>
+<rect x="195" y="390" width="330" height="440" rx="4" class="artifact"/>
+<text x="215" y="426" class="heading" text-anchor="start"><tspan x="215" dy="0">Cluster A</tspan></text>
+<text x="505" y="426" class="small" text-anchor="end"><tspan x="505" dy="0">Preprocessing</tspan></text>
+<rect x="210" y="447" width="300" height="363" rx="4" class="job"/>
+<text x="225" y="475" class="small" text-anchor="start"><tspan x="225" dy="0">Slurm jobs</tspan></text>
+<rect x="225" y="492" width="270" height="301" rx="4" class="container"/>
+<text x="240" y="519" class="small" text-anchor="start"><tspan x="240" dy="0">Runtime container(s)</tspan></text>
+<rect x="240" y="541" width="240" height="80" rx="4" class="science"/>
+<text x="360" y="574" class="label" text-anchor="middle"><tspan x="360" dy="0">MSA generation</tspan><tspan x="360" dy="25">MMseqs2 GPU</tspan></text>
+<rect x="240" y="636" width="240" height="59" rx="4" class="runtime"/>
+<text x="360" y="661" class="small" text-anchor="middle"><tspan x="360" dy="0">Validate + bundle</tspan><tspan x="360" dy="22">MSA artifacts</tspan></text>
+<rect x="240" y="710" width="240" height="62" rx="4" class="artifact"/>
+<text x="360" y="735" class="small" text-anchor="middle"><tspan x="360" dy="0">MSA handoff</tspan><tspan x="360" dy="22">bspp.msa-set/v1</tspan></text>
+<rect x="735" y="390" width="330" height="440" rx="4" class="artifact"/>
+<text x="755" y="426" class="heading" text-anchor="start"><tspan x="755" dy="0">Cluster B</tspan></text>
+<text x="1045" y="426" class="small" text-anchor="end"><tspan x="1045" dy="0">Folding</tspan></text>
+<rect x="750" y="447" width="300" height="363" rx="4" class="job"/>
+<text x="765" y="475" class="small" text-anchor="start"><tspan x="765" dy="0">Slurm jobs</tspan></text>
+<rect x="765" y="492" width="270" height="301" rx="4" class="container"/>
+<text x="780" y="519" class="small" text-anchor="start"><tspan x="780" dy="0">Runtime container(s)</tspan></text>
+<rect x="780" y="541" width="240" height="80" rx="4" class="science"/>
+<text x="900" y="574" class="label" text-anchor="middle"><tspan x="900" dy="0">Structure prediction</tspan><tspan x="900" dy="25">+ confidence scoring</tspan></text>
+<rect x="780" y="636" width="240" height="59" rx="4" class="runtime"/>
+<text x="900" y="661" class="small" text-anchor="middle"><tspan x="900" dy="0">Canonicalize</tspan><tspan x="900" dy="22">model / metadata pairs</tspan></text>
+<rect x="780" y="710" width="240" height="62" rx="4" class="artifact"/>
+<text x="900" y="735" class="small" text-anchor="middle"><tspan x="900" dy="0">PDB + metadata</tspan><tspan x="900" dy="22">canonical-pair index</tspan></text>
+<rect x="1275" y="390" width="330" height="440" rx="4" class="artifact"/>
+<text x="1295" y="426" class="heading" text-anchor="start"><tspan x="1295" dy="0">Cluster C</tspan></text>
+<text x="1585" y="426" class="small" text-anchor="end"><tspan x="1585" dy="0">Postprocessing</tspan></text>
+<rect x="1290" y="447" width="300" height="363" rx="4" class="job"/>
+<text x="1305" y="475" class="small" text-anchor="start"><tspan x="1305" dy="0">Slurm jobs</tspan></text>
+<rect x="1305" y="492" width="270" height="301" rx="4" class="container"/>
+<text x="1320" y="519" class="small" text-anchor="start"><tspan x="1320" dy="0">Runtime container(s)</tspan></text>
+<rect x="1320" y="541" width="240" height="80" rx="4" class="science"/>
+<text x="1440" y="574" class="label" text-anchor="middle"><tspan x="1440" dy="0">Confidence processing</tspan><tspan x="1440" dy="25">iPSAE / pDockQ2</tspan></text>
+<rect x="1320" y="636" width="240" height="59" rx="4" class="runtime"/>
+<text x="1440" y="661" class="small" text-anchor="middle"><tspan x="1440" dy="0">Process structures</tspan><tspan x="1440" dy="22">+ validate evidence</tspan></text>
+<rect x="1320" y="710" width="240" height="62" rx="4" class="artifact"/>
+<text x="1440" y="735" class="small" text-anchor="middle"><tspan x="1440" dy="0">Processed models</tspan><tspan x="1440" dy="22">+ per-dataset parquet</tspan></text>
+<rect x="30" y="699" width="135" height="82" rx="4" class="artifact"/>
+<text x="97" y="731" class="label" text-anchor="middle"><tspan x="97" dy="0">Raw input</tspan><tspan x="97" dy="27">.fa FASTA</tspan></text>
+<path d="M 165 740 H 195" class="edge"/>
+<rect x="550" y="626" width="160" height="189" rx="4" class="artifact"/>
+<text x="630" y="652" class="tiny" text-anchor="middle"><tspan x="630" dy="0">SEAM: CHOOSE ONE</tspan></text>
+<text x="630" y="691" class="small" text-anchor="middle"><tspan x="630" dy="0">Object storage</tspan><tspan x="630" dy="29">or</tspan><tspan x="630" dy="29">local pass-through</tspan></text>
+<text x="630" y="796" class="tiny" text-anchor="middle"><tspan x="630" dy="0">Verified MSA set</tspan></text>
+<path d="M 525 740 H 550" class="edge"/>
+<path d="M 710 740 H 735" class="edge"/>
+<rect x="1090" y="504" width="160" height="311" rx="4" class="artifact"/>
+<text x="1170" y="522" class="tiny" text-anchor="middle"><tspan x="1170" dy="0">DOWNSTREAM</tspan><tspan x="1170" dy="15">HANDOFF</tspan></text>
+<rect x="1100" y="543" width="140" height="63" rx="4" class="runtime"/>
+<text x="1170" y="569" class="small" text-anchor="middle"><tspan x="1170" dy="0">Explicit</tspan><tspan x="1170" dy="23">packaging</tspan></text>
+<text x="1170" y="633" class="small" text-anchor="middle"><tspan x="1170" dy="0">.tar.lz4 bundles</tspan><tspan x="1170" dy="23">+ master parquet</tspan></text>
+<text x="1170" y="688" class="tiny" text-anchor="middle"><tspan x="1170" dy="0">SEAM: CHOOSE ONE</tspan></text>
+<text x="1170" y="724" class="small" text-anchor="middle"><tspan x="1170" dy="0">Object storage</tspan><tspan x="1170" dy="29">or</tspan><tspan x="1170" dy="29">local pass-through</tspan></text>
+<path d="M 1065 740 H 1090" class="edge"/>
+<path d="M 1250 740 H 1275" class="edge"/>
+<path d="M 1440 830 V 880" class="edge"/>
+<rect x="1290" y="880" width="300" height="65" rx="4" class="artifact"/>
+<text x="1440" y="907" class="label" text-anchor="middle"><tspan x="1440" dy="0">Final destination</tspan><tspan x="1440" dy="25">Object storage</tspan></text>
+<text x="40" y="885" class="heading" text-anchor="start"><tspan x="40" dy="0">Placement and handoff choices</tspan></text>
+<text x="40" y="920" class="label" text-anchor="start"><tspan x="40" dy="0">Clusters may be different sites or co-located. Local pass-through requires an accessible, verified artifact placement.</tspan><tspan x="40" dy="29">Initial FASTA input and final object-storage destination have no pass-through alternative.</tspan></text>
+<text x="40" y="996" class="small" text-anchor="start"><tspan x="40" dy="0">Green: scientific compute   ·   Gray: runtime handling   ·   White: artifacts   ·   Dashed job boundary   ·   Solid container boundary</tspan></text>
+<text x="40" y="1024" class="small" text-anchor="start"><tspan x="40" dy="0">Phase acceptance, publication, and reference validation are distinct operations.</tspan></text>
+</svg>

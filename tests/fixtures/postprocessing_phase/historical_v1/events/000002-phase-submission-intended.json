@@ -1,0 +1,125 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-submission-intended",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "actions": [
+      {
+        "action_id": "postprocessing-01-preflight",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-01-preflight.sbatch",
+        "dependencies": [],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "f5e592e68dc6e5e28c810cb97b4d553d47d437b8cbf6917237364b0434b3f68e",
+        "scheduler_correlation_token": "afcdb-pp-f9fb30a40b3a02188cbf3d0f768a9cec4fe6b634b1f1f50e",
+        "schema_version": 1,
+        "script_sha256": "15937a9d6071b21ed39ace15921a91b499707fba2a4d5dabd36aa86c907eb791"
+      },
+      {
+        "action_id": "postprocessing-02-recipe",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-02-recipe.sbatch",
+        "dependencies": [
+          "postprocessing-01-preflight"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "1405b66cabb803a858815aca74046575d63b88983cb1e7ccc4ebfcb31c5162bf",
+        "scheduler_correlation_token": "afcdb-pp-5cd72f73f1fb69aa81b47ced65ede2aaf387c7d2637207fe",
+        "schema_version": 1,
+        "script_sha256": "a721e801c44a20cfa594d43b3ce2b9c1e00e6b5d45dad1723c4999079220c584"
+      },
+      {
+        "action_id": "postprocessing-03-preprocess",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-03-preprocess.sbatch",
+        "dependencies": [
+          "postprocessing-02-recipe"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "6524bb582c39ef9139ad83d216618e4dd31268e7332290c70fad2cf07b96d890",
+        "scheduler_correlation_token": "afcdb-pp-32b6a0b8e03f9bf37a44bcf9c9a432f5ecdc785ca75378ad",
+        "schema_version": 1,
+        "script_sha256": "885536cd358125507c1767e37759f56df69bd9a3b9a1c9c5fa29a39ef5d3dfd6"
+      },
+      {
+        "action_id": "postprocessing-04-slurm",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-04-slurm.sbatch",
+        "dependencies": [
+          "postprocessing-03-preprocess"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "6531e0e0d05fbb7a2732542b4380a0cf8a5aa347385699d6299a7004d6bb73d2",
+        "scheduler_correlation_token": "afcdb-pp-7d48dfd6c5f76c97862780c2e6dbcd11b03f9ae21f0576b5",
+        "schema_version": 1,
+        "script_sha256": "9b59813294f193892fe416a71fc9cf00c8bd0409cdb620a22a7497c5475f1e68"
+      },
+      {
+        "action_id": "postprocessing-05-analysis-finalize",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-05-analysis-finalize.sbatch",
+        "dependencies": [
+          "postprocessing-04-slurm"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "61d7690a5cec8cbcf6b854113f5019ebb7710b32f7d28cc435e005cef000b4ed",
+        "scheduler_correlation_token": "afcdb-pp-a2e7b3e4e6dde21e38c2073ff7ce3bed00d5caccbf9f93de",
+        "schema_version": 1,
+        "script_sha256": "2327d56c5ec46d32eac916feaeafbaa85f720603a29b7cabb5c4d943eba1ffe2"
+      },
+      {
+        "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-06-acceptance-tar-payload-parity.sbatch",
+        "dependencies": [
+          "postprocessing-05-analysis-finalize"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "9d67179a7a93ad1471368e0579eb779e42032d6e2740f1fa17ee6934de018885",
+        "scheduler_correlation_token": "afcdb-pp-3aabd07c2945d9e99680167d5b3573a3e33a82606b838410",
+        "schema_version": 1,
+        "script_sha256": "8192489a5bfb7130a8c358fc66a555f05c9b048f77ec8b48011b82461379ae70"
+      },
+      {
+        "action_id": "postprocessing-07-acceptance-semantic",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-07-acceptance-semantic.sbatch",
+        "dependencies": [
+          "postprocessing-05-analysis-finalize"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "9a905f55407b2306af1af9ff2f8efc7a0944735bf648552b34d09c80804b0d81",
+        "scheduler_correlation_token": "afcdb-pp-ec0e352e68bf3385ac4a070860339fa7ddd6295b3f0419b1",
+        "schema_version": 1,
+        "script_sha256": "3f388ed2300609431fddac45f9b254bd294bc3a3222ba802e85585cec316d609"
+      },
+      {
+        "action_id": "postprocessing-08-acceptance-verify-evidence",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-08-acceptance-verify-evidence.sbatch",
+        "dependencies": [
+          "postprocessing-06-acceptance-tar-payload-parity",
+          "postprocessing-07-acceptance-semantic"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "b0999ae977144dde86104dd75a3defd701f8e315343b907456723d27f02ce605",
+        "scheduler_correlation_token": "afcdb-pp-fb5956a66a8eb16cd56218bab6ce28a1d0396a8aa6ea11f6",
+        "schema_version": 1,
+        "script_sha256": "6e89ec093f533e602d03be84bde1e0e9c6c6b3d00f56dff354e46ffa784d401f"
+      },
+      {
+        "action_id": "postprocessing-09-acceptance-adjudication",
+        "cluster_script_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/afcdb-phase-runs/phase-run-0123456789abcdef0123456789abcdef/attempt-0001/actions/postprocessing-09-acceptance-adjudication.sbatch",
+        "dependencies": [
+          "postprocessing-06-acceptance-tar-payload-parity",
+          "postprocessing-07-acceptance-semantic",
+          "postprocessing-08-acceptance-verify-evidence"
+        ],
+        "renderer_contract_version": 1,
+        "runtime_action_digest": "aff1d6329c7a004ed8a7947a0abf96a6d6e6618c1fcfdd902c562c4dcc2a9cbf",
+        "scheduler_correlation_token": "afcdb-pp-35172f65ff1168bdcc4b39b0a410e2d56fd92f12ab797351",
+        "schema_version": 1,
+        "script_sha256": "2270203e9de53d5eca4ec09299c0afd041ce3591f22d23bb5ae1eb14f795038b"
+      }
+    ],
+    "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+    "schema_version": 1,
+    "submission_id": "postprocessing-submission-8f487bfe43d241c0358682ce366f8b972f6b81d9c11657fb6b8e45e09d0aa21c"
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 2
+}

@@ -1,0 +1,14 @@
+{
+  "entries": [
+    {
+      "model_entity_id": "AF-0000000000000001_AF-0000000000000002",
+      "scores_path": "/ATTEMPT_ROOT/actions/fold-000004/outputs/AF-0000000000000001_AF-0000000000000002/AF-0000000000000001_AF-0000000000000002-meta_v1.json",
+      "sequence_sha256": "81776cf3cc4f1d9f9de5bcf25555d9f72af8925b7a508e4933205d1441ebd367",
+      "structure_path": "/ATTEMPT_ROOT/actions/fold-000004/outputs/AF-0000000000000001_AF-0000000000000002/AF-0000000000000001_AF-0000000000000002-model_v1.pdb",
+      "target_id": "AF-0000000000000001_AF-0000000000000002",
+      "tool_used": "OpenFold / AlphaFold-Multimer"
+    }
+  ],
+  "run_id": "phase-run-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "schema_version": 1
+}

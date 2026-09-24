@@ -1,0 +1,860 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "postprocessing-phase-finalized",
+  "occurred_at": "2026-09-03T12:00:00Z",
+  "payload": {
+    "acceptance_adjudication": {
+      "adjudicated_at": "2026-09-03T12:00:00Z",
+      "attempt_id": "attempt-0001",
+      "capture_digests": [
+        "1211e55e915c06f80b095255d3b7e94310a710b93eba0afde7df85587369b380",
+        "ef04f60792545d099501f6cc68f8876ea7b5b97313ab591c73b781e9cd456b9c",
+        "ac145300469accdb554e5bcff3aac799eec1dd638788e0728e8a67c2d50bd6e5"
+      ],
+      "non_allowlisted_errors": 0,
+      "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+      "policy_id": "postprocessing-acceptance-policy-25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "policy_sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+      "reconciliation_results": [
+        {
+          "matched": true,
+          "reconciliation_id": "acceptance/tar_payload_parity/tar_payload_parity_report.json#/candidate_dir==acceptance/semantic_acceptance/semantic_acceptance_summary.json#/candidate_dir"
+        }
+      ],
+      "residual_cardinalities": [
+        {
+          "allowance_id": "acceptance/semantic_acceptance/semantic_acceptance_summary.json#/errors#json-pointer-count#\"known-task853-residual\"",
+          "observed": 1,
+          "permitted_max": 1,
+          "permitted_min": 1
+        },
+        {
+          "allowance_id": "acceptance/verify_evidence/acceptance_evidence_report.json#/issues#json-pointer-count#{\"check\":\"semantic-acceptance\",\"message\":\"ok is not true\",\"report_path\":\"acceptance/semantic_acceptance/semantic_acceptance_summary.json\"}",
+          "observed": 1,
+          "permitted_max": 1,
+          "permitted_min": 1
+        }
+      ],
+      "result": "passed",
+      "schema_version": 1
+    },
+    "acceptance_captures": [
+      {
+        "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+        "attempt_id": "attempt-0001",
+        "completed_at": "2026-09-03T12:00:00Z",
+        "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+        "policy_sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+        "raw_exit_code": 0,
+        "raw_stderr": {
+          "path": "phase-acceptance/raw/acceptance-tar-payload-parity.stderr",
+          "sha256": "73d92f746bbd568f9f7fa96a1900bab6404e7432308ec98f2bef379d04046e64",
+          "size_bytes": 37
+        },
+        "raw_stdout": {
+          "path": "phase-acceptance/raw/acceptance-tar-payload-parity.stdout",
+          "sha256": "29597d89eb100cbfc8933d68441cd6812a5df746165a2070a7872e5c496352f1",
+          "size_bytes": 37
+        },
+        "reports": [
+          {
+            "path": "acceptance/tar_payload_parity/tar_payload_parity_report.json",
+            "sha256": "d83586e1e82b1e664a326f26863569ce043097881e3b792d5e12d103188ec4d7",
+            "size_bytes": 619
+          }
+        ],
+        "schema_version": 1,
+        "step_name": "acceptance-tar-payload-parity"
+      },
+      {
+        "action_id": "postprocessing-07-acceptance-semantic",
+        "attempt_id": "attempt-0001",
+        "completed_at": "2026-09-03T12:00:00Z",
+        "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+        "policy_sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+        "raw_exit_code": 1,
+        "raw_stderr": {
+          "path": "phase-acceptance/raw/acceptance-semantic.stderr",
+          "sha256": "d2abb066f557e6d7f48183beefdf73c67e44b0549cf60277c2b170ba0cb4b1c7",
+          "size_bytes": 27
+        },
+        "raw_stdout": {
+          "path": "phase-acceptance/raw/acceptance-semantic.stdout",
+          "sha256": "f7fc8790688d0d2840551dc9a96e11212bf361710507ddcaab65cc0b865eb6b3",
+          "size_bytes": 27
+        },
+        "reports": [
+          {
+            "path": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+            "sha256": "ff3ffcd0f2eedcbf761fbde13ff6485c5f9760075ee30970363cd448bdf8768c",
+            "size_bytes": 399
+          }
+        ],
+        "schema_version": 1,
+        "step_name": "acceptance-semantic"
+      },
+      {
+        "action_id": "postprocessing-08-acceptance-verify-evidence",
+        "attempt_id": "attempt-0001",
+        "completed_at": "2026-09-03T12:00:00Z",
+        "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+        "policy_sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+        "raw_exit_code": 1,
+        "raw_stderr": {
+          "path": "phase-acceptance/raw/acceptance-verify-evidence.stderr",
+          "sha256": "aca57e8689acd3c35cb40da3cac79fc0773c530f6ec2ca55757989fb5fcd2786",
+          "size_bytes": 34
+        },
+        "raw_stdout": {
+          "path": "phase-acceptance/raw/acceptance-verify-evidence.stdout",
+          "sha256": "f13ebba2d5e2714e8c2693f78f7b9c0fda4e001c0603d7bf4262a934754823d7",
+          "size_bytes": 34
+        },
+        "reports": [
+          {
+            "path": "acceptance/verify_evidence/acceptance_evidence_report.json",
+            "sha256": "76af888699f01e3f1a89ac58415956aa0f326e778d3adc5ba2d1b12437540168",
+            "size_bytes": 413
+          }
+        ],
+        "schema_version": 1,
+        "step_name": "acceptance-verify-evidence"
+      }
+    ],
+    "output_handoff": {
+      "artifact_set": {
+        "artifact_set_id": "postprocessing-artifact-set-dc206fdd346d991977ed4664cf3f12707a1fd48a20c170422be20eeffdc3f797",
+        "artifact_set_kind": "postprocessing-logical-artifact-set-v1",
+        "children": [
+          {
+            "artifact_set_id": "postprocessing-artifact-set-066a2ba0e27c4f0b0d1886e5bf4869737e9f196f2064bb63191340b5ec143ca9",
+            "artifact_set_kind": "postprocessing-logical-artifact-set-v1",
+            "children": [],
+            "members": [
+              {
+                "path": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+                "schema_version": 1,
+                "sha256": "ff3ffcd0f2eedcbf761fbde13ff6485c5f9760075ee30970363cd448bdf8768c",
+                "size_bytes": 399,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "acceptance/tar_payload_parity/tar_payload_parity_report.json",
+                "schema_version": 1,
+                "sha256": "d83586e1e82b1e664a326f26863569ce043097881e3b792d5e12d103188ec4d7",
+                "size_bytes": 619,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "acceptance/verify_evidence/acceptance_evidence_report.json",
+                "schema_version": 1,
+                "sha256": "76af888699f01e3f1a89ac58415956aa0f326e778d3adc5ba2d1b12437540168",
+                "size_bytes": 413,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/acceptance-semantic-capture.json",
+                "schema_version": 1,
+                "sha256": "17439c125abea3cfe04477d72df1a228b4f298a921bdfdb93c37be6f9a3c6fcf",
+                "size_bytes": 966,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/acceptance-tar-payload-parity-capture.json",
+                "schema_version": 1,
+                "sha256": "1cfc98749efbdd72b376c3218c27e19a14a51835fc355c5f1fa83ea35c678c49",
+                "size_bytes": 1003,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/acceptance-verify-evidence-capture.json",
+                "schema_version": 1,
+                "sha256": "05733716a748f5e4e5fe46916721f43217305e790b8ff9ec6175bd5830993144",
+                "size_bytes": 989,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/adjudication.json",
+                "schema_version": 1,
+                "sha256": "1a114ec7cded01ec636287d8ee170b817c6055037b4ed2b69b259cd33e5a2392",
+                "size_bytes": 1529,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-semantic.stderr",
+                "schema_version": 1,
+                "sha256": "d2abb066f557e6d7f48183beefdf73c67e44b0549cf60277c2b170ba0cb4b1c7",
+                "size_bytes": 27,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-semantic.stdout",
+                "schema_version": 1,
+                "sha256": "f7fc8790688d0d2840551dc9a96e11212bf361710507ddcaab65cc0b865eb6b3",
+                "size_bytes": 27,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-tar-payload-parity.stderr",
+                "schema_version": 1,
+                "sha256": "73d92f746bbd568f9f7fa96a1900bab6404e7432308ec98f2bef379d04046e64",
+                "size_bytes": 37,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-tar-payload-parity.stdout",
+                "schema_version": 1,
+                "sha256": "29597d89eb100cbfc8933d68441cd6812a5df746165a2070a7872e5c496352f1",
+                "size_bytes": 37,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-verify-evidence.stderr",
+                "schema_version": 1,
+                "sha256": "aca57e8689acd3c35cb40da3cac79fc0773c530f6ec2ca55757989fb5fcd2786",
+                "size_bytes": 34,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "phase-acceptance/raw/acceptance-verify-evidence.stdout",
+                "schema_version": 1,
+                "sha256": "f13ebba2d5e2714e8c2693f78f7b9c0fda4e001c0603d7bf4262a934754823d7",
+                "size_bytes": 34,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              }
+            ],
+            "root_name": "acceptance-evidence",
+            "schema_version": 1
+          },
+          {
+            "artifact_set_id": "postprocessing-artifact-set-50367064495486de0c3c5b29a210eb677361d4660780aa2f9ef725fa78b0ad86",
+            "artifact_set_kind": "postprocessing-logical-artifact-set-v1",
+            "children": [],
+            "members": [
+              {
+                "path": "analysis/analysis_metadata.parquet",
+                "schema_version": 1,
+                "sha256": "3af8c6a15106934350d38e0bcb28a97176eaaa2594ab329ecf87471f54fe65eb",
+                "size_bytes": 21,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "local_tars.csv",
+                "schema_version": 1,
+                "sha256": "d3a6ae14dfc74aac4261b0f43560375f3cfc316d82de5e86f31d7f97e0ec12fe",
+                "size_bytes": 99,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "local_tars/metadata/shard_1_metadata.tar",
+                "schema_version": 1,
+                "sha256": "794bea8c7a98b298c79ae63d68683ddd4d4760fe37b2cb4c4c11fb438363b6fa",
+                "size_bytes": 29,
+                "verification_kind": "content-sha256-v1",
+                "verification_source_path": null
+              },
+              {
+                "path": "local_tars/shard_1/batch_0.tar",
+                "schema_version": 1,
+                "sha256": "efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a",
+                "size_bytes": 13,
+                "verification_kind": "inventory-metadata-v1",
+                "verification_source_path": "outputs/tar-manifests/efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a.json"
+              }
+            ],
+            "root_name": "scientific-output",
+            "schema_version": 1
+          }
+        ],
+        "members": [],
+        "root_name": "postprocessing-output",
+        "schema_version": 1
+      },
+      "attempt_id": "attempt-0001",
+      "handoff_id": "postprocessing-handoff-1bf31e71e5ca1a033a1a687cc584a79d568413b504fe7de49b0d61ae16051325",
+      "handoff_kind": "postprocessing-output-handoff-v1",
+      "legacy_run_id": "task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+      "object_prefix": "s3://example-bucket/users/example-user/postprocessed-test/control_plane_task853_awscreds_retry_20260608/phase-run-0123456789abcdef0123456789abcdef-attempt-0001/",
+      "output_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+      "output_namespace": "task853-phase",
+      "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+      "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+      "physical_locations": [
+        {
+          "artifact_location_id": "postprocessing-artifact-location-989a97b0c9a13f53a96332ccef0deb9a4ab604a8f84ef1cb6c114883788a6962",
+          "artifact_set_id": "postprocessing-artifact-set-dc206fdd346d991977ed4664cf3f12707a1fd48a20c170422be20eeffdc3f797",
+          "location_kind": "verified-local-output-tree-v1",
+          "placements": [
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+              "physical_path": "evidence/acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+              "schema_version": 1,
+              "sha256": "ff3ffcd0f2eedcbf761fbde13ff6485c5f9760075ee30970363cd448bdf8768c",
+              "size_bytes": 399,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/acceptance/tar_payload_parity/tar_payload_parity_report.json",
+              "physical_path": "evidence/acceptance/tar_payload_parity/tar_payload_parity_report.json",
+              "schema_version": 1,
+              "sha256": "d83586e1e82b1e664a326f26863569ce043097881e3b792d5e12d103188ec4d7",
+              "size_bytes": 619,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/acceptance/verify_evidence/acceptance_evidence_report.json",
+              "physical_path": "evidence/acceptance/verify_evidence/acceptance_evidence_report.json",
+              "schema_version": 1,
+              "sha256": "76af888699f01e3f1a89ac58415956aa0f326e778d3adc5ba2d1b12437540168",
+              "size_bytes": 413,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/acceptance-semantic-capture.json",
+              "physical_path": "evidence/phase-acceptance/acceptance-semantic-capture.json",
+              "schema_version": 1,
+              "sha256": "17439c125abea3cfe04477d72df1a228b4f298a921bdfdb93c37be6f9a3c6fcf",
+              "size_bytes": 966,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/acceptance-tar-payload-parity-capture.json",
+              "physical_path": "evidence/phase-acceptance/acceptance-tar-payload-parity-capture.json",
+              "schema_version": 1,
+              "sha256": "1cfc98749efbdd72b376c3218c27e19a14a51835fc355c5f1fa83ea35c678c49",
+              "size_bytes": 1003,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/acceptance-verify-evidence-capture.json",
+              "physical_path": "evidence/phase-acceptance/acceptance-verify-evidence-capture.json",
+              "schema_version": 1,
+              "sha256": "05733716a748f5e4e5fe46916721f43217305e790b8ff9ec6175bd5830993144",
+              "size_bytes": 989,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/adjudication.json",
+              "physical_path": "evidence/phase-acceptance/adjudication.json",
+              "schema_version": 1,
+              "sha256": "1a114ec7cded01ec636287d8ee170b817c6055037b4ed2b69b259cd33e5a2392",
+              "size_bytes": 1529,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-semantic.stderr",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-semantic.stderr",
+              "schema_version": 1,
+              "sha256": "d2abb066f557e6d7f48183beefdf73c67e44b0549cf60277c2b170ba0cb4b1c7",
+              "size_bytes": 27,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-semantic.stdout",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-semantic.stdout",
+              "schema_version": 1,
+              "sha256": "f7fc8790688d0d2840551dc9a96e11212bf361710507ddcaab65cc0b865eb6b3",
+              "size_bytes": 27,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-tar-payload-parity.stderr",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-tar-payload-parity.stderr",
+              "schema_version": 1,
+              "sha256": "73d92f746bbd568f9f7fa96a1900bab6404e7432308ec98f2bef379d04046e64",
+              "size_bytes": 37,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-tar-payload-parity.stdout",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-tar-payload-parity.stdout",
+              "schema_version": 1,
+              "sha256": "29597d89eb100cbfc8933d68441cd6812a5df746165a2070a7872e5c496352f1",
+              "size_bytes": 37,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-verify-evidence.stderr",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-verify-evidence.stderr",
+              "schema_version": 1,
+              "sha256": "aca57e8689acd3c35cb40da3cac79fc0773c530f6ec2ca55757989fb5fcd2786",
+              "size_bytes": 34,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/acceptance-evidence/phase-acceptance/raw/acceptance-verify-evidence.stdout",
+              "physical_path": "evidence/phase-acceptance/raw/acceptance-verify-evidence.stdout",
+              "schema_version": 1,
+              "sha256": "f13ebba2d5e2714e8c2693f78f7b9c0fda4e001c0603d7bf4262a934754823d7",
+              "size_bytes": 34,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/scientific-output/analysis/analysis_metadata.parquet",
+              "physical_path": "analysis/analysis_metadata.parquet",
+              "schema_version": 1,
+              "sha256": "3af8c6a15106934350d38e0bcb28a97176eaaa2594ab329ecf87471f54fe65eb",
+              "size_bytes": 21,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/scientific-output/local_tars.csv",
+              "physical_path": "local_tars.csv",
+              "schema_version": 1,
+              "sha256": "d3a6ae14dfc74aac4261b0f43560375f3cfc316d82de5e86f31d7f97e0ec12fe",
+              "size_bytes": 99,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/scientific-output/local_tars/metadata/shard_1_metadata.tar",
+              "physical_path": "local_tars/metadata/shard_1_metadata.tar",
+              "schema_version": 1,
+              "sha256": "794bea8c7a98b298c79ae63d68683ddd4d4760fe37b2cb4c4c11fb438363b6fa",
+              "size_bytes": 29,
+              "verification_kind": "content-sha256-v1",
+              "verification_source_path": null
+            },
+            {
+              "logical_path": "postprocessing-output/scientific-output/local_tars/shard_1/batch_0.tar",
+              "physical_path": "local_tars/shard_1/batch_0.tar",
+              "schema_version": 1,
+              "sha256": "efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a",
+              "size_bytes": 13,
+              "verification_kind": "inventory-metadata-v1",
+              "verification_source_path": "outputs/tar-manifests/efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a.json"
+            }
+          ],
+          "root": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+          "schema_version": 1,
+          "verified_at": "2026-09-03T12:00:00Z",
+          "verified_members_digest": "d5aa48b7ff99c4652cf9bf4311e1cedf1021721f0e3b004602a9b82a3dc32517"
+        }
+      ],
+      "schema_version": 1
+    },
+    "receipt": {
+      "acceptance_adjudication_digest": "84343a797071cb835523d3a74fcc96049036d51f1757c6d91f40a7e251746307",
+      "acceptance_capture_digests": [
+        "1211e55e915c06f80b095255d3b7e94310a710b93eba0afde7df85587369b380",
+        "ef04f60792545d099501f6cc68f8876ea7b5b97313ab591c73b781e9cd456b9c",
+        "ac145300469accdb554e5bcff3aac799eec1dd638788e0728e8a67c2d50bd6e5"
+      ],
+      "acceptance_policy_id": "postprocessing-acceptance-policy-25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "acceptance_policy_semantic_digest": "25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "acceptance_policy_sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+      "acceptance_policy_size_bytes": 3954,
+      "action_graph_digest": "c2239ee8afc1d951f7f44dbe1645f512a7a24fcd3c1313c01455b2164a2ec254",
+      "action_semantics_digest": "f90eb0aadb1072dc67b11c7343bdea5bd216e41ba7aff1c87abff05dee2b4550",
+      "attempt_id": "attempt-0001",
+      "baseline_id": "task853-fixed-fork",
+      "baseline_version": "c8f824d",
+      "execution_projection_sha256": "5b13ac235c7e2e80d03a039325b903f97a2fde9bc09b611ea964ab206fb5d5ce",
+      "finalized_at": "2026-09-03T12:00:00Z",
+      "logical_input_manifest_digest": "346a8adbea5967709dcbc9befb8806c62d39a73bf45891c79a4e04be80b0868e",
+      "output_artifact_set_id": "postprocessing-artifact-set-dc206fdd346d991977ed4664cf3f12707a1fd48a20c170422be20eeffdc3f797",
+      "output_handoff_digest": "581786e6edf99ba64a4bc82e1177a76e1e9b7d326502423ec9da962a6eb50aae",
+      "output_handoff_id": "postprocessing-handoff-1bf31e71e5ca1a033a1a687cc584a79d568413b504fe7de49b0d61ae16051325",
+      "phase_plan_digest": "93bf77a8d6605541c82b5ff2a48d3e5595f0a71610dc6ace13dd1ed99017d271",
+      "phase_receipt_id": "postprocessing-phase-receipt-367a8a6a973e79cfd3366ccdb143415e2c38910646725d631f08d52cab86c13e",
+      "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+      "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+      "physical_artifact_location_ids": [
+        "postprocessing-artifact-location-989a97b0c9a13f53a96332ccef0deb9a4ab604a8f84ef1cb6c114883788a6962"
+      ],
+      "qualified_runtime_digest": "47c7ceddb6cc3eef04e1fb8ca69a624c3c55ef3f130800ed3350326c23c8840e",
+      "result": "passed",
+      "runtime_input_attestations_digest": "ccc560f7e7e460e36f0f7809f7c725bba3bfc386ceb8c8b79d50b9727854ad87",
+      "schema_version": 1,
+      "scientific_identity_digest": "7b032b549bbcde0541516a57b6edca1a7f1fe6a19d484e2602ec49a1c5572064",
+      "scientific_output_inventory_digest": "b91361f1e71b694ca081c99f87552d1ae9ef0f8c0712598cee7b86daa2dea2e0",
+      "scientific_output_inventory_sha256": "6a367cf9d64486f699232ce05fd3770b705bd6e9d4b11c98b9d41cda1b2d2018",
+      "scientific_output_inventory_size_bytes": 1661,
+      "terminal_action_evidence_digest": "3fc92f5821ba3309c79e73403c5b4261adbdf799be5350fd701ae070edd5808f"
+    },
+    "runtime_input_attestations": {
+      "attempt_id": "attempt-0001",
+      "attestation_kind": "postprocessing-runtime-input-attestations-v2",
+      "attestations": [
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/baseline-output.json",
+          "accessibility_evidence_sha256": "b55f97b90bbe8a00a744179ab8583d0e6dadec2fc815c3880a98bc55f11ec9a1",
+          "accessibility_evidence_size_bytes": 240,
+          "accessible": true,
+          "authority": "task853:baseline-output",
+          "content_sha256": "8c1c174556433264a9ddf3b9ea9bd94194611592dfef54ebba7761c3f37bc7ff",
+          "logical_input_name": "baseline-output",
+          "member_identity": "task853:baseline-output",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "baseline-output",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/upstream_task853/output",
+          "schema_version": 1,
+          "size_bytes": 1,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/reference-heterodimer-id-manifest.json",
+          "accessibility_evidence_sha256": "8447c871bc06e503956905d3128fa19acec254593896540ac3a1236275064ba0",
+          "accessibility_evidence_size_bytes": 226,
+          "accessible": true,
+          "authority": "task853:reference-heterodimer-id-manifest",
+          "content_sha256": "3a0b6c8c4221439fbec15928313f39df1c6eb97acec6f9ab67d277e6c29ceb42",
+          "logical_input_name": "reference-heterodimer-id-manifest",
+          "member_identity": "task853:reference-heterodimer-id-manifest",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "reference-heterodimer-id-manifest",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files/colabfold_manifest_heterodimer_compound_rescue_20260427.csv",
+          "schema_version": 1,
+          "size_bytes": 2,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/reference-manifest-csv.json",
+          "accessibility_evidence_sha256": "dc43090a3221e79b966fc51a1874eccb39946da846047acab606f331a54548fc",
+          "accessibility_evidence_size_bytes": 219,
+          "accessible": true,
+          "authority": "task853:reference-manifest-csv",
+          "content_sha256": "16cb73d22612052600d10afd0e4f8ae5c2c330ac1af9f301385255ac52196cf7",
+          "logical_input_name": "reference-manifest-csv",
+          "member_identity": "task853:reference-manifest-csv",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "reference-manifest-csv",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/colabfold_manifest_merged_5way_afid_reassigned_2026-02-24.csv",
+          "schema_version": 1,
+          "size_bytes": 3,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/reference-master-parquet.json",
+          "accessibility_evidence_sha256": "9f3575f053b7db4858af327db185f44f615c2cf03c7f9093c79a0030226aade6",
+          "accessibility_evidence_size_bytes": 214,
+          "accessible": true,
+          "authority": "task853:reference-master-parquet",
+          "content_sha256": "e0f6854c47cbee44d6618a261fe73e065896c0f23f9f260dc1a1423b0bacd8fd",
+          "logical_input_name": "reference-master-parquet",
+          "member_identity": "task853:reference-master-parquet",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "reference-master-parquet",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/swiftstack_data/master_all_runs_merged_23M.parquet",
+          "schema_version": 1,
+          "size_bytes": 4,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/reference-tracking-parquet.json",
+          "accessibility_evidence_sha256": "fb3de5aec2ae23638a2c8e749d122ba384809c863990b9d319ac6bcb8a3f594c",
+          "accessibility_evidence_size_bytes": 338,
+          "accessible": true,
+          "authority": "task853:reference-tracking-parquet",
+          "content_sha256": "b377d7a2c40bb19e20a8ca916f88f4aaff2c73ce3e1a25f5e87f9baa42891c53",
+          "logical_input_name": "reference-tracking-parquet",
+          "member_identity": "task853:reference-tracking-parquet",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "reference-tracking-parquet",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/orch_task853/input/tracking_rebaseline_one_archive_tar_hq_20260520_014444_orch_task853_from_upstream_archive_list.parquet",
+          "schema_version": 1,
+          "size_bytes": 5,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/reference-uniprot-duckdb.json",
+          "accessibility_evidence_sha256": "ac2cb8d003e80a43ec36c68d0911e9b0621fe25c5d2f6ae2dab984ac3765191d",
+          "accessibility_evidence_size_bytes": 205,
+          "accessible": true,
+          "authority": "task853:reference-uniprot-duckdb",
+          "content_sha256": "0ba3dc69bfd416f252d77adb7413247ee885306ba866bac78d5e4d9807c65ddd",
+          "logical_input_name": "reference-uniprot-duckdb",
+          "member_identity": "task853:reference-uniprot-duckdb",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "reference-uniprot-duckdb",
+          "physical_locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/uniprot_2025_04_merged_5way_sprot_trembl.duckdb",
+          "schema_version": 1,
+          "size_bytes": 6,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        },
+        {
+          "accessibility_evidence_path": "phase-inputs/proofs/swiftstack-archive-prefix.json",
+          "accessibility_evidence_sha256": "67a99ffd6bb985a07ffd060d6940026b802bc5b642bef1d6d316995fdf84ef68",
+          "accessibility_evidence_size_bytes": 181,
+          "accessible": true,
+          "authority": "task853:swiftstack-archive-prefix",
+          "content_sha256": "26782e2a4cb083daf9db40f2be3706e76affd77c1847bb9fe7ae8ce12c3cbeea",
+          "logical_input_name": "swiftstack-archive-prefix",
+          "member_identity": "task853:swiftstack-archive-prefix",
+          "observed_at": "2026-09-03T12:00:00Z",
+          "physical_input_name": "swiftstack-archive-prefix",
+          "physical_locator": "s3://example-bucket/users/example-user/rerun-inputs/control-plane-task853/control_plane_task853_awscreds_retry_20260608/archives/",
+          "schema_version": 1,
+          "size_bytes": 7,
+          "verification_kind": "authority-declared-content-v1",
+          "verification_source": "runtime-preflight"
+        }
+      ],
+      "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+      "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+      "runtime_qualification": {
+        "attestation_kind": "postprocessing-runtime-qualification-attestation-v2",
+        "observed_at": "2026-09-03T12:00:00Z",
+        "qualified_runtime_digest": "47c7ceddb6cc3eef04e1fb8ca69a624c3c55ef3f130800ed3350326c23c8840e",
+        "record_location": "attempts/attempt-0001/runtime-qualification.json",
+        "record_sha256": "5017efbfe4735e27fc307b247a8d44b9205417899d8816bfce43ad40686c5ec7",
+        "record_size_bytes": 11390,
+        "runtime_component_identity_digest": "926efb0b37c60d8dbb1cafde1a857a388e2324937c8747f13c761ee9b689d256",
+        "schema_version": 1,
+        "source_identity_digest": "06ca75f1470403cc5171ea6901b20ab14fa388536f49724e1880f2eec55f3173",
+        "source_package_identity_digest": "e8df25f10aabf936443fae9a34231be9157e5336eda2f2d5aeaa3fae4db3ee5f",
+        "toolkit_identity_digest": "db17ae22f30747485a2e1b8fdc78caebced80d33801a97c460d17ba206bb46ab",
+        "tuple_id": "a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3"
+      },
+      "schema_version": 1
+    },
+    "schema_version": 1,
+    "scientific_output_inventory": {
+      "attempt_id": "attempt-0001",
+      "inventory_kind": "postprocessing-scientific-output-inventory-v1",
+      "members": [
+        {
+          "path": "analysis/analysis_metadata.parquet",
+          "schema_version": 1,
+          "sha256": "3af8c6a15106934350d38e0bcb28a97176eaaa2594ab329ecf87471f54fe65eb",
+          "size_bytes": 21,
+          "verification_kind": "content-sha256-v1",
+          "verification_source_path": null
+        },
+        {
+          "path": "local_tars.csv",
+          "schema_version": 1,
+          "sha256": "d3a6ae14dfc74aac4261b0f43560375f3cfc316d82de5e86f31d7f97e0ec12fe",
+          "size_bytes": 99,
+          "verification_kind": "content-sha256-v1",
+          "verification_source_path": null
+        },
+        {
+          "path": "local_tars/metadata/shard_1_metadata.tar",
+          "schema_version": 1,
+          "sha256": "794bea8c7a98b298c79ae63d68683ddd4d4760fe37b2cb4c4c11fb438363b6fa",
+          "size_bytes": 29,
+          "verification_kind": "content-sha256-v1",
+          "verification_source_path": null
+        },
+        {
+          "path": "local_tars/shard_1/batch_0.tar",
+          "schema_version": 1,
+          "sha256": "efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a",
+          "size_bytes": 13,
+          "verification_kind": "inventory-metadata-v1",
+          "verification_source_path": "outputs/tar-manifests/efe07030fb8a7cb321f59aba7d6dc5404c43815e10b21a4b5c6bb9a72285667a.json"
+        }
+      ],
+      "output_root": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+      "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+      "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+      "schema_version": 1
+    },
+    "terminal_actions": [
+      {
+        "action_id": "postprocessing-01-preflight",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4001",
+        "runtime_action_digest": "f5e592e68dc6e5e28c810cb97b4d553d47d437b8cbf6917237364b0434b3f68e",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4001",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-02-recipe",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4002",
+        "runtime_action_digest": "1405b66cabb803a858815aca74046575d63b88983cb1e7ccc4ebfcb31c5162bf",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4002",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-03-preprocess",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4003",
+        "runtime_action_digest": "6524bb582c39ef9139ad83d216618e4dd31268e7332290c70fad2cf07b96d890",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4003",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-04-slurm",
+        "expected_task_indexes": [
+          853
+        ],
+        "outcome": "succeeded",
+        "parent_job_id": "4004",
+        "runtime_action_digest": "6531e0e0d05fbb7a2732542b4380a0cf8a5aa347385699d6299a7004d6bb73d2",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4004_853",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": 853
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-05-analysis-finalize",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4005",
+        "runtime_action_digest": "61d7690a5cec8cbcf6b854113f5019ebb7710b32f7d28cc435e005cef000b4ed",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4005",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4006",
+        "runtime_action_digest": "9d67179a7a93ad1471368e0579eb779e42032d6e2740f1fa17ee6934de018885",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4006",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-07-acceptance-semantic",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4007",
+        "runtime_action_digest": "9a905f55407b2306af1af9ff2f8efc7a0944735bf648552b34d09c80804b0d81",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4007",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-08-acceptance-verify-evidence",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4008",
+        "runtime_action_digest": "b0999ae977144dde86104dd75a3defd701f8e315343b907456723d27f02ce605",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4008",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      },
+      {
+        "action_id": "postprocessing-09-acceptance-adjudication",
+        "expected_task_indexes": [],
+        "outcome": "succeeded",
+        "parent_job_id": "4009",
+        "runtime_action_digest": "aff1d6329c7a004ed8a7947a0abf96a6d6e6618c1fcfdd902c562c4dcc2a9cbf",
+        "schema_version": 1,
+        "tasks": [
+          {
+            "exit_code": "0:0",
+            "scheduler_job_id": "4009",
+            "schema_version": 1,
+            "source": "sacct",
+            "state": "COMPLETED",
+            "task_index": null
+          }
+        ]
+      }
+    ]
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 30
+}

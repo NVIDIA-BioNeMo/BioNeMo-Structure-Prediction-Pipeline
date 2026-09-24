@@ -1,0 +1,231 @@
+{
+  "files": [
+    {
+      "path": "attempts/attempt-0001/acceptance-policy.json",
+      "sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+      "size_bytes": 3954
+    },
+    {
+      "path": "attempts/attempt-0001/legacy-runspec.yaml",
+      "sha256": "5b13ac235c7e2e80d03a039325b903f97a2fde9bc09b611ea964ab206fb5d5ce",
+      "size_bytes": 9626
+    },
+    {
+      "path": "attempts/attempt-0001/phase-runspec.json",
+      "sha256": "10efce570019f0188c95bceaff184c16cd127774afe8eeea5f9209177c80fdaf",
+      "size_bytes": 18712
+    },
+    {
+      "path": "attempts/attempt-0001/runtime-qualification.json",
+      "sha256": "5017efbfe4735e27fc307b247a8d44b9205417899d8816bfce43ad40686c5ec7",
+      "size_bytes": 11390
+    },
+    {
+      "path": "events/000001-phase-materialized.json",
+      "sha256": "96b31778b2539dac1e3530230186913a1d42335f3c44db05a64766146c1880d8",
+      "size_bytes": 587
+    },
+    {
+      "path": "events/000002-phase-submission-intended.json",
+      "sha256": "d9a945db9ed6d8884c5604ba589c5cf985921fb7367d5a372496d47a1f2c106b",
+      "size_bytes": 7158
+    },
+    {
+      "path": "events/000003-phase-action-dispatch-intended.json",
+      "sha256": "23a82909b0b4a3795c4336c1745d817ff6a17699fe8a57e637d1bd1e43f49079",
+      "size_bytes": 604
+    },
+    {
+      "path": "events/000004-phase-action-submitted.json",
+      "sha256": "6467463dbcd0976dbf93de9d9333ef16b204ef0e5763d199cb9d35dc840397f2",
+      "size_bytes": 628
+    },
+    {
+      "path": "events/000005-phase-action-dispatch-intended.json",
+      "sha256": "26cd8f08bc70fc499ccb2d0edbe55346a64f03189e0b19ddac004f6623c0f7ff",
+      "size_bytes": 619
+    },
+    {
+      "path": "events/000006-phase-action-submitted.json",
+      "sha256": "6b71a46f257de1fe03b0f7b1479a2bf0b036b0d670227e43a58ca1f6133a68a1",
+      "size_bytes": 625
+    },
+    {
+      "path": "events/000007-phase-action-dispatch-intended.json",
+      "sha256": "fd3712255f1621b2a35057cd81391a90d08864c2de34efafccc5fad68063e478",
+      "size_bytes": 623
+    },
+    {
+      "path": "events/000008-phase-action-submitted.json",
+      "sha256": "c1d319dfd3909419f55b1e0f25c620fdeb630db6012be36969bd8ab3eb2e8edd",
+      "size_bytes": 629
+    },
+    {
+      "path": "events/000009-phase-action-dispatch-intended.json",
+      "sha256": "f0615a53a9876d97006d60ee02bd635d2ce716da82db5acc07dcf41f78dc30b4",
+      "size_bytes": 618
+    },
+    {
+      "path": "events/000010-phase-action-submitted.json",
+      "sha256": "fe8fe82af3aef3b02f9e9bad97aa2cbe3d91b4b1a65147e6fca644e9fe2b276b",
+      "size_bytes": 640
+    },
+    {
+      "path": "events/000011-phase-action-dispatch-intended.json",
+      "sha256": "95121e7c61f62a28e7d646ed36b38a0f85534a56482ac840ebdad4f18037c698",
+      "size_bytes": 631
+    },
+    {
+      "path": "events/000012-phase-action-submitted.json",
+      "sha256": "c6cc46f0b1784d73a6eb19793acc1fffc95df94a6682dbc0b18ee2c6db21524b",
+      "size_bytes": 637
+    },
+    {
+      "path": "events/000013-phase-action-dispatch-intended.json",
+      "sha256": "423f8f87ad3f1bb31353deb6c8ea5df61bc1e86595f3dd9451909f2266dd6acd",
+      "size_bytes": 643
+    },
+    {
+      "path": "events/000014-phase-action-submitted.json",
+      "sha256": "a14e559a4676a4d0215e4e2a3c828d0a84222590aceb7333b5b54c735eb7565f",
+      "size_bytes": 649
+    },
+    {
+      "path": "events/000015-phase-action-dispatch-intended.json",
+      "sha256": "34b744bc48c2c3dc3ea6428ba23329a5998446d5da5f77502b13d8201a5d6d73",
+      "size_bytes": 633
+    },
+    {
+      "path": "events/000016-phase-action-submitted.json",
+      "sha256": "756296b350149910524b907958f319fe4223ee3635d63ebf7b25bb29e507cf2a",
+      "size_bytes": 639
+    },
+    {
+      "path": "events/000017-phase-action-dispatch-intended.json",
+      "sha256": "8f33e3b0d12288d9fd0dc4ca91e20e42fc60e0a294c6b5ae612ac2dd6afc527b",
+      "size_bytes": 654
+    },
+    {
+      "path": "events/000018-phase-action-submitted.json",
+      "sha256": "ecd8649f64ab758cc72ad3cdcaa2e3702608553a186a32f289b0a07a5908d744",
+      "size_bytes": 646
+    },
+    {
+      "path": "events/000019-phase-action-dispatch-intended.json",
+      "sha256": "d6af634b13c0e73d2de3d898ceeff66d969e22dc5c56d369a66a6379ad24d4fa",
+      "size_bytes": 665
+    },
+    {
+      "path": "events/000020-phase-action-submitted.json",
+      "sha256": "793781480e26906a68ba32c72bb7c0830f2880a274447073776d82eab556ca59",
+      "size_bytes": 643
+    },
+    {
+      "path": "events/000021-phase-action-terminal-observed.json",
+      "sha256": "e0b8d613cbf9cfcbee4a18d02b6bc2279df66627c9478ddd71e699b15c6516ea",
+      "size_bytes": 977
+    },
+    {
+      "path": "events/000022-phase-action-terminal-observed.json",
+      "sha256": "77299bb4f9cad68d72261363387df73b65a2f6bebb4b43837de91dac873f58ad",
+      "size_bytes": 974
+    },
+    {
+      "path": "events/000023-phase-action-terminal-observed.json",
+      "sha256": "fc723635566a1e369131bbb4f4677b6f2615e4d799e1903338208b4475252903",
+      "size_bytes": 978
+    },
+    {
+      "path": "events/000024-phase-action-terminal-observed.json",
+      "sha256": "0cda3e2253b23b7d6a9df53c222aca1c4a647b9980f910a1d59153d0f9ab0dd2",
+      "size_bytes": 991
+    },
+    {
+      "path": "events/000025-phase-action-terminal-observed.json",
+      "sha256": "814f4ccb4d573da76e5350f5e020e8ba6e19482b519d15707775f8b00f8a5882",
+      "size_bytes": 985
+    },
+    {
+      "path": "events/000026-phase-action-terminal-observed.json",
+      "sha256": "fd0590e214313c6ce95a86654df8e949ff19bca622ce56673793ee7c148378af",
+      "size_bytes": 997
+    },
+    {
+      "path": "events/000027-phase-action-terminal-observed.json",
+      "sha256": "c15f73aeac997e3f48266092870813fed1aac52fc4903cf034fde3ae9a087d5f",
+      "size_bytes": 987
+    },
+    {
+      "path": "events/000028-phase-action-terminal-observed.json",
+      "sha256": "104052da46e3d130eded33c70bb0cf0465a22e375f76d1577329fb1e3f940724",
+      "size_bytes": 994
+    },
+    {
+      "path": "events/000029-phase-action-terminal-observed.json",
+      "sha256": "4a278c802b2eb5b00f7994af8e1705167ca726087c0bd5b092f68d5533537b4b",
+      "size_bytes": 991
+    },
+    {
+      "path": "events/000030-postprocessing-phase-finalized.json",
+      "sha256": "373d990fff6f86f50e75c4bd532669420df6b51ed8cd18976d870bd7a2b499f4",
+      "size_bytes": 42403
+    },
+    {
+      "path": "phase-plan.json",
+      "sha256": "bbbf49cec4d9595d577a12f3592f621ab42fbf1eb11f00726872c4f48881e8b5",
+      "size_bytes": 1116
+    },
+    {
+      "path": "phase-run.json",
+      "sha256": "eae8d13d7f0798067730216fbe44bff2c5250fb4cc06114da52a74436145ae3e",
+      "size_bytes": 765
+    },
+    {
+      "path": "scripts/postprocessing-01-preflight.sbatch",
+      "sha256": "15937a9d6071b21ed39ace15921a91b499707fba2a4d5dabd36aa86c907eb791",
+      "size_bytes": 6878
+    },
+    {
+      "path": "scripts/postprocessing-02-recipe.sbatch",
+      "sha256": "a721e801c44a20cfa594d43b3ce2b9c1e00e6b5d45dad1723c4999079220c584",
+      "size_bytes": 6413
+    },
+    {
+      "path": "scripts/postprocessing-03-preprocess.sbatch",
+      "sha256": "885536cd358125507c1767e37759f56df69bd9a3b9a1c9c5fa29a39ef5d3dfd6",
+      "size_bytes": 6475
+    },
+    {
+      "path": "scripts/postprocessing-04-slurm.sbatch",
+      "sha256": "9b59813294f193892fe416a71fc9cf00c8bd0409cdb620a22a7497c5475f1e68",
+      "size_bytes": 6445
+    },
+    {
+      "path": "scripts/postprocessing-05-analysis-finalize.sbatch",
+      "sha256": "2327d56c5ec46d32eac916feaeafbaa85f720603a29b7cabb5c4d943eba1ffe2",
+      "size_bytes": 7203
+    },
+    {
+      "path": "scripts/postprocessing-06-acceptance-tar-payload-parity.sbatch",
+      "sha256": "8192489a5bfb7130a8c358fc66a555f05c9b048f77ec8b48011b82461379ae70",
+      "size_bytes": 9429
+    },
+    {
+      "path": "scripts/postprocessing-07-acceptance-semantic.sbatch",
+      "sha256": "3f388ed2300609431fddac45f9b254bd294bc3a3222ba802e85585cec316d609",
+      "size_bytes": 9134
+    },
+    {
+      "path": "scripts/postprocessing-08-acceptance-verify-evidence.sbatch",
+      "sha256": "6e89ec093f533e602d03be84bde1e0e9c6c6b3d00f56dff354e46ffa784d401f",
+      "size_bytes": 9298
+    },
+    {
+      "path": "scripts/postprocessing-09-acceptance-adjudication.sbatch",
+      "sha256": "2270203e9de53d5eca4ec09299c0afd041ce3591f22d23bb5ae1eb14f795038b",
+      "size_bytes": 7176
+    }
+  ],
+  "fixture_kind": "historical-postprocessing-v1-authority",
+  "schema_version": 1
+}

@@ -1,0 +1,135 @@
+{
+  "baseline_id": "task853-fixed-fork",
+  "baseline_report_bindings": [
+    {
+      "baseline_locator_json_pointer": "/baseline_dir",
+      "report": "acceptance/tar_payload_parity/tar_payload_parity_report.json",
+      "schema_version": 1
+    },
+    {
+      "baseline_locator_json_pointer": "/baseline_dir",
+      "report": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+      "schema_version": 1
+    }
+  ],
+  "baseline_version": "c8f824d",
+  "completion_exit_contracts": [
+    {
+      "allowed_raw_exit_codes": [
+        0,
+        1
+      ],
+      "outcome_json_pointer": "/ok",
+      "outcome_report_path": "acceptance/tar_payload_parity/tar_payload_parity_report.json",
+      "raw_exit_report_outcomes": [
+        {
+          "raw_exit_code": 0,
+          "report_ok": true
+        },
+        {
+          "raw_exit_code": 1,
+          "report_ok": false
+        }
+      ],
+      "report_paths": [
+        "acceptance/tar_payload_parity/tar_payload_parity_report.json"
+      ],
+      "report_schema": "tar-payload-parity-report",
+      "report_schema_version": "1",
+      "schema_version": 1,
+      "step_name": "acceptance-tar-payload-parity"
+    },
+    {
+      "allowed_raw_exit_codes": [
+        0,
+        1
+      ],
+      "outcome_json_pointer": "/ok",
+      "outcome_report_path": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+      "raw_exit_report_outcomes": [
+        {
+          "raw_exit_code": 0,
+          "report_ok": true
+        },
+        {
+          "raw_exit_code": 1,
+          "report_ok": false
+        }
+      ],
+      "report_paths": [
+        "acceptance/semantic_acceptance/semantic_acceptance_summary.json"
+      ],
+      "report_schema": "semantic-acceptance-summary",
+      "report_schema_version": "1",
+      "schema_version": 1,
+      "step_name": "acceptance-semantic"
+    },
+    {
+      "allowed_raw_exit_codes": [
+        0,
+        1
+      ],
+      "outcome_json_pointer": "/ok",
+      "outcome_report_path": "acceptance/verify_evidence/acceptance_evidence_report.json",
+      "raw_exit_report_outcomes": [
+        {
+          "raw_exit_code": 0,
+          "report_ok": true
+        },
+        {
+          "raw_exit_code": 1,
+          "report_ok": false
+        }
+      ],
+      "report_paths": [
+        "acceptance/verify_evidence/acceptance_evidence_report.json"
+      ],
+      "report_schema": "acceptance-evidence-report",
+      "report_schema_version": "1",
+      "schema_version": 1,
+      "step_name": "acceptance-verify-evidence"
+    }
+  ],
+  "cross_report_reconciliations": [
+    {
+      "comparison": "equal",
+      "left_json_pointer": "/candidate_dir",
+      "left_report": "acceptance/tar_payload_parity/tar_payload_parity_report.json",
+      "right_json_pointer": "/candidate_dir",
+      "right_report": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+      "schema_version": 1
+    }
+  ],
+  "policy_kind": "postprocessing-sealable-v1",
+  "policy_schema": "afcdb-postprocessing-acceptance",
+  "policy_version": "1",
+  "residual_allowances": [
+    {
+      "cardinality_kind": "exact",
+      "expected_value": "known-task853-residual",
+      "json_pointer": "/errors",
+      "match_kind": "json-pointer-count",
+      "permitted_max": 1,
+      "permitted_min": 1,
+      "report": "acceptance/semantic_acceptance/semantic_acceptance_summary.json",
+      "required_count": 1,
+      "schema_version": 1
+    },
+    {
+      "cardinality_kind": "exact",
+      "expected_value": {
+        "check": "semantic-acceptance",
+        "message": "ok is not true",
+        "report_path": "acceptance/semantic_acceptance/semantic_acceptance_summary.json"
+      },
+      "json_pointer": "/issues",
+      "match_kind": "json-pointer-count",
+      "permitted_max": 1,
+      "permitted_min": 1,
+      "report": "acceptance/verify_evidence/acceptance_evidence_report.json",
+      "required_count": 1,
+      "schema_version": 1
+    }
+  ],
+  "schema_version": 1
+}

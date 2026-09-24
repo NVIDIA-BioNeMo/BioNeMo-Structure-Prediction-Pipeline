@@ -1,0 +1,132 @@
+# Public folding Phase Plan example (non-runnable). Every accepted authored field
+# appears once; enum alternatives and mutually-exclusive shapes are enumerated in
+# comments. Generic fake paths/uris only — no real infrastructure or credentials.
+schema_version: 1
+# phase_kind: the phase envelope kind; folding selects the folding family.
+phase_kind: folding
+# target_cluster: the shared public Cluster Profile key (clusters.my-cluster)
+# selected by this plan.
+target_cluster: my-cluster
+input_location:
+  artifact_location_id: artifact-location-20a79962a9b4229fa8f854c8f75cffd5a85485cd5901de71ee176af55227afeb
+  schema_version: 1
+  kind: verified-local-bundled
+  artifact_set_id: sha256:061bbfefe175c08c42c789b28718b899b609d9063c2fb50663e7fe36dccfe55c
+  tar_path: /data/inputs/msa-set.tar
+  bundle_path: /data/inputs/msa-set.lz4
+  bundle_uri: file:///data/inputs/msa-set.lz4
+  tar_size_bytes: 123456
+  tar_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  lz4_size_bytes: 65432
+  lz4_sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  raw_tar_members:
+    - AFDB_AF-0000000000000001.a3m
+    - AFDB_AF-0000000000000002.a3m
+  members:
+    - schema_version: 1
+      # logical_path: bundle-relative logical path of this member.
+      logical_path: a3ms/AFDB_AF-0000000000000001.a3m
+      # member_name: logical member basename.
+      member_name: AFDB_AF-0000000000000001.a3m
+      # raw_member_name: raw tar member basename.
+      raw_member_name: AFDB_AF-0000000000000001.a3m
+      size_bytes: 1234
+      sha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    - schema_version: 1
+      logical_path: a3ms/AFDB_AF-0000000000000002.a3m
+      member_name: AFDB_AF-0000000000000002.a3m
+      raw_member_name: AFDB_AF-0000000000000002.a3m
+      size_bytes: 2345
+      sha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+  verified_at: "2026-01-01T00:00:00Z"
+  # Alternative input_location kind: verified-remote-bundled (mutually exclusive
+  # with the active verified-local-bundled block). It carries bundle_uri as an
+  # s3:// object key and omits tar_path/bundle_path:
+  #   artifact_location_id: artifact-location-...
+  #   schema_version: 1
+  #   kind: verified-remote-bundled
+  #   artifact_set_id: sha256:061bbfefe175c08c42c789b28718b899b609d9063c2fb50663e7fe36dccfe55c
+  #   bundle_uri: s3://example-bucket/inputs/msa-set.lz4
+  #   tar_size_bytes: 123456
+  #   tar_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  #   lz4_size_bytes: 65432
+  #   lz4_sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  #   raw_tar_members: [...]
+  #   members: [...]
+  #   verified_at: "2026-01-01T00:00:00Z"
+# payload: folding Phase Plan payload.
+payload:
+  schema_version: 1
+  phase_kind: folding
+  # msa_set: consumed MSA Artifact Set identity and inventory.
+  msa_set:
+    schema_version: 1
+    # artifact_type: MSA Artifact Set type discriminator.
+    artifact_type: bspp.msa-set/v1
+    artifact_set_id: sha256:061bbfefe175c08c42c789b28718b899b609d9063c2fb50663e7fe36dccfe55c
+    # expected_chunk_count: number of chunks the backend will consume.
+    expected_chunk_count: 1
+    # member_a3m_paths: bundle-relative A3M member paths.
+    # PDB assembly member stems (pdb_[a-z0-9]+_assembly_\d+) are also accepted.
+    member_a3m_paths:
+      - a3ms/AFDB_AF-0000000000000001.a3m
+      - a3ms/AFDB_AF-0000000000000002.a3m
+      # - a3ms/pdb_5snm_assembly_1.a3m  # PDB assembly identity example
+    # requires_paired_query_header: whether A3M members carry a paired query header.
+    # Now informational — false is valid for monomer/homomer/n-ary targets.
+    requires_paired_query_header: true
+  # Optional artifact-backed-v2 requires backend bioir, explicit bioir_model_policy,
+  # and a packed GPU profile. Omit for unchanged legacy score-bearing evidence.
+  # evidence_profile: artifact-backed-v2
+  backend: openfold-cli
+  # Optional only with backend: bioir, for mixed monomers and complexes. Omission
+  # retains historical multimer-only behavior. Replace these fake hashes/sizes
+  # with measured native checkpoint bytes, and add bioir_monomer_checkpoint plus
+  # its exact read-only mount to the Cluster Profile. A policy change is new science.
+  # bioir_model_policy:
+  #   schema_version: 1
+  #   policy: expanded-chain-count-v1
+  #   monomer_model_source: openfold2_ptm_1
+  #   multimer_model_source: alphafold2_multimer_1
+  #   monomer_checkpoint_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+  #   monomer_checkpoint_size_bytes: 100
+  #   multimer_checkpoint_sha256: bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+  #   multimer_checkpoint_size_bytes: 200
+  # backend alternatives: openfold-cli (active) | bioir | colabfold | openfold-trt.
+  # openfold-trt is fail-closed (deferred-model_fn error); no speculative asset/
+  # factory field should be authored for it.
+  transport: local
+  # transport alternatives: local (active) | publish-to-s3.
+  # s3_prediction_prefix is an s3:// object key prefix; it is forbidden
+  # while transport is local, so it is commented out here:
+  # s3_prediction_prefix: s3://example-bucket/outputs/predictions
+  # msa_set_manifest: authored MSA Set manifest for the consumed chunks.
+  msa_set_manifest:
+    schema_version: 1
+    # artifact_type: MSA Artifact Set type discriminator.
+    artifact_type: bspp.msa-set/v1
+    artifact_set_id: sha256:061bbfefe175c08c42c789b28718b899b609d9063c2fb50663e7fe36dccfe55c
+    # chunks: one manifest entry per consumed chunk.
+    chunks:
+      - schema_version: 1
+        # chunk_name: chunk name this manifest entry describes.
+        chunk_name: folding-example_tranche00_00001.fa
+        # logical_path: bundle-relative logical path of the chunk manifest.
+        logical_path: chunks/folding-example_tranche00_00001.json
+        sha256: "1111111111111111111111111111111111111111111111111111111111111111"
+        # member_count: number of A3M members in this chunk.
+        member_count: 2
+        # logical_bytes: logical byte size of this chunk's manifest.
+        logical_bytes: 3579
+    # member_count: total A3M member count across the manifest.
+    member_count: 2
+    # logical_bytes: total logical byte size across the manifest.
+    logical_bytes: 3579
+    # member_lengths: producer-attested ordered per-member residue lengths,
+    # aligned positionally with msa_set.member_a3m_paths. A legacy
+    # manifest without member_lengths cannot be folded directly; run
+    # `bsppctl legacy-msa-import` to publish an enriched manifest instead.
+    # For a lost submission response, repeat its original arguments with
+    # `--resume-job-id <exact-scalar-id>` to verify/fetch the existing job
+    # without submitting again.
+    member_lengths: [1234, 2345]

@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "dataset_id": "pdb-temporal-2022-2025-v1",
+  "fingerprint": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+  "cases": [
+    {
+      "target_id": "pdb-temporal-2022-2025-v1/0001",
+      "sequence_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "thresholds": {"ca_coverage": 0.7},
+      "require_no_nan": true,
+      "expected_pair_mode": "single",
+      "reference_structure": "refs/0001.pdb",
+      "reference_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "chain_map": {"A": "A"},
+      "metadata": {"class": "monomer"}
+    },
+    {
+      "target_id": "pdb-temporal-2022-2025-v1/0002",
+      "sequence_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "thresholds": {"ca_coverage": 0.7},
+      "require_no_nan": true,
+      "expected_pair_mode": "single",
+      "reference_structure": "refs/0002.pdb",
+      "reference_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "chain_map": {"A": "A"},
+      "metadata": {"class": "monomer"}
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-action-dispatch-intended",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "action_id": "postprocessing-04-slurm",
+    "dependency_job_ids": [
+      "4003"
+    ],
+    "scheduler_correlation_token": "afcdb-pp-7d48dfd6c5f76c97862780c2e6dbcd11b03f9ae21f0576b5",
+    "schema_version": 1,
+    "submission_id": "postprocessing-submission-8f487bfe43d241c0358682ce366f8b972f6b81d9c11657fb6b8e45e09d0aa21c"
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 9
+}

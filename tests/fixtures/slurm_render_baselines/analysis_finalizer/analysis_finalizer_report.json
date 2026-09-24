@@ -1,0 +1,16 @@
+{
+  "dataset": "ds1",
+  "plan": {
+    "command": [
+      "sbatch",
+      "<TMP>/rendered/run_analysis_finalize.sbatch"
+    ],
+    "dependency_command": null,
+    "dry_run": false,
+    "log_dir": "<TMP>/output/logs",
+    "script_path": "<TMP>/rendered/run_analysis_finalize.sbatch"
+  },
+  "run_id": "run",
+  "source_hash": "<SOURCE_SHA256>",
+  "source_runspec": "<TMP>/runspec.yaml"
+}

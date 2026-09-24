@@ -1,0 +1,30 @@
+cluster: example
+job_name: bspp_postprocess
+run_name: bspp_run
+slurm:
+  partition:
+  account: example-account
+  array_range: 0-0
+  cpus_per_task: 30
+  memory: 128G
+  gres: gpu:1
+  time: "04:00:00"
+paths:
+  input_dir: ""
+  output_dir: ""
+  log_dir: ""
+worker:
+  stages: ipsae dssp validation metadata_export modelcif_export
+  workers: 24
+  tool_used: ColabFold v1.6.0 / AlphaFold-Multimer
+  heterodimers: false
+  clash_device: cuda
+  clash_batch_size: 128
+  dssp_algorithm: pydssp
+environment:
+  python_env: ""
+  modules: ""
+monitoring:
+  enabled: true
+  refresh_interval: 10
+  alert_threshold: 5.0

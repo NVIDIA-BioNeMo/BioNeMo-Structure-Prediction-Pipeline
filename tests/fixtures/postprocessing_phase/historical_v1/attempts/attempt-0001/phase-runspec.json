@@ -1,0 +1,414 @@
+{
+  "attempt_id": "attempt-0001",
+  "cluster": {
+    "account": "example-account",
+    "extra_mounts": [
+      {
+        "schema_version": 1,
+        "source": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj",
+        "target": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj"
+      },
+      {
+        "schema_version": 1,
+        "source": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files",
+        "target": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files"
+      }
+    ],
+    "orchestration_repo": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-orchestration",
+    "owner": "example-user",
+    "profile_name": "example-cluster",
+    "project_root": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj",
+    "runtime_image": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh",
+    "schema_version": 1,
+    "ssh_target": "example-cluster-oci-dc-02.example-cluster-oci-iad.nvidia.com",
+    "staging_root": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging",
+    "transport": "ssh"
+  },
+  "materialized_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "acceptance_policy": {
+      "location": "attempts/attempt-0001/acceptance-policy.json",
+      "policy_id": "postprocessing-acceptance-policy-25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "schema_version": 1,
+      "semantic_digest": "25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "sha256": "f2137984409344b32a57fb06eb6af7fa3ca6c22b9eb4d6c3e6e296cce2ba5339",
+      "size_bytes": 3954
+    },
+    "action_graph_digest": "c2239ee8afc1d951f7f44dbe1645f512a7a24fcd3c1313c01455b2164a2ec254",
+    "action_semantics_digest": "f90eb0aadb1072dc67b11c7343bdea5bd216e41ba7aff1c87abff05dee2b4550",
+    "actions": [
+      {
+        "action_id": "postprocessing-01-preflight",
+        "action_kind": "postprocessing-step",
+        "dependencies": [],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "preflight"
+      },
+      {
+        "action_id": "postprocessing-02-recipe",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-01-preflight"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "recipe"
+      },
+      {
+        "action_id": "postprocessing-03-preprocess",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-02-recipe"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "preprocess"
+      },
+      {
+        "action_id": "postprocessing-04-slurm",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-03-preprocess"
+        ],
+        "expected_task_indexes": [
+          853
+        ],
+        "normalized_array": "853-853",
+        "resources": {
+          "array": "853-853",
+          "cpus_per_task": 30,
+          "gres": "gpu:1",
+          "memory": "128G",
+          "partition": "batch_singlenode",
+          "schema_version": 1,
+          "time": "04:00:00"
+        },
+        "schema_version": 1,
+        "step_name": "slurm"
+      },
+      {
+        "action_id": "postprocessing-05-analysis-finalize",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-04-slurm"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 8,
+          "gres": null,
+          "memory": "128G",
+          "partition": "cpu_long",
+          "schema_version": 1,
+          "time": "24:00:00"
+        },
+        "schema_version": 1,
+        "step_name": "analysis-finalize"
+      },
+      {
+        "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-05-analysis-finalize"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 8,
+          "gres": null,
+          "memory": "32G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:30:00"
+        },
+        "schema_version": 1,
+        "step_name": "acceptance-tar-payload-parity"
+      },
+      {
+        "action_id": "postprocessing-07-acceptance-semantic",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-05-analysis-finalize"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "acceptance-semantic"
+      },
+      {
+        "action_id": "postprocessing-08-acceptance-verify-evidence",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-06-acceptance-tar-payload-parity",
+          "postprocessing-07-acceptance-semantic"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "acceptance-verify-evidence"
+      },
+      {
+        "action_id": "postprocessing-09-acceptance-adjudication",
+        "action_kind": "postprocessing-step",
+        "dependencies": [
+          "postprocessing-06-acceptance-tar-payload-parity",
+          "postprocessing-07-acceptance-semantic",
+          "postprocessing-08-acceptance-verify-evidence"
+        ],
+        "expected_task_indexes": [],
+        "normalized_array": null,
+        "resources": {
+          "array": null,
+          "cpus_per_task": 4,
+          "gres": null,
+          "memory": "16G",
+          "partition": "cpu_short",
+          "schema_version": 1,
+          "time": "00:20:00"
+        },
+        "schema_version": 1,
+        "step_name": "acceptance-adjudication"
+      }
+    ],
+    "attempt_paths": {
+      "evidence_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/evidence",
+      "legacy_run_id": "task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+      "object_prefix": "s3://example-bucket/users/example-user/postprocessed-test/control_plane_task853_awscreds_retry_20260608/phase-run-0123456789abcdef0123456789abcdef-attempt-0001/",
+      "output_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+      "schema_version": 1,
+      "staging_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/staging"
+    },
+    "execution_projection": {
+      "document_location": "attempts/attempt-0001/legacy-runspec.yaml",
+      "document_sha256": "5b13ac235c7e2e80d03a039325b903f97a2fde9bc09b611ea964ab206fb5d5ce",
+      "document_size_bytes": 9626,
+      "legacy_schema_version": 1,
+      "phase_identity": {
+        "attempt_id": "attempt-0001",
+        "identity_kind": "postprocessing-execution-projection-v1",
+        "logical_input_manifest_digest": "346a8adbea5967709dcbc9befb8806c62d39a73bf45891c79a4e04be80b0868e",
+        "output_namespace": "task853-phase",
+        "phase_plan_digest": "93bf77a8d6605541c82b5ff2a48d3e5595f0a71610dc6ace13dd1ed99017d271",
+        "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+        "qualified_runtime_digest": "47c7ceddb6cc3eef04e1fb8ca69a624c3c55ef3f130800ed3350326c23c8840e",
+        "schema_version": 1,
+        "scientific_identity_digest": "7b032b549bbcde0541516a57b6edca1a7f1fe6a19d484e2602ec49a1c5572064",
+        "substitutions": {
+          "evidence_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/evidence",
+          "legacy_run_id": "task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+          "object_prefix": "s3://example-bucket/users/example-user/postprocessed-test/control_plane_task853_awscreds_retry_20260608/phase-run-0123456789abcdef0123456789abcdef-attempt-0001/",
+          "output_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-output/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001",
+          "schema_version": 1,
+          "staging_dir": "/tmp/afcdb-v1-build-9og1f7f9/cluster-staging/task853-phase-phase-run-0123456789abcdef0123456789abcdef-attempt-0001/staging"
+        }
+      },
+      "phase_identity_digest": "967ea9977b0a663770754a713789fc2849a63e8fecb2b46e29fc06df14e1d064",
+      "projection_kind": "legacy-runspec-yaml-v1",
+      "schema_version": 1
+    },
+    "logical_inputs": {
+      "entries": [
+        {
+          "authority": "historical-authority:baseline-output",
+          "expected_content_sha256": "8c1c174556433264a9ddf3b9ea9bd94194611592dfef54ebba7761c3f37bc7ff",
+          "expected_size_bytes": 1,
+          "member_identity": "task853:baseline-output",
+          "name": "baseline-output",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:reference-heterodimer-id-manifest",
+          "expected_content_sha256": "3a0b6c8c4221439fbec15928313f39df1c6eb97acec6f9ab67d277e6c29ceb42",
+          "expected_size_bytes": 2,
+          "member_identity": "task853:reference-heterodimer-id-manifest",
+          "name": "reference-heterodimer-id-manifest",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:reference-manifest-csv",
+          "expected_content_sha256": "16cb73d22612052600d10afd0e4f8ae5c2c330ac1af9f301385255ac52196cf7",
+          "expected_size_bytes": 3,
+          "member_identity": "task853:reference-manifest-csv",
+          "name": "reference-manifest-csv",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:reference-master-parquet",
+          "expected_content_sha256": "e0f6854c47cbee44d6618a261fe73e065896c0f23f9f260dc1a1423b0bacd8fd",
+          "expected_size_bytes": 4,
+          "member_identity": "task853:reference-master-parquet",
+          "name": "reference-master-parquet",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:reference-tracking-parquet",
+          "expected_content_sha256": "b377d7a2c40bb19e20a8ca916f88f4aaff2c73ce3e1a25f5e87f9baa42891c53",
+          "expected_size_bytes": 5,
+          "member_identity": "task853:reference-tracking-parquet",
+          "name": "reference-tracking-parquet",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:reference-uniprot-duckdb",
+          "expected_content_sha256": "0ba3dc69bfd416f252d77adb7413247ee885306ba866bac78d5e4d9807c65ddd",
+          "expected_size_bytes": 6,
+          "member_identity": "task853:reference-uniprot-duckdb",
+          "name": "reference-uniprot-duckdb",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        },
+        {
+          "authority": "historical-authority:swiftstack-archive-prefix",
+          "expected_content_sha256": "26782e2a4cb083daf9db40f2be3706e76affd77c1847bb9fe7ae8ce12c3cbeea",
+          "expected_size_bytes": 7,
+          "member_identity": "task853:swiftstack-archive-prefix",
+          "name": "swiftstack-archive-prefix",
+          "schema_version": 1,
+          "verification_kind": "authority-declared-content-v1"
+        }
+      ],
+      "manifest_kind": "postprocessing-logical-inputs-v1",
+      "schema_version": 1
+    },
+    "phase_kind": "postprocessing",
+    "physical_inputs": [
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/upstream_task853/output",
+        "name": "baseline-output",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-toolkit-files/colabfold_manifest_heterodimer_compound_rescue_20260427.csv",
+        "name": "reference-heterodimer-id-manifest",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/colabfold_manifest_merged_5way_afid_reassigned_2026-02-24.csv",
+        "name": "reference-manifest-csv",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/swiftstack_data/master_all_runs_merged_23M.parquet",
+        "name": "reference-master-parquet",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb-proj/output/rebaseline_one_archive_tar_hq_20260520_014444/orch_task853/input/tracking_rebaseline_one_archive_tar_hq_20260520_014444_orch_task853_from_upstream_archive_list.parquet",
+        "name": "reference-tracking-parquet",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb-proj/uniprot_2025_04_merged_5way_sprot_trembl.duckdb",
+        "name": "reference-uniprot-duckdb",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      },
+      {
+        "locator": "s3://example-bucket/users/example-user/rerun-inputs/control-plane-task853/control_plane_task853_awscreds_retry_20260608/archives/",
+        "name": "swiftstack-archive-prefix",
+        "purpose": "postprocessing-runtime-input",
+        "schema_version": 1
+      }
+    ],
+    "qualified_runtime": {
+      "bootstrap_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+      "expires_at": "2026-09-10T00:00:00Z",
+      "image_path": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh",
+      "image_policy": "digest-checked",
+      "image_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "image_size_bytes": 1024,
+      "qualification_location": "attempts/attempt-0001/runtime-qualification.json",
+      "qualification_sha256": "5017efbfe4735e27fc307b247a8d44b9205417899d8816bfce43ad40686c5ec7",
+      "qualification_size_bytes": 11390,
+      "qualified_at": "2026-09-02T00:00:00Z",
+      "runtime_component_identity_digest": "926efb0b37c60d8dbb1cafde1a857a388e2324937c8747f13c761ee9b689d256",
+      "runtime_ipsae_binary_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/runtime-ipsae/ipsae_cpp",
+      "runtime_ipsae_binary_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "runtime_ipsae_binary_size_bytes": 4096,
+      "schema_version": 1,
+      "selection_kind": "qualified-postprocessing-runtime-v1",
+      "source_identity_digest": "06ca75f1470403cc5171ea6901b20ab14fa388536f49724e1880f2eec55f3173",
+      "source_kind": "override",
+      "source_package_identity_digest": "e8df25f10aabf936443fae9a34231be9157e5336eda2f2d5aeaa3fae4db3ee5f",
+      "source_package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afcdb-orchestration-7f9307cbc4707a20ecdc8be9c1e525b5a367b987.tar",
+      "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "toolkit_identity_digest": "db17ae22f30747485a2e1b8fdc78caebced80d33801a97c460d17ba206bb46ab",
+      "toolkit_package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+      "tuple_id": "a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3"
+    },
+    "schema_version": 1,
+    "scientific_identity": {
+      "acceptance_semantic_digest": "25edd879d908a0fa1f603099ab5ef84915b5c0405578fcedbb1b30c7be7993ea",
+      "dataset_scope_digest": "28cade697bb249e45b17f3a280012acdce372a009fc86a16479766aac61c6562",
+      "identity_kind": "postprocessing-scientific-identity-v1",
+      "logical_input_identity_digest": "346a8adbea5967709dcbc9befb8806c62d39a73bf45891c79a4e04be80b0868e",
+      "schema_version": 1,
+      "scientific_parameters_digest": "c16db13da89c7d085d6c57f9d12fb4a92f7be4f9bb5c915bc91379aa6be019ec"
+    }
+  },
+  "phase_kind": "postprocessing",
+  "phase_plan_digest": "93bf77a8d6605541c82b5ff2a48d3e5595f0a71610dc6ace13dd1ed99017d271",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1
+}

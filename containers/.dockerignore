@@ -1,0 +1,15 @@
+.git/
+.pixi/
+.venv/
+.env
+.env.*
+!.env.example
+variants/
+secrets/
+*.sqsh
+__pycache__/
+*.pyc
+.ruff_cache/
+.claude/
+.vscode/
+.idea/

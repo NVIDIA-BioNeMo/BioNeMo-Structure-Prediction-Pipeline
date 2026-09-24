@@ -1,0 +1,34 @@
+{
+  "acceptance_policy": {
+    "document_kind": "acceptance-policy",
+    "path": "acceptance-policy.yaml",
+    "schema_version": 1,
+    "sha256": "8110b2139f6bc4c10bc6818ad951555f75d08e80037b9cc7c166c1d086274ff8",
+    "size_bytes": 2922
+  },
+  "legacy_run_plan": {
+    "document_kind": "legacy-run-plan",
+    "path": "run-plan.yaml",
+    "schema_version": 1,
+    "sha256": "93dc19659a7a79620213d6801caca251005d815e111ddedcbfa47b3b999e7b68",
+    "size_bytes": 4851
+  },
+  "logical_input_inventory": {
+    "document_kind": "logical-input-inventory",
+    "path": "logical-input-inventory.yaml",
+    "schema_version": 1,
+    "sha256": "29cc9e3b67264a77a51667a5dfbce10cb504911a6928c554a88f15be5e34a8f9",
+    "size_bytes": 1641
+  },
+  "output_namespace": "task853-phase",
+  "phase_kind": "postprocessing",
+  "runtime_qualification": {
+    "document_kind": "runtime-qualification",
+    "path": "runtime-qualification.json",
+    "schema_version": 1,
+    "sha256": "19ab531dc7549a02a1b9e53099f36654f519ad69be0f02a5ff144a96877a5298",
+    "size_bytes": 11352
+  },
+  "schema_version": 1,
+  "target_cluster": "example-cluster"
+}

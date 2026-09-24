@@ -1,0 +1,12 @@
+{
+  "providerId": "test-provider",
+  "toolUsed": "AlphaFold",
+  "latestVersion": 1,
+  "allVersions": [
+    1
+  ],
+  "entityType": "protein",
+  "modelCreatedDate": "2024-01-01T00:00:00Z",
+  "uniqueIdTemplate": "{model_entity_id}",
+  "versionTag": "v1"
+}

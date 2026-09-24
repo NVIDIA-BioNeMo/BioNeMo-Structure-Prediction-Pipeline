@@ -1,0 +1,29 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-action-terminal-observed",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "action_id": "postprocessing-06-acceptance-tar-payload-parity",
+    "expected_task_indexes": [],
+    "outcome": "succeeded",
+    "parent_job_id": "4006",
+    "phase_runspec_digest": "7091b7a97ff19b7fcaaa32c67424760752d5a10948cb53d0ad7ea41634f1e864",
+    "runtime_action_digest": "9d67179a7a93ad1471368e0579eb779e42032d6e2740f1fa17ee6934de018885",
+    "schema_version": 1,
+    "submission_id": "postprocessing-submission-8f487bfe43d241c0358682ce366f8b972f6b81d9c11657fb6b8e45e09d0aa21c",
+    "tasks": [
+      {
+        "exit_code": "0:0",
+        "scheduler_job_id": "4006",
+        "schema_version": 1,
+        "source": "sacct",
+        "state": "COMPLETED",
+        "task_index": null
+      }
+    ]
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 26
+}

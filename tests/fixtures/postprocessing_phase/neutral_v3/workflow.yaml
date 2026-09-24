@@ -1,0 +1,22 @@
+workflow:
+  steps:
+    - name: preflight
+      run: true
+    - name: recipe
+      run: true
+    - name: preprocess
+      run: true
+    - name: slurm
+      run: true
+      mode: submit-and-monitor
+    - name: analysis-finalize
+      run: true
+      mode: submit-and-monitor
+    - name: acceptance-tar-payload-parity
+      run: true
+      mode: submit-and-monitor
+    - name: acceptance-semantic
+      run: true
+      mode: submit-and-monitor
+    - name: acceptance-verify-evidence
+      run: true

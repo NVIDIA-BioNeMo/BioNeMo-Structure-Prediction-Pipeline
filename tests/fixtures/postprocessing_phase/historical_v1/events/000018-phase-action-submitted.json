@@ -1,0 +1,17 @@
+{
+  "attempt_id": "attempt-0001",
+  "event_type": "phase-action-submitted",
+  "occurred_at": "2026-09-03T12:00:00.000000Z",
+  "payload": {
+    "action_id": "postprocessing-08-acceptance-verify-evidence",
+    "expected_task_indexes": [],
+    "parent_job_id": "4008",
+    "scheduler_correlation_token": "afcdb-pp-fb5956a66a8eb16cd56218bab6ce28a1d0396a8aa6ea11f6",
+    "schema_version": 1,
+    "submission_id": "postprocessing-submission-8f487bfe43d241c0358682ce366f8b972f6b81d9c11657fb6b8e45e09d0aa21c"
+  },
+  "phase_kind": "postprocessing",
+  "phase_run_id": "phase-run-0123456789abcdef0123456789abcdef",
+  "schema_version": 1,
+  "sequence": 18
+}

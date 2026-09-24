@@ -1,0 +1,60 @@
+{
+  "validated_reconstruction_records": 1000,
+  "public_download_samples": [
+    {
+      "target_id": "pdb_21kg_assembly_1",
+      "chain_count": 1,
+      "source_url": "https://files.rcsb.org/download/21kg-assembly1.cif.gz",
+      "matches_pinned_corpus": {
+        "sequence_sha256": true,
+        "source_mmcif_sha256": true,
+        "reference_sha256": true,
+        "chain_lengths": true,
+        "total_residues": true
+      },
+      "passed": true
+    },
+    {
+      "target_id": "pdb_5snm_assembly_1",
+      "chain_count": 2,
+      "source_url": "https://files.rcsb.org/download/5snm-assembly1.cif.gz",
+      "matches_pinned_corpus": {
+        "sequence_sha256": true,
+        "source_mmcif_sha256": true,
+        "reference_sha256": true,
+        "chain_lengths": true,
+        "total_residues": true
+      },
+      "passed": true
+    },
+    {
+      "target_id": "pdb_7f6z_assembly_1",
+      "chain_count": 3,
+      "source_url": "https://files.rcsb.org/download/7f6z-assembly1.cif.gz",
+      "matches_pinned_corpus": {
+        "sequence_sha256": true,
+        "source_mmcif_sha256": true,
+        "reference_sha256": true,
+        "chain_lengths": true,
+        "total_residues": true
+      },
+      "passed": true
+    },
+    {
+      "target_id": "pdb_7amq_assembly_1",
+      "chain_count": 4,
+      "source_url": "https://files.rcsb.org/download/7amq-assembly1.cif.gz",
+      "matches_pinned_corpus": {
+        "sequence_sha256": true,
+        "source_mmcif_sha256": true,
+        "reference_sha256": true,
+        "chain_lengths": true,
+        "total_residues": true
+      },
+      "passed": true
+    }
+  ],
+  "full_1000_reconstruction_executed": true,
+  "passed": true,
+  "full_reconstruction_report": "full-reconstruction-verification.json"
+}

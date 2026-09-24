@@ -1,0 +1,8 @@
+{
+  "providerId": "test-provider",
+  "providerName": "Test Provider",
+  "providerUrl": "https://example.com",
+  "copyrights": [
+    "Copyright 2024 Test Provider. All rights reserved."
+  ]
+}

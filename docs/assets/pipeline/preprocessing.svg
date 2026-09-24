@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+  <title id="title">Preprocessing: from FASTA to a verified MSA handoff</title>
+  <desc id="desc">One non-array Slurm job contains the preprocessing runtime container. It splits the verified FASTA into one chunk, runs ColabFold search with MMseqs2 GPU against the selected database, validates named A3M alignments, and packages a tar.lz4 bundle. The bspp.msa-set/v1 handoff includes manifests, hashes, and content-validation evidence. An explicit seam uses either local pass-through or publication to object storage. Publication is separate from the search job and Phase acceptance.</desc>
+  <defs>
+    <style>
+      text { font-family: Arial, Helvetica, sans-serif; fill: #111111; }
+      .title { font-size: 38px; font-weight: 700; }
+      .subtitle { font-size: 20px; fill: #555555; }
+      .heading { font-size: 21px; font-weight: 700; }
+      .label { font-size: 18px; }
+      .small { font-size: 16px; fill: #555555; }
+      .artifact { fill: #ffffff; stroke: #777777; stroke-width: 1.5; }
+      .runtime { fill: #eeeeee; stroke: #777777; stroke-width: 1.5; }
+      .compute { fill: #76B900; stroke: #4d7900; stroke-width: 1.5; }
+      .job { fill: #fafafa; stroke: #777777; stroke-width: 1.5; stroke-dasharray: 8 6; }
+      .container { fill: #ffffff; stroke: #777777; stroke-width: 1.5; }
+      .edge { fill: none; stroke: #666666; stroke-width: 1.5; marker-end: url(#arrow); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#666666" stroke-width="1.5"/></marker>
+  </defs>
+
+  <rect width="1600" height="820" fill="#ffffff"/>
+  <text x="40" y="58" class="title">Preprocessing</text>
+  <text x="40" y="92" class="subtitle">Verified sequences → GPU MSA search → a content-addressed artifact handoff</text>
+
+  <g aria-label="Legend">
+    <rect x="40" y="122" width="24" height="20" rx="4" class="compute"/><text x="74" y="138" class="small">Scientific compute</text>
+    <rect x="254" y="122" width="24" height="20" rx="4" class="runtime"/><text x="288" y="138" class="small">Runtime handling</text>
+    <rect x="458" y="122" width="24" height="20" rx="4" class="artifact"/><text x="492" y="138" class="small">Artifact</text>
+    <rect x="590" y="122" width="30" height="20" rx="4" class="job"/><text x="630" y="138" class="small">Slurm job</text>
+    <rect x="754" y="122" width="30" height="20" rx="4" class="container"/><text x="794" y="138" class="small">Runtime container</text>
+  </g>
+
+  <g aria-label="Verified input">
+    <rect x="40" y="322" width="176" height="158" rx="4" class="artifact"/>
+    <text x="128" y="365" text-anchor="middle" class="heading">Input FASTA</text>
+    <text x="128" y="399" text-anchor="middle" class="label">.fa sequences</text>
+    <text x="128" y="434" text-anchor="middle" class="small">Verified bytes</text>
+    <text x="128" y="457" text-anchor="middle" class="small">Size + SHA-256</text>
+  </g>
+
+  <rect x="250" y="204" width="1030" height="388" rx="4" class="job"/>
+  <text x="270" y="235" class="heading">One non-array Slurm job · one chunk in the current execution slice</text>
+  <rect x="270" y="260" width="990" height="310" rx="4" class="container"/>
+  <text x="290" y="291" class="label">Preprocessing runtime container</text>
+
+  <g aria-label="Split input">
+    <rect x="290" y="322" width="176" height="158" rx="4" class="runtime"/>
+    <text x="378" y="366" text-anchor="middle" class="heading">Split input</text>
+    <text x="378" y="400" text-anchor="middle" class="label">One bounded</text>
+    <text x="378" y="426" text-anchor="middle" class="label">search chunk</text>
+    <text x="378" y="457" text-anchor="middle" class="small">Runtime checks</text>
+  </g>
+  <g aria-label="MSA search">
+    <rect x="498" y="322" width="250" height="158" rx="4" class="compute"/>
+    <text x="623" y="366" text-anchor="middle" class="heading">MSA search</text>
+    <text x="623" y="401" text-anchor="middle" class="label">colabfold_search</text>
+    <text x="623" y="432" text-anchor="middle" class="label">MMseqs2 GPU</text>
+  </g>
+  <g aria-label="Validated alignments">
+    <rect x="780" y="322" width="194" height="158" rx="4" class="artifact"/>
+    <text x="877" y="366" text-anchor="middle" class="heading">Alignments</text>
+    <text x="877" y="400" text-anchor="middle" class="label">Named .a3m files</text>
+    <text x="877" y="434" text-anchor="middle" class="small">Validate headers</text>
+    <text x="877" y="457" text-anchor="middle" class="small">and membership</text>
+  </g>
+  <g aria-label="Package and record evidence">
+    <rect x="1006" y="322" width="234" height="158" rx="4" class="runtime"/>
+    <text x="1123" y="366" text-anchor="middle" class="heading">Package + record</text>
+    <text x="1123" y="400" text-anchor="middle" class="label">.tar.lz4 bundle</text>
+    <text x="1123" y="434" text-anchor="middle" class="small">Manifests + hashes</text>
+    <text x="1123" y="457" text-anchor="middle" class="small">Content evidence</text>
+  </g>
+  <g aria-label="Selected search databases">
+    <rect x="498" y="514" width="476" height="38" rx="4" class="artifact"/>
+    <text x="736" y="539" text-anchor="middle" class="small">Selected databases · verified direct or staged access</text>
+    <path d="M 623 514 V 483" class="edge"/>
+  </g>
+
+  <path d="M 216 400 H 287" class="edge"/>
+  <path d="M 466 400 H 495" class="edge"/>
+  <path d="M 748 400 H 777" class="edge"/>
+  <path d="M 974 400 H 1003" class="edge"/>
+  <path d="M 1240 400 H 1311" class="edge"/>
+
+  <g aria-label="MSA artifact handoff">
+    <rect x="1314" y="322" width="246" height="158" rx="4" class="artifact"/>
+    <text x="1437" y="361" text-anchor="middle" class="heading">MSA handoff</text>
+    <text x="1437" y="395" text-anchor="middle" class="label">bspp.msa-set/v1</text>
+    <text x="1437" y="430" text-anchor="middle" class="small">Bundle + metadata</text>
+    <text x="1437" y="453" text-anchor="middle" class="small">Per-member SHA-256</text>
+  </g>
+
+  <path d="M 1437 480 V 650" class="edge"/>
+  <g aria-label="Explicit phase seam">
+    <rect x="840" y="654" width="720" height="112" rx="4" class="artifact"/>
+    <text x="862" y="687" class="heading">SEAM TRANSPORT — choose one</text>
+    <text x="862" y="720" class="label">Local pass-through  ·  or  ·  publish to object storage (S3)</text>
+    <text x="862" y="747" class="small">Explicit handoff to folding; publication is a separate operation.</text>
+  </g>
+  <text x="40" y="683" class="heading">Keep three outcomes distinct</text>
+  <text x="40" y="716" class="label">Runtime packaging produces artifacts and evidence.</text>
+  <text x="40" y="744" class="label">Control finalization accepts the Phase; publication transfers data.</text>
+</svg>

@@ -1,0 +1,3 @@
+model_entity_id,entity_id,chain_id,uniprot_ac
+AF-0000000000000001_AF-0000000000000002,entity-A,chain-A,P00001
+AF-0000000000000001_AF-0000000000000002,entity-B,chain-B,P00002

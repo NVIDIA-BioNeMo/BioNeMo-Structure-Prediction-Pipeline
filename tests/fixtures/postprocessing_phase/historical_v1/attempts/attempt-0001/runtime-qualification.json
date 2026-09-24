@@ -1,0 +1,245 @@
+{
+  "attempt_history": [],
+  "evidence_status": "qualified",
+  "expires_at": "2026-09-10T00:00:00Z",
+  "profile": "example-cluster",
+  "qualified_at": "2026-09-02T00:00:00Z",
+  "schema_version": 1,
+  "smoke_evidence": {
+    "attempt_token": "66666666666666666666666666666666",
+    "bootstrap_sha256": "7777777777777777777777777777777777777777777777777777777777777777",
+    "gpu": "NVIDIA H100",
+    "image_identity": {
+      "format_version": 1,
+      "path": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh",
+      "policy": "digest-checked",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1024
+    },
+    "job_id": "8801",
+    "python": "Python 3.12.11",
+    "runtime_ipsae": {
+      "binary": {
+        "path": "runtime-ipsae/ipsae_cpp",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "size_bytes": 4096
+      },
+      "build_command": [
+        "make",
+        "-B",
+        "-C",
+        "/private/runtime/toolkit/afdb_integration_kit/ipsae",
+        "CXX=g++"
+      ],
+      "build_log": {
+        "path": "runtime-ipsae/build.log",
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "size_bytes": 128
+      },
+      "build_result": {
+        "argv": [
+          "make",
+          "-B",
+          "-C",
+          "/private/runtime/toolkit/afdb_integration_kit/ipsae",
+          "CXX=g++"
+        ],
+        "returncode": 0,
+        "stderr": "",
+        "stderr_truncated": false,
+        "stdout": "",
+        "stdout_truncated": false
+      },
+      "format_version": 1,
+      "functional_test": {
+        "argv": [
+          "/private/runtime/result/runtime-ipsae/ipsae_cpp",
+          "--batch",
+          "/private/runtime/result/runtime-ipsae/functional-fixture",
+          "10.0",
+          "8.0",
+          "--summary",
+          "/private/runtime/result/runtime-ipsae/functional-summary.csv",
+          "--workers",
+          "1",
+          "--quiet"
+        ],
+        "check": "paired-pdb-pae-semantic-v1",
+        "expected_output": "one-row:AFCDB-RQ-PAIR:ipsae_AB=1.000000:ipsae_BA=1.000000",
+        "fixture_sha256": "f9916ae3362bbd43668461f195838e6f05c82d6461da96061dd88bf7ba905918",
+        "ipsae_ab": "1.000000",
+        "ipsae_ba": "1.000000",
+        "model_id": "AFCDB-RQ-PAIR",
+        "result_sha256": "511405f2773cd838bd0d7e31bfdd16c313a5f0b32170a52a1ee478f4b8b7522d",
+        "returncode": 0,
+        "status": "passed",
+        "stderr": "",
+        "stderr_truncated": false,
+        "stdout": "",
+        "stdout_truncated": false
+      },
+      "source_path": "afdb_integration_kit/ipsae",
+      "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "toolchain": {
+        "cxx": {
+          "argv": [
+            "g++",
+            "--version"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": "g++ 14.2.0",
+          "stdout_truncated": false
+        },
+        "make": {
+          "argv": [
+            "make",
+            "--version"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stderr_truncated": false,
+          "stdout": "GNU Make 4.4",
+          "stdout_truncated": false
+        }
+      },
+      "version": {
+        "binary_sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "output": "ipsae_cpp source=aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa sha256=cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+        "scheme": "source-revision+binary-sha256-v1",
+        "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    },
+    "selected_source_identity": {
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "root": "/workspace/AFDB-Integration-Kit",
+      "source_kind": "override",
+      "toolkit_package_identity": {
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "format": "afcdb-tar-v1",
+        "format_version": 1,
+        "manifest_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+        "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+        "package_role": "toolkit",
+        "package_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+        "package_size_bytes": 4096,
+        "policy_version": 1,
+        "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "verifier": "safe-tar-v1"
+      }
+    },
+    "source_package_identity": {
+      "commit": "7f9307cbc4707a20ecdc8be9c1e525b5a367b987",
+      "format": "afcdb-tar-v1",
+      "format_version": 1,
+      "manifest_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afcdb-orchestration-7f9307cbc4707a20ecdc8be9c1e525b5a367b987.tar",
+      "package_role": "orchestration",
+      "package_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "package_size_bytes": 2048,
+      "policy_version": 1,
+      "tree": "c339818b6581bb563f043a7482ed4f05d7618768",
+      "verifier": "safe-tar-v1"
+    },
+    "status": "succeeded",
+    "toolkit_package_identity": {
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "format": "afcdb-tar-v1",
+      "format_version": 1,
+      "manifest_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+      "package_role": "toolkit",
+      "package_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "package_size_bytes": 4096,
+      "policy_version": 1,
+      "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "verifier": "safe-tar-v1"
+    },
+    "tuple_id": "a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3"
+  },
+  "smoke_job": {
+    "attempt_token": "66666666666666666666666666666666",
+    "input_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/input.json",
+    "job_id": "8801",
+    "record_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/example-cluster/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3.json",
+    "remote_input_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/input.json",
+    "remote_result_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/result.json",
+    "remote_script_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/smoke.sbatch",
+    "result_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/result.json",
+    "script_path": "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/smoke.sbatch",
+    "submit_command": [
+      "sbatch",
+      "/tmp/afcdb-v1-build-9og1f7f9/qualification/attempts/a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3/66666666666666666666666666666666/smoke.sbatch"
+    ]
+  },
+  "status": "qualified",
+  "submitted_at": "2026-09-02T00:00:00Z",
+  "tuple": {
+    "cluster_profile": "example-cluster",
+    "execution_runtime_image": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh",
+    "image_identity": {
+      "format_version": 1,
+      "path": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/containers/afcdb-orchestration-latest.sqsh",
+      "policy": "digest-checked",
+      "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+      "size_bytes": 1024
+    },
+    "runtime_facts": {
+      "gpu_worker_gres": "gpu:1"
+    },
+    "runtime_image_policy": "digest-checked",
+    "runtime_image_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "runtime_image_size_bytes": 1024,
+    "scheduling_class": "gpu_worker",
+    "selected_source": {
+      "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "root": "/workspace/AFDB-Integration-Kit",
+      "source_kind": "override",
+      "toolkit_package_identity": {
+        "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "format": "afcdb-tar-v1",
+        "format_version": 1,
+        "manifest_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+        "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+        "package_role": "toolkit",
+        "package_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+        "package_size_bytes": 4096,
+        "policy_version": 1,
+        "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "verifier": "safe-tar-v1"
+      }
+    },
+    "source_bundle_id": "afcdb-orchestration-7f9307cbc4707a20ecdc8be9c1e525b5a367b987",
+    "source_bundle_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afcdb-orchestration-7f9307cbc4707a20ecdc8be9c1e525b5a367b987.tar",
+    "source_package_identity": {
+      "commit": "7f9307cbc4707a20ecdc8be9c1e525b5a367b987",
+      "format": "afcdb-tar-v1",
+      "format_version": 1,
+      "manifest_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afcdb-orchestration-7f9307cbc4707a20ecdc8be9c1e525b5a367b987.tar",
+      "package_role": "orchestration",
+      "package_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "package_size_bytes": 2048,
+      "policy_version": 1,
+      "tree": "c339818b6581bb563f043a7482ed4f05d7618768",
+      "verifier": "safe-tar-v1"
+    },
+    "toolkit_package_identity": {
+      "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "format": "afcdb-tar-v1",
+      "format_version": 1,
+      "manifest_sha256": "5555555555555555555555555555555555555555555555555555555555555555",
+      "package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+      "package_role": "toolkit",
+      "package_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "package_size_bytes": 4096,
+      "policy_version": 1,
+      "tree": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "verifier": "safe-tar-v1"
+    },
+    "toolkit_package_path": "/tmp/afcdb-v1-build-9og1f7f9/cluster-packages/afdb-toolkit-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.tar",
+    "toolkit_source": "/srv/example/portfolios/example-account/projects/example-account/users/example-user/afcdb/afcdb/AFDB-Integration-Kit"
+  },
+  "tuple_id": "a909a8ee8a147aacd209a62dc1a5cb563051924ed6ab1d82674cc884e9f681c3"
+}

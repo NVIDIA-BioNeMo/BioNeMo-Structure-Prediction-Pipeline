@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "base_image": {
+    "reference": "nvidia/cuda:12.1.1-devel-ubuntu22.04",
+    "linux_amd64_digest": "sha256:7012e535a47883527d402da998384c30b936140c05e2537158c80b8143ee7425",
+    "cuda_version": "12.1"
+  },
+  "openfold_source_commit": "be2ec1841f16c966c65ae0e7599ebbadc725757d",
+  "pdbfixer_ref": "94cfa4c0ca551cdc5f13320f9a658efd59f2b881",
+  "torch": {
+    "spec": "torch==2.5.1+cu121",
+    "index_url": "https://download.pytorch.org/whl/cu121"
+  },
+  "runtime_deps": {
+    "click": ">=8.1,<9",
+    "pydantic": ">=2,<3",
+    "pyyaml": ">=6,<7",
+    "numpy": ">=1.26,<2"
+  },
+  "pinning_note": "The base image linux_amd64_digest is the pinned linux/amd64 sha256 digest of nvidia/cuda:12.1.1-devel-ubuntu22.04. build.sh still fails closed while the digest equals the placeholder. openfold_source_commit, pdbfixer_ref, and torch are wired through ARG/--build-arg and validated by build.sh. runtime_deps is documentation-only and is not wired through ARG/--build-arg; the Dockerfile hardcodes the pip install ranges directly. The base is a public Docker Hub image (no NGC, no entitlement, anonymous pull).",
+  "s5cmd": {
+    "artifact_sha256": "81d02a17a13797dc5949adb99734ad4217d005638a7827f36d435945527b2e69",
+    "artifact_url": "https://github.com/peak/s5cmd/releases/download/v2.3.0/s5cmd_2.3.0_linux_amd64.deb",
+    "version": "2.3.0"
+  }
+}

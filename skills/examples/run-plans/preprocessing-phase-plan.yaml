@@ -1,0 +1,313 @@
+# Illustrative preprocessing Phase Plan example.
+#
+# This file is documentation and is NOT runnable as-is: every value is a generic
+# placeholder (paths under /data/, s3://my-bucket/, registry.example.com/) and no
+# real cluster, bucket, database set, or credential is referenced. It exercises the
+# strict phase_plan_from_mapping loader so reader-facing examples stay schema-true.
+#
+# Every authored field appears exactly once; every enum alternative is enumerated
+# in a comment. Optional or mutually-exclusive fields that would change
+# the meaning of the active document are shown commented-out.
+
+# schema_version: contract schema version (currently 1).
+schema_version: 1
+# phase_kind: preprocessing | folding.
+phase_kind: preprocessing
+# target_cluster: name of the Cluster Profile this plan is materialized against
+# (my-cluster is the shared example profile authored by the run-plan examples).
+target_cluster: my-cluster
+
+# input_location: verified input location. Active kind is verified-local-file;
+# the verified-remote-file alternative is shown commented-out below.
+input_location:
+  # schema_version: input location record version.
+  schema_version: 1
+  # kind: verified-local-file | verified-remote-file.
+  kind: verified-local-file
+  # path: absolute local FASTA path (must end in .fa and equal the embedded
+  # work-plan input source_path).
+  path: /data/inputs/paired.fa
+  # sha256: 64 lowercase hexadecimal characters over the input bytes.
+  sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  # size_bytes: non-negative declared byte size of the input.
+  size_bytes: 40
+  # VerifiedRemoteInputLocation alternative (commented out): an s3:// object key
+  # downloaded at materialization time into a relative .fa attempt-workspace path.
+  # kind: verified-remote-file
+  # source_uri: s3://my-bucket/inputs/paired.fa
+  # sha256: 0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef
+  # size_bytes: 40
+  # path: inputs/paired.fa
+
+# payload: preprocessing Phase Plan payload.
+payload:
+  # schema_version: payload record version.
+  schema_version: 1
+  # phase_kind: preprocessing.
+  phase_kind: preprocessing
+
+  # work_plan: complete deterministic non-executing work plan (input, options,
+  # tranches, chunks, assignments).
+  work_plan:
+    # schema_version: work plan record version.
+    schema_version: 1
+    # input: declared and validated FASTA input.
+    input:
+      # schema_version: input record version.
+      schema_version: 1
+      # source_path: FASTA source path (must equal input_location.path).
+      source_path: /data/inputs/paired.fa
+      # normalization_mode: strict-two-line | normalize-multiline.
+      normalization_mode: strict-two-line
+      # records: searched records; the Compatibility Port accepts records with
+      # 1-N non-empty colon-separated chains. Monomer, homomer,
+      # trimer, tetramer, and general n-ary heterocomplex records are admissible.
+      # Empty chains are rejected.
+      records:
+        # schema_version: FASTA record version.
+        # header: canonical FASTA header with identity immediately after '>'.
+        # sequence: non-empty colon-separated chains (1-N chains).
+        #   Monomer: "AAAA"; Homomer: "AAAA:AAAA"; Trimer: "AAAA:CCCC:GGGG"
+        # identity: canonical identity matching the header.
+        # source_ordinal: zero-based source order.
+        - schema_version: 1
+          header: ">AFDB_AF-0000000000000001"
+          sequence: "AAAA:CCCC"
+          identity: "AFDB_AF-0000000000000001"
+          source_ordinal: 0
+    # options: deterministic partition and worker options.
+    options:
+      # schema_version: options record version.
+      schema_version: 1
+      # requested_tranches: number of tranches (valid range 1-100).
+      requested_tranches: 1
+      # records_per_chunk: records per chunk (positive).
+      records_per_chunk: 1
+      # nodes: number of worker nodes (positive).
+      nodes: 1
+      # gpus_per_node: GPUs per node (positive).
+      gpus_per_node: 1
+      # normalization_mode: strict-two-line | normalize-multiline.
+      normalization_mode: strict-two-line
+    # tranches: exactly one tranche partitioning the input records.
+    tranches:
+      # schema_version: tranche record version.
+      # name: tranche name matching its two-digit ordinal.
+      # fasta_name: tranche FASTA basename derived from the source stem.
+      # ordinal: zero-based tranche ordinal.
+      # record_ordinals: source ordinals in this tranche.
+      - schema_version: 1
+        name: tranche00
+        fasta_name: paired_tranche00.fa
+        ordinal: 0
+        record_ordinals: [0]
+    # chunks: exactly one chunk partitioning the tranche.
+    chunks:
+      # schema_version: chunk record version.
+      # name: chunk name matching tranche and five-digit within-tranche ordinal.
+      # tranche_name: owning tranche name.
+      # ordinal: zero-based global chunk ordinal.
+      # tranche_chunk_ordinal: zero-based within-tranche chunk ordinal.
+      # record_ordinals: source ordinals in this chunk.
+      - schema_version: 1
+        name: paired_tranche00_00000.fa
+        tranche_name: tranche00
+        ordinal: 0
+        tranche_chunk_ordinal: 0
+        record_ordinals: [0]
+    # assignments: exactly one non-executing worker placement per chunk.
+    assignments:
+      # schema_version: assignment record version.
+      # chunk_name: the chunk this assignment places.
+      # global_worker_index: zero-based worker index within the tranche.
+      # node_index: zero-based node index.
+      # gpu_index: zero-based GPU index within the node.
+      # worker_label: derived node/GPU label (n{node_index}g{gpu_index}).
+      # worker_ordinal: zero-based worker ordinal.
+      # source_path: chunk path under splitted/.
+      # staged_path: chunk path under its worker label.
+      # staging_operation: copy.
+      - schema_version: 1
+        chunk_name: paired_tranche00_00000.fa
+        global_worker_index: 0
+        node_index: 0
+        gpu_index: 0
+        worker_label: n0g0
+        worker_ordinal: 0
+        source_path: splitted/paired_tranche00_00000.fa
+        staged_path: n0g0/paired_tranche00_00000.fa
+        staging_operation: copy
+
+  # chunk_execution_intent: deeply validated authored chunk intent (scientific,
+  # site, runtime, expected A3Ms, evidence, package).
+  chunk_execution_intent:
+    # schema_version: intent record version.
+    schema_version: 1
+    # chunk_name: the sole work-plan chunk this intent binds.
+    chunk_name: paired_tranche00_00000.fa
+    # scientific: authored scientific intent; v3 filters unpaired MSAs and
+    # preserves paired row identities. Historical v1/v2 used --filter 2.
+    scientific:
+      # schema_version: scoped scientific version; v3 selects --filter 1.
+      schema_version: 3
+      # max_sequences: maximum sequences passed to the search kernel.
+      max_sequences: 10000
+      # use_env: enable the --use-env search flag.
+      use_env: false
+      # require_afdb_model_id_stem: require A3M member stems to carry an AFDB model ID.
+      require_afdb_model_id_stem: true
+    # site: authored non-database paths, executables, image, and scheduling choices.
+    site:
+      # schema_version: site record version.
+      schema_version: 1
+      # mmseqs_executable: mmseqs binary path (fixed by the qualified
+      # preprocessing image, not a site-configurable path).
+      mmseqs_executable: /usr/local/bin/mmseqs
+      # colabfold_search_executable: colabfold_search binary path (fixed by the
+      # qualified preprocessing image, not a site-configurable path).
+      colabfold_search_executable: /usr/local/bin/colabfold_search
+      # tar_executable: tar binary path (fixed by the qualified preprocessing
+      # image, not a site-configurable path).
+      tar_executable: /usr/bin/tar
+      # lz4_executable: lz4 binary path (fixed by the qualified preprocessing
+      # image, not a site-configurable path).
+      lz4_executable: /usr/bin/lz4
+      # input_root: site input root.
+      input_root: /data/inputs
+      # scratch_output_root: site scratch output root.
+      scratch_output_root: /data/scratch
+      # project_logs_root: site durable logs root.
+      project_logs_root: /data/logs
+      # finished_msa_root: site finished MSA root.
+      finished_msa_root: /data/output/msa
+      # split_input_root: site split-input root.
+      split_input_root: /data/output/split-input
+      # finished_input_root: site finished-input root.
+      finished_input_root: /data/output/finished-input
+      # container_image: cluster SquashFS image path. This must equal the
+      # qualified preprocessing runtime's cluster_image_path (the shared profile
+      # demonstrates /data/bspp/containers/bspp-orchestration-preprocessing.sqsh).
+      container_image: /data/bspp/containers/bspp-orchestration-preprocessing.sqsh
+      # container_mounts: container mount source:target pairs.
+      container_mounts:
+        - /data/inputs:/data/inputs
+        - /data/output:/data/output
+      # max_concurrency: maximum concurrent searches (positive).
+      max_concurrency: 1
+      # gpu_delay_seconds: GPU startup delay in seconds (non-negative).
+      gpu_delay_seconds: 0
+    # runtime: ephemeral runtime coordinates used only for scratch paths.
+    runtime:
+      # schema_version: runtime record version.
+      schema_version: 1
+      # slurm_node_id: zero-based Slurm node id.
+      slurm_node_id: 0
+      # gpu_id: zero-based GPU id.
+      gpu_id: 0
+      # submission_counter: zero-based submission counter.
+      submission_counter: 0
+    # expected_a3ms: one declared A3M per searched record.
+    expected_a3ms:
+      # schema_version: expected A3M record version.
+      # chunk_name: the chunk this A3M belongs to.
+      # record_identity: source record identity.
+      # source_ordinal: source record ordinal.
+      # source_header: source FASTA header.
+      # member_name: adapter-derived A3M member name (safe_filename(identity) + .a3m).
+      - schema_version: 1
+        chunk_name: paired_tranche00_00000.fa
+        record_identity: "AFDB_AF-0000000000000001"
+        source_ordinal: 0
+        source_header: ">AFDB_AF-0000000000000001"
+        member_name: "AFDB_AF-0000000000000001.a3m"
+    # evidence: scratch and durable evidence locations for the chunk.
+    evidence:
+      # schema_version: evidence record version.
+      schema_version: 1
+      # chunk_name: the chunk this evidence references.
+      chunk_name: paired_tranche00_00000.fa
+      # raw_search_output_directory: raw search output directory.
+      raw_search_output_directory: /data/scratch/raw-search/n0g0_0
+      # scratch_output_directory: scratch output directory.
+      scratch_output_directory: /data/scratch/n0g0_0
+      # scratch_log_directory: scratch log directory.
+      scratch_log_directory: /data/scratch/logs/n0g0_0
+      # scratch_log_path: scratch log path.
+      scratch_log_path: /data/scratch/logs/n0g0_0/paired_tranche00_00000.log
+      # scratch_record_path: scratch record path.
+      scratch_record_path: /data/scratch/logs/n0g0_0/paired_tranche00_00000.record
+      # a3m_record_glob: scratch A3M glob.
+      a3m_record_glob: /data/scratch/n0g0_0/*.a3m
+      # durable_log_path: durable log path.
+      durable_log_path: /data/logs/paired_tranche00_00000.log
+      # durable_record_path: durable record path.
+      durable_record_path: /data/logs/paired_tranche00_00000.record
+      # missing_glob_writes_no_such_file: retain the missing-glob No-such-file signal.
+      missing_glob_writes_no_such_file: true
+    # package: declared staging inventory and literal baseline tar/lz4 plan.
+    package:
+      # schema_version: package record version.
+      schema_version: 1
+      # chunk_name: the chunk this package references.
+      chunk_name: paired_tranche00_00000.fa
+      # staging_directory: staging directory.
+      staging_directory: /data/scratch/n0g0_0
+      # declared_stage_members: declared staging members.
+      declared_stage_members:
+        - "AFDB_AF-0000000000000001.a3m"
+      # tar_member_scope: baseline tar member scope (always ".").
+      tar_member_scope: "."
+      # scratch_tar_path: scratch tar path.
+      scratch_tar_path: /data/scratch/n0g0_0/paired_tranche00_00000.tar
+      # scratch_lz4_path: scratch lz4 path.
+      scratch_lz4_path: /data/scratch/n0g0_0/paired_tranche00_00000.tar.lz4
+      # durable_tar_path: durable tar path.
+      durable_tar_path: /data/output/msa/paired_tranche00_00000.tar
+      # durable_lz4_path: durable lz4 path.
+      durable_lz4_path: /data/output/msa/paired_tranche00_00000.tar.lz4
+      # completed_input_source_path: split-input source path for the completed input.
+      completed_input_source_path: /data/output/split-input/paired_tranche00_00000.fa
+      # completed_input_path: finished-input path for the completed input.
+      completed_input_path: /data/output/finished-input/paired_tranche00_00000.fa
+      # tar_argv: literal tar command vector.
+      tar_argv:
+        - /usr/bin/tar
+        - cf
+        - /data/scratch/n0g0_0/paired_tranche00_00000.tar
+        - -C
+        - /data/scratch/n0g0_0
+        - "."
+      # lz4_argv: literal lz4 command vector ("-3" is quoted to stay a string).
+      lz4_argv:
+        - /usr/bin/lz4
+        - -v
+        - "-3"
+        - /data/scratch/n0g0_0/paired_tranche00_00000.tar
+        - /data/scratch/n0g0_0/paired_tranche00_00000.tar.lz4
+      # archive_inside_staging_directory: self-archive within staging (must stay true).
+      archive_inside_staging_directory: true
+      # declared_members_exhaustive: never claim exhaustive tar members (must stay false).
+      declared_members_exhaustive: false
+
+  # database: Database Set identity and access policy.
+  database:
+    # schema_version: database selection record version.
+    schema_version: 1
+    # database_set: stable logical Database Set identifier and version
+    # (no schema_version inside database_set — it is exempt from the
+    # explicit-version walk).
+    database_set:
+      # identifier: Database Set identifier (must match the shared profile's
+      # database_sets entry).
+      identifier: my-database-set
+      # version: Database Set version (quoted so YAML keeps it a string).
+      version: "1"
+    # requested_policy: stage-required | stage-preferred | direct.
+    requested_policy: direct
+
+  # transport: phase-seam transport policy. Active value is local; the
+  # publish-to-s3 alternative requires s3_publish_prefix.
+  transport: local
+  # s3_publish_prefix: s3:// object key prefix (required only when
+  # transport is publish-to-s3; forbidden when transport is local).
+  # s3_publish_prefix: s3://my-bucket/outputs/msa/

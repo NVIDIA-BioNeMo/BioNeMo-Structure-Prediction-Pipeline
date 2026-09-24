@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "verified_at": "2026-09-21T03:25:20.744813+00:00",
+  "scope": "Full public download and benchmark preparation via bsppctl; no GPU inference or MSA search rerun.",
+  "command_receipt_sha256": "4b86aa15ddf20673ac17a2747c1117e5b8ff892c3f2a81d517fbef1d99d7bd7d",
+  "dataset_fingerprint": "c04ec62e6eecf165eea010f82f7aa1ad72ddfd99ce462a9c4afeac286049a217",
+  "runtime_file_hash_verification": "PASS",
+  "runtime_stored_recomputed_pinned_fingerprint": "PASS",
+  "manifest_files_checked": 1025,
+  "checksum_manifest_complete_unique_coverage": true,
+  "targets": 1000,
+  "total_residues": 391180,
+  "chains": 1400,
+  "target_jsonl_records_match_original": true,
+  "preprocessing_fasta_records_parsed": 1000,
+  "preprocessing_filename_note": "Byte-identical copy targets.fasta -> benchmark-input.fa required by current parser suffix contract.",
+  "parquet_rows_read_and_matched": 1000,
+  "references_byte_identical_and_runtime_parsed": 1000,
+  "validation_suites_loaded": {
+    "validation-suite-n0010.json": 10,
+    "validation-suite-n0050.json": 50,
+    "validation-suite-n0100.json": 100,
+    "validation-suite-n0250.json": 250,
+    "validation-suite-n0500.json": 500,
+    "validation-suite-n1000.json": 1000,
+    "validation-suite.json": 1000
+  },
+  "nested_subsets_verified": [
+    10,
+    50,
+    100,
+    250,
+    500,
+    1000
+  ],
+  "subset_fasta_id_suite_order_and_prefixes_match": true,
+  "total_files": 1026,
+  "byte_identical_files": 1024,
+  "byte_different_files": [
+    "SHA256SUMS",
+    "dataset.json"
+  ],
+  "dataset_metadata_differences": [
+    "generated_at"
+  ],
+  "elapsed_seconds": 105.780994
+}

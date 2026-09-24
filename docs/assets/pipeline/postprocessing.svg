@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1280" viewBox="0 0 1600 1280" role="img" aria-labelledby="title desc">
+<title id="title">Postprocessing: jobs, acceptance, and outputs</title>
+<desc id="desc">Input prediction bundles and master parquet arrive through object storage or local pass-through. Jobs 01 preflight, optional 02 recipe, optional 03 preprocess, optional 04 worker array, and 05 analysis finalize form a chain; omitted optional jobs close the chain. Job 05 forks to 06 tar payload parity and 07 semantic acceptance. Job 08 directly depends on 06 and 07. Job 09 directly depends on 06, 07, and 08. Dashed boxes are Slurm jobs; solid boxes are runtime containers. Tracking parquet stores lifecycle state. Final processed artifacts and per-dataset parquet go to object storage; publication and reference validation are separate from Phase acceptance.</desc>
+<style>
+  text { font-family: Arial, Helvetica, sans-serif; fill: #111111; }
+  .title { font-size: 34px; font-weight: 700; }
+  .subtitle { font-size: 20px; fill: #555555; }
+  .heading { font-size: 23px; font-weight: 700; }
+  .label { font-size: 19px; }
+  .small { font-size: 16px; fill: #555555; }
+  .tiny { font-size: 14px; fill: #555555; }
+  .edge { fill: none; stroke: #666666; stroke-width: 1.8; marker-end: url(#arrow); }
+  .control { fill: none; stroke: #777777; stroke-width: 1.6; stroke-dasharray: 6 5; marker-end: url(#arrow); }
+  .job { fill: #FFFFFF; stroke: #777777; stroke-width: 1.5; stroke-dasharray: 7 5; }
+  .container { fill: #F5F5F5; stroke: #777777; stroke-width: 1.5; }
+  .runtime { fill: #E9E9E9; stroke: #888888; stroke-width: 1.3; }
+  .science { fill: #76B900; stroke: #578700; stroke-width: 1.3; }
+  .artifact { fill: #FFFFFF; stroke: #888888; stroke-width: 1.3; }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#666666" stroke-width="1.4"/></marker></defs>
+<rect width="1600" height="1280" fill="#FFFFFF"/>
+<text x="40" y="55" class="title" text-anchor="start"><tspan x="40" dy="0">Postprocessing</tspan></text>
+<text x="40" y="90" class="subtitle" text-anchor="start"><tspan x="40" dy="0">Six required Slurm jobs · up to nine with optional steps · one runtime container per task</tspan></text>
+<rect x="40" y="125" width="420" height="125" rx="4" class="artifact"/>
+<text x="60" y="155" class="small" text-anchor="start"><tspan x="60" dy="0">SEAM TRANSPORT — CHOOSE ONE</tspan></text>
+<text x="60" y="190" class="heading" text-anchor="start"><tspan x="60" dy="0">Object storage</tspan><tspan x="60" dy="30">or local pass-through</tspan></text>
+<rect x="500" y="125" width="490" height="125" rx="4" class="artifact"/>
+<text x="520" y="160" class="heading" text-anchor="start"><tspan x="520" dy="0">Prediction handoff</tspan></text>
+<text x="520" y="196" class="label" text-anchor="start"><tspan x="520" dy="0">Prediction .tar.lz4 bundles</tspan><tspan x="520" dy="25">+ incoming master parquet</tspan></text>
+<path d="M 460 188 H 500" class="edge"/>
+<rect x="1030" y="125" width="530" height="125" rx="4" class="runtime"/>
+<text x="1050" y="157" class="heading" text-anchor="start"><tspan x="1050" dy="0">Tracking parquet = lifecycle state</tspan></text>
+<text x="1050" y="194" class="small" text-anchor="start"><tspan x="1050" dy="0">Initialized from the master parquet; updated through</tspan><tspan x="1050" dy="24">download, processing, and publication. Not an aggregate.</tspan></text>
+<path d="M 745 250 V 282 H 157 V 310" class="edge"/>
+<rect x="40" y="310" width="235" height="250" rx="4" class="job"/>
+<text x="55" y="339" class="heading" text-anchor="start"><tspan x="55" dy="0">01  Preflight</tspan></text>
+<rect x="50" y="355" width="215" height="195" rx="4" class="container"/>
+<text x="62" y="378" class="tiny" text-anchor="start"><tspan x="62" dy="0">Runtime container</tspan></text>
+<rect x="65" y="399" width="185" height="126" rx="4" class="runtime"/>
+<text x="157" y="440" class="label" text-anchor="middle"><tspan x="157" dy="0">Resolve inputs</tspan><tspan x="157" dy="29">and manifest</tspan><tspan x="157" dy="29">Check prerequisites</tspan></text>
+<rect x="315" y="310" width="235" height="250" rx="4" class="job"/>
+<text x="330" y="339" class="heading" text-anchor="start"><tspan x="330" dy="0">02  Recipe</tspan></text>
+<rect x="325" y="355" width="215" height="195" rx="4" class="container"/>
+<text x="337" y="378" class="tiny" text-anchor="start"><tspan x="337" dy="0">Runtime container</tspan></text>
+<text x="535" y="300" class="small" text-anchor="end"><tspan x="535" dy="0">OPTIONAL</tspan></text>
+<rect x="340" y="399" width="185" height="126" rx="4" class="runtime"/>
+<text x="432" y="451" class="label" text-anchor="middle"><tspan x="432" dy="0">Recipe setup</tspan><tspan x="432" dy="29">and preparation</tspan></text>
+<rect x="590" y="310" width="235" height="250" rx="4" class="job"/>
+<text x="605" y="339" class="heading" text-anchor="start"><tspan x="605" dy="0">03  Preprocess</tspan></text>
+<rect x="600" y="355" width="215" height="195" rx="4" class="container"/>
+<text x="612" y="378" class="tiny" text-anchor="start"><tspan x="612" dy="0">Runtime container</tspan></text>
+<text x="810" y="300" class="small" text-anchor="end"><tspan x="810" dy="0">OPTIONAL</tspan></text>
+<rect x="615" y="399" width="185" height="126" rx="4" class="runtime"/>
+<text x="707" y="451" class="label" text-anchor="middle"><tspan x="707" dy="0">Prepare work</tspan><tspan x="707" dy="29">for the worker array</tspan></text>
+<rect x="865" y="310" width="355" height="250" rx="4" class="job"/>
+<text x="880" y="339" class="heading" text-anchor="start"><tspan x="880" dy="0">04  Worker array</tspan></text>
+<rect x="875" y="355" width="335" height="195" rx="4" class="container"/>
+<text x="887" y="378" class="tiny" text-anchor="start"><tspan x="887" dy="0">Runtime container</tspan></text>
+<text x="1205" y="300" class="small" text-anchor="end"><tspan x="1205" dy="0">OPTIONAL</tspan></text>
+<rect x="890" y="391" width="305" height="64" rx="4" class="science"/>
+<text x="1042" y="417" class="label" text-anchor="middle"><tspan x="1042" dy="0">Confidence + PAE processing</tspan><tspan x="1042" dy="24">iPSAE / pDockQ2</tspan></text>
+<rect x="890" y="467" width="305" height="72" rx="4" class="runtime"/>
+<text x="1042" y="495" class="small" text-anchor="middle"><tspan x="1042" dy="0">Fetch + transform ModelCIF / BCIF</tspan><tspan x="1042" dy="24">Resolve manifests</tspan></text>
+<rect x="1260" y="310" width="300" height="250" rx="4" class="job"/>
+<text x="1275" y="339" class="heading" text-anchor="start"><tspan x="1275" dy="0">05  Analysis finalize</tspan></text>
+<rect x="1270" y="355" width="280" height="195" rx="4" class="container"/>
+<text x="1282" y="378" class="tiny" text-anchor="start"><tspan x="1282" dy="0">Runtime container</tspan></text>
+<rect x="1285" y="399" width="250" height="64" rx="4" class="runtime"/>
+<text x="1410" y="439" class="label" text-anchor="middle"><tspan x="1410" dy="0">Finalize dataset analysis</tspan></text>
+<rect x="1285" y="477" width="250" height="61" rx="4" class="artifact"/>
+<text x="1410" y="515" class="label" text-anchor="middle"><tspan x="1410" dy="0">Per-dataset parquet</tspan></text>
+<path d="M 275 435 H 315" class="edge"/>
+<path d="M 550 435 H 590" class="edge"/>
+<path d="M 825 435 H 865" class="edge"/>
+<path d="M 1220 435 H 1260" class="edge"/>
+<text x="40" y="598" class="small" text-anchor="start"><tspan x="40" dy="0">Disabled jobs 02–04 are omitted; the dependency chain closes the gap.</tspan></text>
+<path d="M 1410 560 V 630 H 330 V 985 H 420" class="edge"/>
+<path d="M 330 750 H 420" class="edge"/>
+<text x="40" y="693" class="heading" text-anchor="start"><tspan x="40" dy="0">Acceptance</tspan></text>
+<text x="40" y="730" class="small" text-anchor="start"><tspan x="40" dy="0">Dependencies shown</tspan><tspan x="40" dy="24">are direct dependencies.</tspan></text>
+<rect x="420" y="675" width="275" height="150" rx="4" class="job"/>
+<text x="435" y="704" class="heading" text-anchor="start"><tspan x="435" dy="0">06  Tar payload parity</tspan></text>
+<rect x="430" y="720" width="255" height="95" rx="4" class="container"/>
+<text x="442" y="743" class="tiny" text-anchor="start"><tspan x="442" dy="0">Runtime container</tspan></text>
+<rect x="445" y="759" width="225" height="46" rx="4" class="runtime"/>
+<text x="557" y="789" class="label" text-anchor="middle"><tspan x="557" dy="0">Check payload parity</tspan></text>
+<rect x="420" y="910" width="275" height="150" rx="4" class="job"/>
+<text x="435" y="939" class="heading" style="font-size:20px" text-anchor="start"><tspan x="435" dy="0">07  Semantic acceptance</tspan></text>
+<rect x="430" y="955" width="255" height="95" rx="4" class="container"/>
+<text x="442" y="978" class="tiny" text-anchor="start"><tspan x="442" dy="0">Runtime container</tspan></text>
+<rect x="445" y="994" width="225" height="46" rx="4" class="runtime"/>
+<text x="557" y="1024" class="label" text-anchor="middle"><tspan x="557" dy="0">Check semantic content</tspan></text>
+<rect x="850" y="792" width="275" height="150" rx="4" class="job"/>
+<text x="865" y="821" class="heading" text-anchor="start"><tspan x="865" dy="0">08  Verify evidence</tspan></text>
+<rect x="860" y="837" width="255" height="95" rx="4" class="container"/>
+<text x="872" y="860" class="tiny" text-anchor="start"><tspan x="872" dy="0">Runtime container</tspan></text>
+<rect x="875" y="876" width="225" height="46" rx="4" class="runtime"/>
+<text x="987" y="906" class="label" text-anchor="middle"><tspan x="987" dy="0">Verify both results</tspan></text>
+<rect x="1285" y="792" width="275" height="150" rx="4" class="job"/>
+<text x="1300" y="821" class="heading" text-anchor="start"><tspan x="1300" dy="0">09  Adjudication</tspan></text>
+<rect x="1295" y="837" width="255" height="95" rx="4" class="container"/>
+<text x="1307" y="860" class="tiny" text-anchor="start"><tspan x="1307" dy="0">Runtime container</tspan></text>
+<rect x="1310" y="876" width="225" height="46" rx="4" class="runtime"/>
+<text x="1422" y="906" class="label" text-anchor="middle"><tspan x="1422" dy="0">Acceptance decision</tspan></text>
+<path d="M 695 750 H 770 V 835 H 850" class="edge"/>
+<path d="M 695 985 H 770 V 900 H 850" class="edge"/>
+<path d="M 695 720 H 1200 V 820 H 1285" class="edge"/>
+<path d="M 695 1020 H 1230 V 920 H 1285" class="edge"/>
+<path d="M 1125 867 H 1285" class="edge"/>
+<text x="922" y="704" class="small" text-anchor="middle"><tspan x="922" dy="0">06 → 09</tspan></text>
+<text x="985" y="1006" class="small" text-anchor="middle"><tspan x="985" dy="0">07 → 09</tspan></text>
+<text x="1205" y="852" class="small" text-anchor="middle"><tspan x="1205" dy="0">08 → 09</tspan></text>
+<rect x="40" y="1110" width="1520" height="125" rx="4" class="container"/>
+<text x="60" y="1142" class="heading" text-anchor="start"><tspan x="60" dy="0">Final outputs and destination</tspan></text>
+<rect x="60" y="1161" width="650" height="53" rx="4" class="artifact"/>
+<text x="385" y="1194" class="label" text-anchor="middle"><tspan x="385" dy="0">Processed model artifacts + per-dataset parquet</tspan></text>
+<path d="M 710 1187 H 825" class="edge"/>
+<rect x="825" y="1161" width="240" height="53" rx="4" class="artifact"/>
+<text x="945" y="1194" class="label" text-anchor="middle"><tspan x="945" dy="0">Object storage</tspan></text>
+<text x="1100" y="1178" class="small" text-anchor="start"><tspan x="1100" dy="0">Publication is a separate operation.</tspan><tspan x="1100" dy="25">Reference validation is also separate.</tspan></text>
+<text x="40" y="1260" class="small" text-anchor="start"><tspan x="40" dy="0">Green: scientific compute   ·   Gray: runtime handling / validation   ·   White: artifacts   ·   Dashed: Slurm job   ·   Solid: container</tspan></text>
+</svg>

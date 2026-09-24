@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "dataset_id": "pdb-temporal-2022-2025-v1",
+  "description": "A post-AlphaFold-Multimer-training-cutoff, experimentally resolved protein benchmark stratified for scientific validation and cluster throughput measurement.",
+  "selection_seed": "afdb-public-benchmark-v1",
+  "source": {
+    "provider": "RCSB PDB",
+    "release_date_min": "2022-01-01",
+    "release_date_max": "2025-12-31",
+    "max_resolution_angstrom": 3.0,
+    "required_any_experimental_methods": [
+      "ELECTRON MICROSCOPY",
+      "X-RAY DIFFRACTION"
+    ],
+    "assembly_id": "1"
+  },
+  "filters": {
+    "minimum_chain_length": 40,
+    "minimum_coordinate_coverage": 0.7,
+    "canonical_amino_acids_only": true,
+    "require_candidate_biological_assembly": true,
+    "monomer_sequence_cluster_identity": 30
+  },
+  "strata": [
+    {
+      "name": "monomer_short",
+      "chain_count": 1,
+      "minimum_total_residues": 50,
+      "maximum_total_residues": 149,
+      "count": 200
+    },
+    {
+      "name": "monomer_medium",
+      "chain_count": 1,
+      "minimum_total_residues": 150,
+      "maximum_total_residues": 299,
+      "count": 250
+    },
+    {
+      "name": "monomer_long",
+      "chain_count": 1,
+      "minimum_total_residues": 300,
+      "maximum_total_residues": 599,
+      "count": 200
+    },
+    {
+      "name": "monomer_xlong",
+      "chain_count": 1,
+      "minimum_total_residues": 600,
+      "maximum_total_residues": 1200,
+      "count": 100
+    },
+    {
+      "name": "dimer_small",
+      "chain_count": 2,
+      "minimum_total_residues": 100,
+      "maximum_total_residues": 399,
+      "count": 75
+    },
+    {
+      "name": "dimer_large",
+      "chain_count": 2,
+      "minimum_total_residues": 400,
+      "maximum_total_residues": 1200,
+      "count": 75
+    },
+    {
+      "name": "trimer",
+      "chain_count": 3,
+      "minimum_total_residues": 150,
+      "maximum_total_residues": 1200,
+      "count": 50
+    },
+    {
+      "name": "tetramer",
+      "chain_count": 4,
+      "minimum_total_residues": 200,
+      "maximum_total_residues": 1600,
+      "count": 50
+    }
+  ],
+  "throughput_subset_sizes": [10, 50, 100, 250, 500, 1000]
+}

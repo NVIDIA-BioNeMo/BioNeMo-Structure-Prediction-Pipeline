@@ -1,0 +1,259 @@
+# Shared public Cluster Profile example.
+#
+# One generic, fully commented profile is shared by every primary Phase Plan
+# through `target_cluster: my-cluster`. Every value below is illustrative and
+# generic: the account, identity, paths, and image do not describe any real
+# cluster, user, or registry. The example is intentionally non-runnable.
+clusters:
+  my-cluster:
+    # owner: the operator identity that authors and owns this profile.
+    owner: alice
+
+    # transport: how the Control Plane reaches the cluster. Alternatives are
+    # `ssh` (a remote login node) and `local-slurm` (Slurm on the same host).
+    # `ssh` requires ssh_target; `local-slurm` must NOT set ssh_target.
+    transport: ssh
+
+    # ssh_target: the login node used for `ssh` transport. Leave unset when
+    # transport is `local-slurm`.
+    ssh_target: my-cluster-login.example.com
+
+    # account: the Slurm account charged for every allocation.
+    account: my-account
+
+    # paths: nested filesystem and image locations. The loader flattens this
+    # mapping into the top-level path fields (project_root, output_root,
+    # staging_root, orchestration_repo, image, probe_root, source_bundle_root,
+    # runtime_image_cache_root, runtime_qualification_root,
+    # runtime_qualification_control_root, governed_package_root), so do NOT
+    # also author those flat keys. The legacy optional afdb_toolkit_repo key is
+    # deliberately not authored here.
+    paths:
+      # project_root: shared project root on the cluster filesystem.
+      project_root: /data/bspp/project
+
+      # output_root: root for attempt outputs produced by this project.
+      output_root: /data/bspp/project/output
+
+      # staging_root: root for staged inputs before execution.
+      staging_root: /data/bspp/project/staging
+
+      # orchestration_repo: path to the bspp-orchestration checkout.
+      orchestration_repo: /data/bspp/bspp-orchestration
+
+      # image: default runtime image (SquashFS) for phase actions. For
+      # folding, this is the runtime image for non-fold actions.
+      image: /data/bspp/containers/bspp-orchestration-folding-runtime.sqsh
+
+      # probe_root: directory for Control Plane probe artifacts.
+      probe_root: /data/bspp/project/probes
+
+      # source_bundle_root: directory receiving the preprocessing Source Bundle
+      # staged by `bsppctl runtime preprocessing stage-source-bundle`.
+      source_bundle_root: /data/bspp/source-bundles
+
+      # runtime_image_cache_root: directory for imported runtime images.
+      runtime_image_cache_root: /data/bspp/containers
+
+      # runtime_qualification_root: cluster-side runtime qualification authority.
+      runtime_qualification_root: /data/bspp/project/runtime-qualification
+
+      # runtime_qualification_control_root: workstation-side qualification mirror.
+      runtime_qualification_control_root: /home/alice/bspp/runtime-qualification
+
+      # governed_package_root: directory for governed package artifacts.
+      governed_package_root: /data/bspp/governed-packages
+
+    # runtime_image_policy: how the runtime image is verified. Alternatives are
+    # `digest-checked` (default) and `trusted-cache`.
+    runtime_image_policy: digest-checked
+
+    # runtime_qualification_expires_hours: lifetime of a runtime qualification.
+    runtime_qualification_expires_hours: 168
+
+    # preprocessing_runtime: optional immutable preprocessing image selection.
+    # All thirteen fields must be authored together; the placeholder values below
+    # would validate if this block were uncommented (cluster_image_path,
+    # cluster_image_sha256, oci_digest, image_lock_sha256, contract_wheel_sha256,
+    # runtime_wheel_sha256, control_wheel_sha256, source_commit,
+    # source_bundle_sha256, colabfold_version, mmseqs_version, rsync_version,
+    # cuda_version).
+    # `bsppctl runtime preprocessing stage-source-bundle --profile <id>` builds
+    # and stages the Source Bundle and prints the source_commit and
+    # source_bundle_sha256 values to pin here.
+    # preprocessing_runtime:
+    #   cluster_image_path: /data/bspp/containers/bspp-orchestration-preprocessing.sqsh
+    #   cluster_image_sha256: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+    #   oci_digest: sha256:bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+    #   image_lock_sha256: cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+    #   contract_wheel_sha256: dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+    #   runtime_wheel_sha256: eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+    #   control_wheel_sha256: 9999999999999999999999999999999999999999999999999999999999999999
+    #   source_commit: ffffffffffffffffffffffffffffffffffffffff
+    #   source_bundle_sha256: "1111111111111111111111111111111111111111111111111111111111111111"
+    #   colabfold_version: 1.5.5
+    #   mmseqs_version: 15.6f452
+    #   rsync_version: 3.2.7
+    #   cuda_version: "12.6"
+
+    # postprocessing_credential_mounts: AWS shared-profile source locators for
+    # postprocessing jobs. Only the credentials and config files are read-only
+    # mounted; no secret bytes are embedded here (aws_shared_credentials_file,
+    # aws_config_file).
+    postprocessing_credential_mounts:
+      aws_shared_credentials_file: /home/alice/.aws/credentials
+      aws_config_file: /home/alice/.aws/config
+
+    # database_sets: site mapping from one logical Database Set identity to one
+    # absolute manifest path. Each entry carries identifier, version, and
+    # manifest_path.
+    database_sets:
+      - identifier: my-database-set
+        version: "1"
+        manifest_path: /data/bspp/database/manifest.json
+
+    # database_access_policies: allowed placement policies, in priority order.
+    # `direct` is the simplest non-staging policy and is active here. The
+    # alternatives `stage-required` and `stage-preferred` require the full
+    # database_cache_* group authored below.
+    database_access_policies: [direct]
+
+    # database_cache_*: all-or-none staging cache group. The five staging
+    # values (database_cache_root, database_cache_unix_user,
+    # database_cache_filesystem_type, database_cache_reserve_bytes,
+    # database_lock_wait_seconds) must be authored together, and the
+    # stage-required / stage-preferred policies require them.
+    # database_cache_namespace is the separate acceptance-only marker and
+    # accepts only the value `acceptance`.
+    # database_cache_root: /data/bspp/database/cache
+    # database_cache_namespace: acceptance
+    # database_cache_unix_user: alice
+    # database_cache_filesystem_type: xfs
+    # database_cache_reserve_bytes: 1073741824
+    # database_lock_wait_seconds: 600
+
+    # extra_mounts: additional container mounts. Each entry carries source and
+    # target; read_only defaults to false and is set true for the folding
+    # backend asset mounts below.
+    extra_mounts:
+      - source: /data/bspp/shared-inputs
+        target: /data/bspp/shared-inputs
+      - source: /data/bspp/assets/chain-manifest.csv
+        target: /data/bspp/assets/chain-manifest.csv
+        read_only: true
+      - source: /data/bspp/assets/openfold-models
+        target: /data/bspp/assets/openfold-models
+        read_only: true
+      - source: /data/bspp/assets/colabfold-weights
+        target: /data/bspp/assets/colabfold-weights
+        read_only: true
+      - source: /data/bspp/assets/bioir/params_model_1_multimer_v3.pt
+        target: /data/bspp/assets/bioir/params_model_1_multimer_v3.pt
+        read_only: true
+
+    # folding_release_preset: BioIR release preset. The folding release preset
+    # resolves to the public PyPI bionemo-ir==0.1.0 package from a public
+    # Docker Hub base image. The preset name is retained for qualification
+    # identity compatibility.
+    folding_release_preset: public
+
+    # folding_backend_images: per-backend kernel image overrides for the fold
+    # action. Each entry is {backend, image}; backends without an override fall
+    # back to paths.image (the runtime image for non-fold actions).
+    folding_backend_images:
+      - backend: openfold-cli
+        image: /data/bspp/containers/bspp-orchestration-folding-openfold-cli.sqsh
+      - backend: colabfold
+        image: /data/bspp/containers/bspp-orchestration-folding-colabfold.sqsh
+      - backend: bioir
+        image: /data/bspp/containers/bspp-orchestration-folding-bioir.sqsh
+
+    # folding_backend_assets: external, container-visible, non-secret asset
+    # paths for the three executable backends (openfold-cli, colabfold, bioir).
+    # openfold-cli selects chain_manifest_csv and openfold_model_dir; colabfold
+    # selects chain_manifest_csv and colabfold_weights_dir; bioir selects its .pt
+    # bioir_checkpoint and optionally bioir_monomer_checkpoint only with an
+    # explicit Phase Plan bioir_model_policy. openfold-trt has no asset stanza
+    # (fail-closed). Each asset path must be covered by a read_only
+    # extra_mounts target above.
+    folding_backend_assets:
+      - backend: openfold-cli
+        chain_manifest_csv: /data/bspp/assets/chain-manifest.csv
+        openfold_model_dir: /data/bspp/assets/openfold-models
+      - backend: colabfold
+        chain_manifest_csv: /data/bspp/assets/chain-manifest.csv
+        colabfold_weights_dir: /data/bspp/assets/colabfold-weights
+      - backend: bioir
+        bioir_checkpoint: /data/bspp/assets/bioir/params_model_1_multimer_v3.pt
+        # bioir_monomer_checkpoint: /data/bspp/assets/bioir/finetuning_ptm_1.pt
+        # Also add this exact read-only entry to extra_mounts above:
+        # - source: /data/bspp/assets/bioir/finetuning_ptm_1.pt
+        #   target: /data/bspp/assets/bioir/finetuning_ptm_1.pt
+        #   read_only: true
+
+    # resources: per-step Slurm resources used across the three phases. Each
+    # entry names one step (control_cpu, gpu_worker, analysis_finalize,
+    # acceptance_tar_payload_parity, acceptance_semantic) and carries the
+    # Slurm fields partition, cpus_per_task, memory, time, and (for gpu_worker
+    # only) gres. gpu_worker additionally accepts the optional typed
+    # packed-topology fields nodes, tasks_per_node, gpus_per_task, and
+    # max_parallel; they are documented below and left commented
+    # here so the example stays scalar-by-default and loadable. Typed topology
+    # and legacy gres/array are mutually exclusive: authoring nodes
+    # together with gres or array is rejected, so remove the gres line when
+    # packing.
+    resources:
+      # control_cpu: resources for lightweight Control Plane steps.
+      control_cpu:
+        # partition: Slurm partition name.
+        partition: cpu-short
+        # cpus_per_task: CPU count per task.
+        cpus_per_task: 4
+        # memory: per-node memory request.
+        memory: 16G
+        # time: Slurm wall-clock limit (HH:MM:SS).
+        time: "00:20:00"
+      # gpu_worker: resources for GPU phase actions; gres requests one GPU.
+      # The scalar shape below is the default: when the four optional typed
+      # topology fields are omitted, materialization renders today's scalar
+      # fold action (tasks_per_node=1, no array, no gpus_per_task). To pack
+      # the fold action into a one-node Slurm array, author nodes,
+      # tasks_per_node, and gpus_per_task together (max_parallel is optional)
+      # and remove the gres line below: typed topology and legacy gres/array
+      # are mutually exclusive. The topology is packed iff
+      # workers = nodes * tasks_per_node > 1; the typed fields are all-or-none
+      # (tasks_per_node/gpus_per_task/max_parallel require nodes, typed
+      # topology requires gpus_per_task, and nodes=1,tasks_per_node=1 is
+      # rejected).
+      #   nodes: 4           # array element count N (>= 1)
+      #   tasks_per_node: 8  # ranks per node tpn (>= 1); workers = nodes * tasks_per_node
+      #   gpus_per_task: 1   # GPUs per rank; packed fold requires exactly 1
+      #   max_parallel: 2    # optional array concurrency cap M (<= nodes); omit for bare 0-(N-1)
+      # Packed materialization renders --array=0-(N-1)[%M] --nodes=1
+      # --ntasks-per-node=<tpn> --gpus-per-task=<gpt>; each array element's
+      # global rank is SLURM_ARRAY_TASK_ID * tasks_per_node + SLURM_PROCID.
+      gpu_worker:
+        partition: gpu-short
+        cpus_per_task: 30
+        memory: 128G
+        time: "04:00:00"
+        # gres: generic resource request (one GPU); remove when packing.
+        gres: gpu:1
+      # analysis_finalize: resources for postprocessing analysis finalization.
+      analysis_finalize:
+        partition: cpu-long
+        cpus_per_task: 8
+        memory: 128G
+        time: "24:00:00"
+      # acceptance_tar_payload_parity: resources for the tar payload parity check.
+      acceptance_tar_payload_parity:
+        partition: cpu-short
+        cpus_per_task: 8
+        memory: 32G
+        time: "00:30:00"
+      # acceptance_semantic: resources for the semantic acceptance check.
+      acceptance_semantic:
+        partition: cpu-short
+        cpus_per_task: 4
+        memory: 16G
+        time: "00:20:00"

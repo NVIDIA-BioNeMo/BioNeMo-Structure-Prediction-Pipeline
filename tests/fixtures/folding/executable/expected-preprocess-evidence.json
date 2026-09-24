@@ -1,0 +1,5 @@
+{
+  "fasta_dir": "fasta",
+  "alignment_dir": "alignments",
+  "layout": "openfold"
+}
